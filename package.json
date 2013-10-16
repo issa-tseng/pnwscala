@@ -1,0 +1,23 @@
+{
+  "name": "pnwscala",
+  "version": "0.1.0",
+  "author": { "name": "Clint Tseng", "email": "clint.tseng@socrata.com" },
+  "files": [ "lib" ],
+  "main": "lib/pnwscala",
+  "dependencies": {
+    "janus": "git://github.com/clint-tseng/janus.git",
+    "janus-console": "git://github.com/socrata/janus-console.git",
+
+    "coffee-script": "~1.6.3",
+    "jade": "~0.35.0",
+
+    "moment": "~2.0.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-coffee": "~0.6.6",
+    "grunt-browserify": "1.2.1",
+    "grunt-contrib-sass": "~0.5.0"
+  }
+}
