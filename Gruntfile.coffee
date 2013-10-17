@@ -57,5 +57,5 @@ module.exports = (grunt) ->
   require('./tasks/jade')(grunt)
 
   # tasks
-  grunt.registerTask('default', [ 'clean:lib', 'coffee:all', 'browserify:all', 'jade:page', 'jade:views', 'sass:page' ])
+  grunt.registerTask('default', [ 'clean:lib', 'coffee:all', 'jade:views', 'browserify:all', 'jade:page', 'sass:page' ])
 

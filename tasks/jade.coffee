@@ -9,15 +9,16 @@ module.exports = (grunt) ->
           false
         else
           true
-      ).forEach((path) ->
+      ).forEach((path) =>
         try
           markup = require('jade').compile(grunt.file.read(path))()
         catch ex
           grunt.log.error(ex)
           grunt.fail.warn("Jade could not compile '#{path}'.")
 
-        if grunt.option('output') is 'js'
-          grunt.file.write(file.dest, "(function(){module.exports = '#{markup}';})();")
+        options = this.options( output: 'html' )
+        if options.output is 'js'
+          grunt.file.write(file.dest, "(function(){module.exports = '#{markup.replace(/'/g, "\'")}';})();")
         else
           grunt.file.write(file.dest, markup)
 
