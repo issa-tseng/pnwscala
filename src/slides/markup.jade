@@ -62,3 +62,71 @@
         li SEO
           .sub Accounting for search engines
 
+  .slide.slide5
+    .content
+      h1 Principles
+      ul
+        li Reusable code
+          .sub Almost identical across envs
+        li Componentized
+          .sub Library of components to use and grow
+        li Unit testable
+          .sub Trivial to inject values, dependencies
+        li Live bound
+          .sub The framework should handle display state
+
+  .slide.slide6
+    .content
+      h1 Influences
+      ul
+        li jQuery
+          .sub Elegant, expressive solution to the DOM
+        li Backbone
+          .sub Preeminent application organization library
+        li D3
+          .sub Beautiful declarative+functional API
+        li Scala?
+          .sub Hadn't even crossed my mind
+
+  .slide.slide7
+    .content
+      .code &lt;div class="person <span class="highlight class">new</span>"&gt;Person: <span class="highlight text">Martin Odersky</span>&lt;/div&gt;
+
+  .slide.slide8
+    .content
+      .left
+        h1 Backbone
+        .code person.get('first_name')
+        .code person.set('first_name', 'Lilia')
+        hr
+        .code person.on('change:first_name', &hellip;)
+
+      .right
+        h1 Janus
+        .code person.get('name.first')
+        .code person.set('name.first', 'Lilia')
+        hr
+        .code person.watch('name.first', (value) -&gt; value + '!')
+
+  .slide.slide9
+    .content
+      .left
+        h1 Template
+        .code &lt;div class="person"&gt;<br/>&nbsp;&nbsp;&lt;div class="name"&gt;&lt;/div&gt;<br/>&lt;/div&gt;
+      .right
+        h1 Bindings
+        .code binding.find('.firstName').text()<br/>.from('name.first')<br/>.and('name.last')<br/><span class="highlight flatMap">.flatMap(</span>(first, last) -&gt; 'Name: ' + first + ' ' + last)
+
+  .slide.slide10
+    .content
+      h1 Varying
+      .code class Varying extends Base<br/>&nbsp;&nbsp;<span class="highlight constr">constructor:</span> (value) -&gt; &hellip;<br/><br/>&nbsp;&nbsp;setValue: (value) -&gt; <span class="highlight setVal">&hellip;</span><br/>&nbsp;&nbsp;on: (event, handler) -&gt; &hellip;
+      .code.map &nbsp;&nbsp;<span class="highlight map">map:</span> (f) -&gt; &hellip;
+
+      .monad
+        h1 &hellip;is this a monad?
+        ul
+          li Put a thing in a box?
+          li Take that thing and put it in another box?
+          li Collapse some boxes together?
+

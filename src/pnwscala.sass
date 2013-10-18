@@ -54,6 +54,7 @@
 
 $accent_aqua: #0fb598
 $accent_tan: #e37105
+$accent_yellow: #e3ad0c
 
 // reset styles
 html, body, div, span, applet, object, iframe,
@@ -118,6 +119,29 @@ ul
     color: #ddd
     font-size: 3.5em
     margin-bottom: 0.8em
+
+    .sub
+      color: #aaa
+      font-size: 0.7em
+
+.code
+  font-family: Monaco
+  font-size: 3em
+  line-height: 1.3em
+
+  .highlight
+    background-color: rgba(0, 0, 0, 0)
+    @include prefixer(border-radius, 0.2em)
+    display: inline-block
+    margin: -0.3em
+    padding: 0.3em
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.6)
+    @include transition(0.3s, background box-shadow)
+
+    &.active
+      background-color: $accent_yellow
+      @include prefixer(box-shadow, 0 0 3px rgba(0, 0, 0, 0.6))
+
 
 // console styles
 .janusConsole
@@ -221,9 +245,11 @@ ul
   height: 100%
 
 .deck
-  @for $idx from 0 through 10
+  @for $idx from 0 through 20
     &.slide-#{$idx} .slides
       @include prefixer(transform, translateY(-($idx * 100%)))
+      &.mini
+        @include prefixer(transform, translateY(-($idx * 100%) scale(0.3)))
     .slide#{$idx}
       opacity: 1
 
@@ -402,22 +428,110 @@ ul
       top: 35em
       @include transition(0.3s, opacity)
 
-      .sub
-        color: #aaa
-        font-size: 0.7em
-
   &.stage-1
-    .content h2
-      opacity: 1
-
-  &.stage-2
     .logo
       opacity: 0.2
     .tech
+      opacity: 1
+  &.stage-2
+    .content h2
       opacity: 1
   &.stage-3
     .logo
       opacity: 0.2
     .reasons
       opacity: 1
+
+.slide5, .slide6
+  .content
+    @include centered(50em)
+    text-align: center
+
+    li
+      opacity: 1
+      @include transition(0.3s, opacity)
+
+  @for $idx from 0 through 3
+    &.stage-#{$idx} li:nth-child(#{$idx + 1}) ~ li
+      opacity: 0
+
+.slide7
+  .content
+    @include centered(7em)
+    text-align: center
+
+.slide8, .slide9
+  .content
+    @include centered(48em)
+
+    h1
+      margin-bottom: 0.3em
+
+    .code
+      margin-bottom: 0.5em
+
+    hr
+      border-color: #444
+      margin: 1em 0
+
+    .left
+      float: left
+      padding-bottom: 2em
+      padding-left: 8em
+
+      h1
+        color: $accent_tan
+
+    .right
+      float: right
+      opacity: 0
+      padding-right: 8em
+      text-align: right
+      @include transition(0.3s, opacity)
+
+      h1
+        color: $accent_aqua
+
+  &.stage-1
+    .content .right
+      opacity: 1
+
+.slide9
+  &.stage-2 .content .right
+    opacity: 1
+
+.slide10
+  .content
+    margin: 8em
+
+    h1
+      color: $accent_tan
+      margin-bottom: 0.5em
+
+    .monad
+      text-align: right
+
+      h1
+        color: $accent_aqua
+
+    .code.map, .monad, .monad li
+      opacity: 1
+      @include transition(0.3s, opacity)
+
+    .code.map
+      margin-top: 1.3em
+
+  @for $idx from 2 through 5
+    &.stage-#{$idx}
+      li:nth-child(#{$idx - 1}),
+      li:nth-child(#{$idx - 1}) ~ li
+        opacity: 0
+
+  &.stage-0 .content
+    .code.map, .monad
+      opacity: 0
+
+  &.stage-1 .content
+    .monad, .monad li
+      opacity: 0
 

@@ -18,7 +18,7 @@ module.exports = (grunt) ->
 
         options = this.options( output: 'html' )
         if options.output is 'js'
-          grunt.file.write(file.dest, "(function(){module.exports = '#{markup.replace(/'/g, "\'")}';})();")
+          grunt.file.write(file.dest, "(function(){module.exports = '#{markup.replace(/'/g, "\\'")}';})();")
         else
           grunt.file.write(file.dest, markup)
 
