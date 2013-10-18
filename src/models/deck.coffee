@@ -12,7 +12,7 @@ class Deck extends Model
 
   @bind('subject')
     .from('current')
-    .flatMap((current) -> current?.watch('subject'))
+    .flatMap((current) -> current?.subject)
 
   advance: ->
     slide = this.get('current')

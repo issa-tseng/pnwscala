@@ -109,6 +109,16 @@ body
 h1, h2, h3
   font-weight: normal
 
+h1
+  font-size: 6.5em
+  margin-bottom: 1em
+
+ul
+  li
+    color: #ddd
+    font-size: 3.5em
+    margin-bottom: 0.8em
+
 // console styles
 .janusConsole
   bottom: 0
@@ -222,23 +232,28 @@ h1, h2, h3
     @include transition(0.4s, transform opacity)
 
   .chrome
+    @include trade-light
     bottom: 0
+    font-size: 1.4em
     left: 0
     position: fixed
     right: 0
 
-    .byLine
-      @include trade-light
+    .byLine, .subject
       bottom: 0
-      font-size: 1.4em
-      left: 0
-      opacity: 0
       padding: 0.8em
       position: absolute
+
+    .byLine
+      left: 0
+      opacity: 0
       @include transition(0.4s, opacity)
 
       &.active
         opacity: 0.8
+
+    .subject
+      right: 0
 
 .slide
   height: 100%
@@ -298,5 +313,111 @@ h1, h2, h3
 
   &.stage-1
     .asterisk
+      opacity: 1
+
+.slide2
+  .content
+    @include centered(45em)
+    text-align: center
+
+.slide3
+  .content
+    @include centered(20em)
+
+  h1
+    font-size: 5.5em
+    line-height: 1.2em
+    margin-top: 0
+    padding: 0 2em
+    @include transition(0.3s, margin)
+
+  ul
+    opacity: 0
+    padding: 0 20em
+    @include transition(0.3s, opacity)
+
+  &.stage-1
+    h1
+      margin-top: -3.3em
+
+    ul
+      opacity: 1
+
+.slide4
+  overflow: hidden
+
+  h1
+    font-family: 'Frutiger Linotype'
+    letter-spacing: -1px
+
+  .logo
+    bottom: -20em
+    left: -20em
+    opacity: 0.2
+    position: absolute
+    @include prefixer(transform, translateX(0))
+    @include transition(5s, transform opacity)
+
+    .slide-4 &
+      opacity: 0.7
+
+    svg
+      @include prefixer(transform, rotateZ(60deg))
+      @include transition(3s, transform)
+
+      .slide-4 &
+        @include prefixer(transform, rotateZ(0deg))
+
+  .content
+    margin-top: 16em
+    padding-right: 20em
+    text-align: right
+    z-index: 1
+
+    h1
+      font-size: 9em
+      margin-bottom: 0.3em
+      padding-top: 1em
+      opacity: 0
+      @include transition(1.5s, opacity padding)
+
+      .slide-4 &
+        padding-top: 0
+        opacity: 1
+
+    h2
+      color: #ddd
+      font-size: 4em
+      opacity: 0
+      @include transition(0.3s, opacity)
+
+    h1, h2
+      text-shadow: 0 0 6px #000
+
+    ul
+      opacity: 0
+      position: absolute
+      right: 20em
+      text-align: right
+      top: 35em
+      @include transition(0.3s, opacity)
+
+      .sub
+        color: #aaa
+        font-size: 0.7em
+
+  &.stage-1
+    .content h2
+      opacity: 1
+
+  &.stage-2
+    .logo
+      opacity: 0.2
+    .tech
+      opacity: 1
+  &.stage-3
+    .logo
+      opacity: 0.2
+    .reasons
       opacity: 1
 

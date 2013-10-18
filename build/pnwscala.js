@@ -39,7 +39,7 @@
     });
 
     Deck.bind('subject').from('current').flatMap(function(current) {
-      return current != null ? current.watch('subject') : void 0;
+      return current != null ? current.subject : void 0;
     });
 
     Deck.prototype.advance = function() {
@@ -82,7 +82,7 @@
 
 }).call(this);
 
-},{"janus":109}],2:[function(require,module,exports){
+},{"janus":112}],2:[function(require,module,exports){
 (function() {
   var List, Model, Slide, Slides, Varying, attribute, util, _ref, _ref1, _ref2, _ref3, _ref4,
     __hasProp = {}.hasOwnProperty,
@@ -157,7 +157,7 @@
 
 }).call(this);
 
-},{"janus":109}],3:[function(require,module,exports){
+},{"janus":112}],3:[function(require,module,exports){
 (function() {
   var App, Library, app, deck, deckView, jConsole, lib, slide, slides, stdlib, storeLibrary, util, viewLibrary, _i, _j, _len, _len1, _ref, _ref1;
 
@@ -208,7 +208,7 @@
 
 }).call(this);
 
-},{"./slides/deck":5,"./slides/slides":9,"./views/deck":11,"./views/stdlib/stdlib":21,"janus":109,"janus-console":29}],4:[function(require,module,exports){
+},{"./slides/deck":5,"./slides/slides":12,"./views/deck":14,"./views/stdlib/stdlib":24,"janus":112,"janus-console":32}],4:[function(require,module,exports){
 (function() {
   var SlideTemplate, Templater, markup, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -249,7 +249,7 @@
 
 }).call(this);
 
-},{"./markup.html":6,"janus":109}],5:[function(require,module,exports){
+},{"./markup.html":6,"janus":112}],5:[function(require,module,exports){
 (function() {
   var Deck, Slides, slide, slides, util;
 
@@ -275,8 +275,8 @@
 
 }).call(this);
 
-},{"../models/deck":1,"../models/slide":2,"./slides":9,"janus":109}],6:[function(require,module,exports){
-(function(){module.exports = '<div id="slides"><div class="slide slide0"><div class="content"><h2>PNW Scala 2013</h2><h1 class="left">Scala<br/>for<br/>Javascript<br/>Kiddies</h1><h1 class="right">Javascript<br/>for<br/>Scala<br/>Nerds</h1><h2>Clint Tseng &bull; Socrata</h2></div></div><div class="slide slide1"><div class="content"><h1>Nothing here is new.<span class="asterisk">*</span></h1><p class="asterisk">* (I&apos;m pretty sure)</p></div></div></div>';})();
+},{"../models/deck":1,"../models/slide":2,"./slides":12,"janus":112}],6:[function(require,module,exports){
+(function(){module.exports = '<div id="slides"><div class="slide slide0"><div class="content"><h2>PNW Scala 2013</h2><h1 class="left">Scala<br/>for<br/>Javascript<br/>Kiddies</h1><h1 class="right">Javascript<br/>for<br/>Scala<br/>Nerds</h1><h2>Clint Tseng &bull; Socrata</h2></div></div><div class="slide slide1"><div class="content"><h1>Nothing here is new.<span class="asterisk">*</span></h1><p class="asterisk">* (I&apos;m pretty sure)</p></div></div><div class="slide slide2"><div class="content"><h1>Janus</h1><ul><li>Definition</li><li>Justification</li><li>Origins</li><li>Consequences</li><li>Difficulties</li></ul></div></div><div class="slide slide3"><div class="content"><h1>Janus is a web application framework focused on the organization of interface code into resuable, manageable pieces.</h1><ul><li>Backbone.js</li><li>Angular</li><li>Batman</li><li>Meteor</li><li>&hellip;</li></ul></div></div><div class="slide slide4"><div class="logo"><svg width="800px" height="800px" viewBox="0 0 92 93" version="1.1" xmlns="http://www.w3.org/2000/svg"><g stroke="none" fill="none" fill-rule="evenodd"><path d="M46,93 C20.594936,93 0,72.405064 0,47 C0,21.594936 20.594936,1 46,1 C51.4597667,1 56.6973743,1.95119167 61.556167,3.69690668 L58.8668408,11.233666 C54.8486348,9.7878885 50.5163265,9 46,9 C25.013208,9 8,26.013208 8,47 C8,67.986792 25.013208,85 46,85 C66.986792,85 84,67.986792 84,47 C84,41.2799175 82.7361408,35.8550204 80.4724563,30.9893605 L87.664672,27.47929 C90.4458161,33.4050551 92,40.0210309 92,47 C92,72.405064 71.405064,93 46,93 Z M46,93" fill="#FFFFFF"></path><path d="M46,72 C59.8071,72 71,60.8071 71,47 C71,43.3255893 70.2072923,39.8363224 68.783598,36.6939607 L75.0779322,33.6220901 C76.953734,37.6925211 78,42.2240783 78,47 C78,64.673088 63.673088,79 46,79 C28.326912,79 14,64.673088 14,47 C14,29.326912 28.326912,15 46,15 C49.8086157,15 53.4618289,15.6653682 56.8498436,16.8862424 L54.4966754,23.4809286 C51.844103,22.5224723 48.9830655,22 46,22 C32.1929,22 21,33.1929 21,47 C21,60.8071 32.1929,72 46,72 Z M46,72" fill="#CCCCCC"></path><path d="M46,58.921875 C52.5842608,58.921875 57.921875,53.5842608 57.921875,47 C57.921875,45.3834723 57.6001392,43.8420889 57.0172118,42.4363975 L63.3872146,39.3275978 C64.424117,41.6739689 65,44.2697332 65,47 C65,57.493396 56.493396,66 46,66 C35.506604,66 27,57.493396 27,47 C27,36.506604 35.506604,28 46,28 C48.2754558,28 50.457488,28.4000008 52.4796657,29.1335403 L50.1001978,35.8019307 C48.8217306,35.3336807 47.4407089,35.078125 46,35.078125 C39.4157392,35.078125 34.078125,40.4157392 34.078125,47 C34.078125,53.5842608 39.4157392,58.921875 46,58.921875 Z M46,58.921875" fill="#999999"></path><path d="M55.2235296,37.2255025 L89.7927586,20.8635706 C89.7927586,20.8635706 87.5783575,16.1886963 80.0740001,9.29946184 C72.5696428,2.41022735 68.0178432,0.687918726 68.0178432,0.687918726 L55.2235296,37.2255025 Z M55.2235296,37.2255025" fill="#DE0000"></path></g></svg></div><div class="content"><h1>Socrata</h1><h2>We use data and technology to improve informed governance.</h2><ul class="tech"><li>rojoma-json<div class="sub">JSON library with type-driven codecs</div></li><li>socrata-http<div class="sub">Awesome HTTP client/server library</div></li><li>soda server<div class="sub">Our open source data server</div></li><li>everything!<div class="sub">All our new backend projects!</div></li></ul><ul class="reasons"><li>508 compliance<div class="sub">Support for accesible users</div></li><li>SEO<div class="sub">Accounting for search engines</div></li></ul></div></div></div>';})();
 },{}],7:[function(require,module,exports){
 (function() {
   var DomView, Slide, Slide0, Slide0Template, Slide0View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
@@ -340,7 +340,7 @@
 
 }).call(this);
 
-},{"../models/slide":2,"./base":4,"janus":109}],8:[function(require,module,exports){
+},{"../models/slide":2,"./base":4,"janus":112}],8:[function(require,module,exports){
 (function() {
   var DomView, Slide, Slide1, Slide1Template, Slide1View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -403,15 +403,210 @@
 
 }).call(this);
 
-},{"../models/slide":2,"./base":4,"janus":109}],9:[function(require,module,exports){
+},{"../models/slide":2,"./base":4,"janus":112}],9:[function(require,module,exports){
 (function() {
-  module.exports = [require('./slide0'), require('./slide1')];
+  var DomView, Slide, Slide2, Slide2Template, Slide2View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _ref = require('janus'), util = _ref.util, DomView = _ref.DomView;
+
+  Slide = require('../models/slide').Slide;
+
+  SlideTemplate = require('./base').SlideTemplate;
+
+  Slide2 = (function(_super) {
+    __extends(Slide2, _super);
+
+    function Slide2() {
+      _ref1 = Slide2.__super__.constructor.apply(this, arguments);
+      return _ref1;
+    }
+
+    Slide2.prototype.subject = 'Overview';
+
+    Slide2.prototype.stages = 0;
+
+    return Slide2;
+
+  })(Slide);
+
+  Slide2Template = (function(_super) {
+    __extends(Slide2Template, _super);
+
+    function Slide2Template() {
+      _ref2 = Slide2Template.__super__.constructor.apply(this, arguments);
+      return _ref2;
+    }
+
+    Slide2Template.prototype._number = 2;
+
+    return Slide2Template;
+
+  })(SlideTemplate);
+
+  Slide2View = (function(_super) {
+    __extends(Slide2View, _super);
+
+    function Slide2View() {
+      _ref3 = Slide2View.__super__.constructor.apply(this, arguments);
+      return _ref3;
+    }
+
+    Slide2View.prototype.templateClass = Slide2Template;
+
+    return Slide2View;
+
+  })(DomView);
+
+  util.extend(module.exports, {
+    Model: Slide2,
+    registerWith: function(library) {
+      return library.register(Slide2, Slide2View);
+    }
+  });
 
 }).call(this);
 
-},{"./slide0":7,"./slide1":8}],10:[function(require,module,exports){
+},{"../models/slide":2,"./base":4,"janus":112}],10:[function(require,module,exports){
+(function() {
+  var DomView, Slide, Slide3, Slide3Template, Slide3View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _ref = require('janus'), util = _ref.util, DomView = _ref.DomView;
+
+  Slide = require('../models/slide').Slide;
+
+  SlideTemplate = require('./base').SlideTemplate;
+
+  Slide3 = (function(_super) {
+    __extends(Slide3, _super);
+
+    function Slide3() {
+      _ref1 = Slide3.__super__.constructor.apply(this, arguments);
+      return _ref1;
+    }
+
+    Slide3.prototype.subject = 'Definition';
+
+    Slide3.prototype.stages = 1;
+
+    return Slide3;
+
+  })(Slide);
+
+  Slide3Template = (function(_super) {
+    __extends(Slide3Template, _super);
+
+    function Slide3Template() {
+      _ref2 = Slide3Template.__super__.constructor.apply(this, arguments);
+      return _ref2;
+    }
+
+    Slide3Template.prototype._number = 3;
+
+    return Slide3Template;
+
+  })(SlideTemplate);
+
+  Slide3View = (function(_super) {
+    __extends(Slide3View, _super);
+
+    function Slide3View() {
+      _ref3 = Slide3View.__super__.constructor.apply(this, arguments);
+      return _ref3;
+    }
+
+    Slide3View.prototype.templateClass = Slide3Template;
+
+    return Slide3View;
+
+  })(DomView);
+
+  util.extend(module.exports, {
+    Model: Slide3,
+    registerWith: function(library) {
+      return library.register(Slide3, Slide3View);
+    }
+  });
+
+}).call(this);
+
+},{"../models/slide":2,"./base":4,"janus":112}],11:[function(require,module,exports){
+(function() {
+  var DomView, Slide, Slide4, Slide4Template, Slide4View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _ref = require('janus'), util = _ref.util, DomView = _ref.DomView;
+
+  Slide = require('../models/slide').Slide;
+
+  SlideTemplate = require('./base').SlideTemplate;
+
+  Slide4 = (function(_super) {
+    __extends(Slide4, _super);
+
+    function Slide4() {
+      _ref1 = Slide4.__super__.constructor.apply(this, arguments);
+      return _ref1;
+    }
+
+    Slide4.prototype.subject = 'Justification';
+
+    Slide4.prototype.stages = 3;
+
+    return Slide4;
+
+  })(Slide);
+
+  Slide4Template = (function(_super) {
+    __extends(Slide4Template, _super);
+
+    function Slide4Template() {
+      _ref2 = Slide4Template.__super__.constructor.apply(this, arguments);
+      return _ref2;
+    }
+
+    Slide4Template.prototype._number = 4;
+
+    return Slide4Template;
+
+  })(SlideTemplate);
+
+  Slide4View = (function(_super) {
+    __extends(Slide4View, _super);
+
+    function Slide4View() {
+      _ref3 = Slide4View.__super__.constructor.apply(this, arguments);
+      return _ref3;
+    }
+
+    Slide4View.prototype.templateClass = Slide4Template;
+
+    return Slide4View;
+
+  })(DomView);
+
+  util.extend(module.exports, {
+    Model: Slide4,
+    registerWith: function(library) {
+      return library.register(Slide4, Slide4View);
+    }
+  });
+
+}).call(this);
+
+},{"../models/slide":2,"./base":4,"janus":112}],12:[function(require,module,exports){
+(function() {
+  module.exports = [require('./slide0'), require('./slide1'), require('./slide2'), require('./slide3'), require('./slide4')];
+
+}).call(this);
+
+},{"./slide0":7,"./slide1":8,"./slide2":9,"./slide3":10,"./slide4":11}],13:[function(require,module,exports){
 (function(){module.exports = '<div class="deck"><div class="slides"></div><div class="chrome"><div class="byLine">PNW Scala 2013 &bull; Clint Tseng &bull; Socrata</div><div class="subject"></div></div></div>';})();
-},{}],11:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 (function() {
   var Deck, DeckTemplate, DeckView, DomView, Templater, keys, markup, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -499,7 +694,7 @@
 
 }).call(this);
 
-},{"../models/deck":1,"./deck.html":10,"janus":109}],12:[function(require,module,exports){
+},{"../models/deck":1,"./deck.html":13,"janus":112}],15:[function(require,module,exports){
 (function() {
   var BooleanAttribute, BooleanCheckboxView, BooleanToggleButtonView, DomView, Templater, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -606,9 +801,9 @@
 
 }).call(this);
 
-},{"janus":109}],13:[function(require,module,exports){
+},{"janus":112}],16:[function(require,module,exports){
 (function(){module.exports = '<li><div class="editHandle"></div><a href="#remove" class="editRemove ss-delete">Remove</a><div class="editItem"></div></li>';})();
-},{}],14:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 (function() {
   var Base, CollectionEditItemImpl, CollectionEditItemTemplate, CollectionEditViewImpl, CollectionEditViewTemplate, ListEditItem, ListEditItemTemplate, ListEditView, OrderedCollection, Templater, itemMarkup, util, _ref, _ref1, _ref2, _ref3, _ref4,
     __hasProp = {}.hasOwnProperty,
@@ -707,9 +902,9 @@
 
 }).call(this);
 
-},{"./collection-edit-item.html":13,"janus":109}],15:[function(require,module,exports){
+},{"./collection-edit-item.html":16,"janus":112}],18:[function(require,module,exports){
 (function(){module.exports = '<li><div class="selectControls"><a href="#select" class="selectButton button">Select</a></div><div class="selectItem"></div></li>';})();
-},{}],16:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 (function() {
   var Base, CollectionSelectItemTemplate, CollectionSelectItemView, CollectionSelectView, CollectionView, DomView, OrderedCollection, Templater, itemMarkup, templater, util, _ref, _ref1, _ref2, _ref3, _ref4,
     __hasProp = {}.hasOwnProperty,
@@ -849,7 +1044,7 @@
 
 }).call(this);
 
-},{"./collection":17,"./collection-select-item.html":15,"janus":109}],17:[function(require,module,exports){
+},{"./collection":20,"./collection-select-item.html":18,"janus":112}],20:[function(require,module,exports){
 (function() {
   var CollectionViewImpl, CollectionViewTemplater, ListView, OrderedCollection, Templater, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -909,7 +1104,7 @@
 
 }).call(this);
 
-},{"janus":109}],18:[function(require,module,exports){
+},{"janus":112}],21:[function(require,module,exports){
 (function() {
   var Base, CollectionViewImpl, CollectionViewTemplater, DomView, EnumAttribute, EnumAttributeListTemplate, EnumAttributeListView, EnumAttributeView, List, OrderedCollection, Templater, Varying, templater, textItemMarkup, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -1187,9 +1382,9 @@
 
 }).call(this);
 
-},{"./collection":17,"./enum-text-item.html":19,"janus":109}],19:[function(require,module,exports){
+},{"./collection":20,"./enum-text-item.html":22,"janus":112}],22:[function(require,module,exports){
 (function(){module.exports = '<li class="textItem"><a class="button selectItem"></a><div class="selectItem"></div></li>';})();
-},{}],20:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 (function() {
   var DomView, LiteralTemplate, LiteralView, Templater, Varying, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -1257,13 +1452,13 @@
 
 }).call(this);
 
-},{"janus":109}],21:[function(require,module,exports){
+},{"janus":112}],24:[function(require,module,exports){
 (function() {
   module.exports = [require('./boolean-attribute'), require('./enum-attribute'), require('./collection-edit'), require('./collection-select'), require('./collection'), require('./literal'), require('./text-attribute'), require('./varying')];
 
 }).call(this);
 
-},{"./boolean-attribute":12,"./collection":17,"./collection-edit":14,"./collection-select":16,"./enum-attribute":18,"./literal":20,"./text-attribute":22,"./varying":23}],22:[function(require,module,exports){
+},{"./boolean-attribute":15,"./collection":20,"./collection-edit":17,"./collection-select":19,"./enum-attribute":21,"./literal":23,"./text-attribute":25,"./varying":26}],25:[function(require,module,exports){
 (function() {
   var DomView, MultilineTextAttributeView, TextAttribute, TextAttributeView, eventMap, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -1368,7 +1563,7 @@
 
 }).call(this);
 
-},{"janus":109}],23:[function(require,module,exports){
+},{"janus":112}],26:[function(require,module,exports){
 (function() {
   var Templater, Varying, VaryingView, VaryingViewImpl, VaryingViewTemplate, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -1423,7 +1618,7 @@
 
 }).call(this);
 
-},{"janus":109}],24:[function(require,module,exports){
+},{"janus":112}],27:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -1477,7 +1672,7 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],25:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 (function() {
   var CommandRequest, EvalAction, Varying, exec, store, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -1550,7 +1745,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../models/command":30,"../../util/eval":35,"janus":67}],26:[function(require,module,exports){
+},{"../../models/command":33,"../../util/eval":38,"janus":70}],29:[function(require,module,exports){
 (function() {
   var CommandRequest, InspectAction, ReadyState, Varying, store, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -1622,7 +1817,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../models/command":30,"../../models/ready-state":32,"janus":67}],27:[function(require,module,exports){
+},{"../../models/command":33,"../../models/ready-state":35,"janus":70}],30:[function(require,module,exports){
 (function() {
   var CommandRequest, ReadyState, RenderAction, Varying, exec, store, templater, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -1694,7 +1889,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../models/command":30,"../../models/ready-state":32,"../../util/eval":35,"janus":67}],28:[function(require,module,exports){
+},{"../../models/command":33,"../../models/ready-state":35,"../../util/eval":38,"janus":70}],31:[function(require,module,exports){
 (function() {
   var CommandRequest, List, Model, ReadyState, TraverseAction, Varying, exec, store, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -1803,7 +1998,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../models/command":30,"../../models/ready-state":32,"../../util/eval":35,"janus":67}],29:[function(require,module,exports){
+},{"../../models/command":33,"../../models/ready-state":35,"../../util/eval":38,"janus":70}],32:[function(require,module,exports){
 (function() {
   var util;
 
@@ -1873,7 +2068,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"./actions/local/eval":25,"./actions/local/inspect":26,"./actions/local/render":27,"./actions/local/traverse":28,"./models/command":30,"./models/node":31,"./models/ready-state":32,"./models/repl":33,"./util/hook":36,"./views/command/default":38,"./views/command/edit":40,"./views/generic/base-fallback":41,"./views/generic/function":42,"./views/generic/request-state":43,"./views/repl/repl":45,"./views/varying/live":47,"janus":67}],30:[function(require,module,exports){
+},{"./actions/local/eval":28,"./actions/local/inspect":29,"./actions/local/render":30,"./actions/local/traverse":31,"./models/command":33,"./models/node":34,"./models/ready-state":35,"./models/repl":36,"./util/hook":39,"./views/command/default":41,"./views/command/edit":43,"./views/generic/base-fallback":44,"./views/generic/function":45,"./views/generic/request-state":46,"./views/repl/repl":48,"./views/varying/live":50,"janus":70}],33:[function(require,module,exports){
 (function() {
   var Command, CommandRequest, Commands, Model, attribute, collection, reference, store, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -1968,7 +2163,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"janus":67}],31:[function(require,module,exports){
+},{"janus":70}],34:[function(require,module,exports){
 (function() {
   var Model, Node, Nodes, attribute, collection, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -2025,7 +2220,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"janus":67}],32:[function(require,module,exports){
+},{"janus":70}],35:[function(require,module,exports){
 (function() {
   var ReadyState, store, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -2050,7 +2245,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"janus":67}],33:[function(require,module,exports){
+},{"janus":70}],36:[function(require,module,exports){
 (function() {
   var Model, Repl, Repls, attribute, collection, command, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -2145,13 +2340,13 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"./command":30,"janus":67}],34:[function(require,module,exports){
+},{"./command":33,"janus":70}],37:[function(require,module,exports){
 (function() {
   module.exports = typeof window === 'undefined' ? require('zepto-node')(require('domino').createWindow()) : window.jQuery;
 
 }).call(this);
 
-},{"domino":false,"zepto-node":false}],35:[function(require,module,exports){
+},{"domino":false,"zepto-node":false}],38:[function(require,module,exports){
 (function() {
   var util;
 
@@ -2188,7 +2383,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"janus":67}],36:[function(require,module,exports){
+},{"janus":70}],39:[function(require,module,exports){
 (function() {
   var $, Repl, ReplView, util;
 
@@ -2232,9 +2427,9 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../models/repl":33,"../views/repl/repl":45,"./dollar":34,"janus":67}],37:[function(require,module,exports){
+},{"../models/repl":36,"../views/repl/repl":48,"./dollar":37,"janus":70}],40:[function(require,module,exports){
 (function(){module.exports = '<li class="commandOutput"><div class="commandNumber"></div><div class="commandText"></div><div class="resultNumber"></div><div class="resultBody"></div></li>';})();
-},{}],38:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 (function() {
   var $, Command, CommandTemplate, CommandView, DomView, Templater, collection, markup, util, varying, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -2303,9 +2498,9 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../models/command":30,"../../util/dollar":34,"./default.html":37,"janus":67}],39:[function(require,module,exports){
+},{"../../models/command":33,"../../util/dollar":37,"./default.html":40,"janus":70}],42:[function(require,module,exports){
 (function(){module.exports = '<div class="janusConsolePrompt"><div class="caret">&rsaquo;</div><div class="consolePrompt"></div></div>';})();
-},{}],40:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 (function() {
   var $, Command, CommandEditTemplate, CommandEditView, DomView, Templater, collection, markup, util, varying, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -2372,7 +2567,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../models/command":30,"../../util/dollar":34,"./edit.html":39,"janus":67}],41:[function(require,module,exports){
+},{"../../models/command":33,"../../util/dollar":37,"./edit.html":42,"janus":70}],44:[function(require,module,exports){
 (function() {
   var $, Base, BaseFallbackTemplate, BaseFallbackView, DomView, Model, Templater, domViewIdent, ident, modelIdent, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -2467,7 +2662,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../util/dollar":34,"janus":67}],42:[function(require,module,exports){
+},{"../../util/dollar":37,"janus":70}],45:[function(require,module,exports){
 (function() {
   var $, DomView, FunctionTemplate, FunctionView, Templater, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -2527,7 +2722,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../util/dollar":34,"janus":67}],43:[function(require,module,exports){
+},{"../../util/dollar":37,"janus":70}],46:[function(require,module,exports){
 (function() {
   var $, DomView, PendingTemplate, PendingView, ReadyState, ReadyTemplate, ReadyView, Request, SuccessTemplate, SuccessView, Templater, UserErrorTemplate, UserErrorView, reference, templater, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9,
     __hasProp = {}.hasOwnProperty,
@@ -2721,9 +2916,9 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../models/ready-state":32,"../../util/dollar":34,"janus":67}],44:[function(require,module,exports){
+},{"../../models/ready-state":35,"../../util/dollar":37,"janus":70}],47:[function(require,module,exports){
 (function(){module.exports = '<div class="janusConsole"><div class="scrollback"></div><div class="prompt"></div></div>';})();
-},{}],45:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 (function() {
   var $, DomView, Repl, ReplTemplate, ReplView, Templater, markup, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -2804,9 +2999,9 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../models/repl":33,"../../util/dollar":34,"./repl.html":44,"janus":67}],46:[function(require,module,exports){
+},{"../../models/repl":36,"../../util/dollar":37,"./repl.html":47,"janus":70}],49:[function(require,module,exports){
 (function(){module.exports = '<ul class="varyingLive"></ul>';})();
-},{}],47:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 (function() {
   var $, DomView, Templater, VaryingLiveTemplate, VaryingLiveView, collection, markup, util, varying, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -2880,7 +3075,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../util/dollar":34,"./live.html":46,"janus":67}],48:[function(require,module,exports){
+},{"../../util/dollar":37,"./live.html":49,"janus":70}],51:[function(require,module,exports){
 (function() {
   var App, Model, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -2949,7 +3144,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../model/model":72,"../util/util":81}],49:[function(require,module,exports){
+},{"../model/model":75,"../util/util":84}],52:[function(require,module,exports){
 (function() {
   var App, Base, Endpoint, EndpointResponse, ForbiddenResponse, InternalErrorResponse, InvalidRequestResponse, NotFoundResponse, OkResponse, Request, StoreManifest, UnauthorizedResponse, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5,
     __hasProp = {}.hasOwnProperty,
@@ -3149,7 +3344,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/base":64,"../model/store":75,"../util/util":81,"./app":48,"./manifest":51}],50:[function(require,module,exports){
+},{"../core/base":67,"../model/store":78,"../util/util":84,"./app":51,"./manifest":54}],53:[function(require,module,exports){
 (function() {
   var Base, Endpoint, Handler, HttpHandler, util,
     __hasProp = {}.hasOwnProperty,
@@ -3231,7 +3426,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/base":64,"../util/util":81,"./endpoint":49}],51:[function(require,module,exports){
+},{"../core/base":67,"../util/util":84,"./endpoint":52}],54:[function(require,module,exports){
 (function() {
   var Base, Manifest, Request, StoreManifest, util,
     __hasProp = {}.hasOwnProperty,
@@ -3321,7 +3516,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/base":64,"../model/store":75,"../util/util":81}],52:[function(require,module,exports){
+},{"../core/base":67,"../model/store":78,"../util/util":84}],55:[function(require,module,exports){
 (function() {
   var CattedList, DerivedList, util,
     __hasProp = {}.hasOwnProperty,
@@ -3376,7 +3571,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../util/util":81,"./list":57}],53:[function(require,module,exports){
+},{"../util/util":84,"./list":60}],56:[function(require,module,exports){
 (function() {
   var util;
 
@@ -3401,7 +3596,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../util/util":81,"./catted-list":52,"./filtered-list":54,"./indefinite-list":55,"./lazy-list":56,"./list":57,"./mapped-list":58,"./partitioned-list":59,"./set":60,"./types":61,"./uniq-list":62,"./window":63}],54:[function(require,module,exports){
+},{"../util/util":84,"./catted-list":55,"./filtered-list":57,"./indefinite-list":58,"./lazy-list":59,"./list":60,"./mapped-list":61,"./partitioned-list":62,"./set":63,"./types":64,"./uniq-list":65,"./window":66}],57:[function(require,module,exports){
 (function() {
   var DerivedList, FilteredList, Varying, util,
     __hasProp = {}.hasOwnProperty,
@@ -3478,7 +3673,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/varying":66,"../util/util":81,"./list":57}],55:[function(require,module,exports){
+},{"../core/varying":69,"../util/util":84,"./list":60}],58:[function(require,module,exports){
 (function() {
   var Base, Indefinite, IndefiniteList, Many, One, OrderedCollection, StepResult, Termination, Varying, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -3647,7 +3842,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/base":64,"../core/varying":66,"../util/util":81,"./types":61}],56:[function(require,module,exports){
+},{"../core/base":67,"../core/varying":69,"../util/util":84,"./types":64}],59:[function(require,module,exports){
 (function() {
   var CachedLazyList, Coverage, LazyList, List, Model, Range, Varying, rangeUpdater, util, wrapAndSealFate, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -3850,7 +4045,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/varying":66,"../model/model":72,"../util/range":80,"../util/util":81,"./list":57}],57:[function(require,module,exports){
+},{"../core/varying":69,"../model/model":75,"../util/range":83,"../util/util":84,"./list":60}],60:[function(require,module,exports){
 (function() {
   var Base, DerivedList, List, Model, OrderedCollection, Reference, Varying, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -4293,7 +4488,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/base":64,"../core/varying":66,"../model/model":72,"../model/reference":74,"../util/util":81,"./types":61}],58:[function(require,module,exports){
+},{"../core/base":67,"../core/varying":69,"../model/model":75,"../model/reference":77,"../util/util":84,"./types":64}],61:[function(require,module,exports){
 (function() {
   var DerivedList, List, MappedList, Varying, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -4363,7 +4558,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/varying":66,"../util/util":81,"./list":57}],59:[function(require,module,exports){
+},{"../core/varying":69,"../util/util":84,"./list":60}],62:[function(require,module,exports){
 (function() {
   var DerivedList, List, PartitionedList, Varying, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -4412,7 +4607,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/varying":66,"../util/util":81,"./list":57}],60:[function(require,module,exports){
+},{"../core/varying":69,"../util/util":84,"./list":60}],63:[function(require,module,exports){
 (function() {
   var Base, List, Set, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -4477,7 +4672,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/base":64,"../util/util":81,"./list":57}],61:[function(require,module,exports){
+},{"../core/base":67,"../util/util":84,"./list":60}],64:[function(require,module,exports){
 (function() {
   var Collection, Model, OrderedCollection, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -4560,7 +4755,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../model/model":72,"../util/util":81,"./catted-list":52,"./filtered-list":54,"./mapped-list":58,"./partitioned-list":59,"./uniq-list":62}],62:[function(require,module,exports){
+},{"../model/model":75,"../util/util":84,"./catted-list":55,"./filtered-list":57,"./mapped-list":61,"./partitioned-list":62,"./uniq-list":65}],65:[function(require,module,exports){
 (function() {
   var DerivedList, UniqList, util,
     __hasProp = {}.hasOwnProperty,
@@ -4629,7 +4824,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../util/util":81,"./list":57}],63:[function(require,module,exports){
+},{"../util/util":84,"./list":60}],66:[function(require,module,exports){
 (function() {
   var List, Model, Varying, Window, attribute, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -4714,7 +4909,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/varying":66,"../model/attribute":69,"../model/model":72,"../util/util":81,"./list":57}],64:[function(require,module,exports){
+},{"../core/varying":69,"../model/attribute":72,"../model/model":75,"../util/util":84,"./list":60}],67:[function(require,module,exports){
 (function() {
   var Base, EventEmitter, util,
     __hasProp = {}.hasOwnProperty,
@@ -4799,7 +4994,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../util/util":81,"eventemitter2":89}],65:[function(require,module,exports){
+},{"../util/util":84,"eventemitter2":92}],68:[function(require,module,exports){
 (function() {
   var Chainer, util,
     __slice = [].slice,
@@ -4898,7 +5093,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../util/util":81}],66:[function(require,module,exports){
+},{"../util/util":84}],69:[function(require,module,exports){
 (function() {
   var Base, MultiVarying, Varying, util,
     __hasProp = {}.hasOwnProperty,
@@ -5085,7 +5280,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/base":64,"../util/util":81}],67:[function(require,module,exports){
+},{"../core/base":67,"../util/util":84}],70:[function(require,module,exports){
 var global=self;(function() {
   var janus, util, _base, _ref;
 
@@ -5141,7 +5336,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"./application/app":48,"./application/endpoint":49,"./application/handler":50,"./application/manifest":51,"./collection/collection":53,"./core/base":64,"./core/chain":65,"./core/varying":66,"./library/library":68,"./model/attribute":69,"./model/issue":71,"./model/model":72,"./model/page-model":73,"./model/reference":74,"./model/store":75,"./templater/package":77,"./templater/templater":78,"./util/util":81,"./view/dom-view":82,"./view/impl/list":84,"./view/impl/list-edit":83,"./view/impl/varying":85,"./view/page-view":87,"./view/view":88}],68:[function(require,module,exports){
+},{"./application/app":51,"./application/endpoint":52,"./application/handler":53,"./application/manifest":54,"./collection/collection":56,"./core/base":67,"./core/chain":68,"./core/varying":69,"./library/library":71,"./model/attribute":72,"./model/issue":74,"./model/model":75,"./model/page-model":76,"./model/reference":77,"./model/store":78,"./templater/package":80,"./templater/templater":81,"./util/util":84,"./view/dom-view":85,"./view/impl/list":87,"./view/impl/list-edit":86,"./view/impl/varying":88,"./view/page-view":90,"./view/view":91}],71:[function(require,module,exports){
 (function() {
   var Base, Library, match, util,
     __hasProp = {}.hasOwnProperty,
@@ -5299,7 +5494,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":64,"../util/util":81}],69:[function(require,module,exports){
+},{"../core/base":67,"../util/util":84}],72:[function(require,module,exports){
 (function() {
   var Attribute, BooleanAttribute, CollectionAttribute, DateAttribute, EnumAttribute, List, Model, ModelAttribute, NumberAttribute, ObjectAttribute, ShellModel, TextAttribute, Varying, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7,
     __hasProp = {}.hasOwnProperty,
@@ -5550,7 +5745,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../collection/list":57,"../core/varying":66,"../util/util":81,"./model":72}],70:[function(require,module,exports){
+},{"../collection/list":60,"../core/varying":69,"../util/util":84,"./model":75}],73:[function(require,module,exports){
 (function() {
   var Base, Binder, MultiVarying, util,
     __hasProp = {}.hasOwnProperty,
@@ -5669,7 +5864,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":64,"../core/varying":66,"../util/util":81}],71:[function(require,module,exports){
+},{"../core/base":67,"../core/varying":69,"../util/util":84}],74:[function(require,module,exports){
 (function() {
   var Base, Issue, Varying, util,
     __hasProp = {}.hasOwnProperty,
@@ -5704,7 +5899,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":64,"../core/varying":66,"../util/util":81}],72:[function(require,module,exports){
+},{"../core/base":67,"../core/varying":69,"../util/util":84}],75:[function(require,module,exports){
 (function() {
   var Base, Binder, Model, Null, NullClass, Reference, Resolver, Varying, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -6290,7 +6485,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../collection/collection":53,"../collection/list":57,"../core/base":64,"../core/varying":66,"../util/util":81,"./binder":70,"./reference":74}],73:[function(require,module,exports){
+},{"../collection/collection":56,"../collection/list":60,"../core/base":67,"../core/varying":69,"../util/util":84,"./binder":73,"./reference":77}],76:[function(require,module,exports){
 (function() {
   var Model, PageModel, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -6324,7 +6519,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../util/util":81,"./model":72}],74:[function(require,module,exports){
+},{"../util/util":84,"./model":75}],77:[function(require,module,exports){
 (function() {
   var ModelReference, ModelResolver, Reference, RequestReference, RequestResolver, Resolver, Varying, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -6505,7 +6700,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/varying":66,"../util/util":81,"./model":72}],75:[function(require,module,exports){
+},{"../core/varying":69,"../util/util":84,"./model":75}],78:[function(require,module,exports){
 (function() {
   var Base, CompleteState, CreateRequest, DeleteRequest, ErrorState, FetchRequest, InitState, List, MemoryCacheStore, Model, OnPageCacheStore, OneOfStore, PendingState, ProgressState, Request, RequestState, ServiceErrorState, Store, SuccessState, UpdateRequest, UserErrorState, Varying, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7,
     __hasProp = {}.hasOwnProperty,
@@ -6963,7 +7158,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../collection/list":57,"../core/base":64,"../core/varying":66,"../model/model":72,"../util/util":81}],76:[function(require,module,exports){
+},{"../collection/list":60,"../core/base":67,"../core/varying":69,"../model/model":75,"../util/util":84}],79:[function(require,module,exports){
 (function() {
   var ApplyMutator, AttrMutator, Base, Binder, ClassGroupMutator, ClassMutator, CssMutator, HtmlMutator, MultiVarying, Mutator, RenderMutator, TextMutator, Varying, reference, types, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8,
     __hasProp = {}.hasOwnProperty,
@@ -7584,7 +7779,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":64,"../core/varying":66,"../model/reference":74,"../util/util":81,"./types":79}],77:[function(require,module,exports){
+},{"../core/base":67,"../core/varying":69,"../model/reference":77,"../util/util":84,"./types":82}],80:[function(require,module,exports){
 (function() {
   var util;
 
@@ -7599,7 +7794,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../util/util":81,"./templater":78,"./types":79}],78:[function(require,module,exports){
+},{"../util/util":84,"./templater":81,"./types":82}],81:[function(require,module,exports){
 (function() {
   var Binder, Templater, util;
 
@@ -7655,7 +7850,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../util/util":81,"./binder":76}],79:[function(require,module,exports){
+},{"../util/util":84,"./binder":79}],82:[function(require,module,exports){
 (function() {
   var WithAux, WithOptions, WithView, util;
 
@@ -7698,7 +7893,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../util/util":81}],80:[function(require,module,exports){
+},{"../util/util":84}],83:[function(require,module,exports){
 (function() {
   var Continuous, Coverage, Range, Varying, util,
     __hasProp = {}.hasOwnProperty,
@@ -7936,7 +8131,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/varying":66,"./util":81}],81:[function(require,module,exports){
+},{"../core/varying":69,"./util":84}],84:[function(require,module,exports){
 (function() {
   var toString, type, util, _fn, _i, _len, _ref, _ref1,
     __slice = [].slice;
@@ -8136,7 +8331,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{}],82:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
 (function() {
   var DomView, List, View, util,
     __hasProp = {}.hasOwnProperty,
@@ -8289,7 +8484,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../collection/list":57,"../util/util":81,"./view":88}],83:[function(require,module,exports){
+},{"../collection/list":60,"../util/util":84,"./view":91}],86:[function(require,module,exports){
 (function() {
   var DomView, ListEditItem, ListEditItemTemplate, ListEditView, ListView, Templater, templater, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -8391,7 +8586,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../../templater/package":77,"../../templater/templater":78,"../../util/util":81,"../dom-view":82,"./list":84}],84:[function(require,module,exports){
+},{"../../templater/package":80,"../../templater/templater":81,"../../util/util":84,"../dom-view":85,"./list":87}],87:[function(require,module,exports){
 (function() {
   var ListView, Varying, ViewContainer, reference, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -8506,7 +8701,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../../core/varying":66,"../../model/reference":74,"../../util/util":81,"./view-container":86}],85:[function(require,module,exports){
+},{"../../core/varying":69,"../../model/reference":77,"../../util/util":84,"./view-container":89}],88:[function(require,module,exports){
 (function() {
   var VaryingView, ViewContainer, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -8570,7 +8765,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../../util/util":81,"./view-container":86}],86:[function(require,module,exports){
+},{"../../util/util":84,"./view-container":89}],89:[function(require,module,exports){
 (function() {
   var DomView, Varying, ViewContainer, reference, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -8644,13 +8839,13 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../../core/varying":66,"../../model/reference":74,"../../util/util":81,"../dom-view":82}],87:[function(require,module,exports){
+},{"../../core/varying":69,"../../model/reference":77,"../../util/util":84,"../dom-view":85}],90:[function(require,module,exports){
 (function() {
 
 
 }).call(this);
 
-},{}],88:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 (function() {
   var Base, View, util,
     __hasProp = {}.hasOwnProperty,
@@ -8708,7 +8903,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":64,"../util/util":81}],89:[function(require,module,exports){
+},{"../core/base":67,"../util/util":84}],92:[function(require,module,exports){
 var process=require("__browserify_process");;!function(exports, undefined) {
 
   var isArray = Array.isArray ? Array.isArray : function _isArray(obj) {
@@ -9271,7 +9466,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }(typeof process !== 'undefined' && typeof process.title !== 'undefined' && typeof exports !== 'undefined' ? exports : window);
 
-},{"__browserify_process":24}],90:[function(require,module,exports){
+},{"__browserify_process":27}],93:[function(require,module,exports){
 (function() {
   var App, Model, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -9340,7 +9535,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../model/model":114,"../util/util":123}],91:[function(require,module,exports){
+},{"../model/model":117,"../util/util":126}],94:[function(require,module,exports){
 (function() {
   var App, Base, Endpoint, EndpointResponse, ForbiddenResponse, InternalErrorResponse, InvalidRequestResponse, NotFoundResponse, OkResponse, Request, StoreManifest, UnauthorizedResponse, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5,
     __hasProp = {}.hasOwnProperty,
@@ -9540,7 +9735,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/base":106,"../model/store":117,"../util/util":123,"./app":90,"./manifest":93}],92:[function(require,module,exports){
+},{"../core/base":109,"../model/store":120,"../util/util":126,"./app":93,"./manifest":96}],95:[function(require,module,exports){
 (function() {
   var Base, Endpoint, Handler, HttpHandler, util,
     __hasProp = {}.hasOwnProperty,
@@ -9622,7 +9817,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/base":106,"../util/util":123,"./endpoint":91}],93:[function(require,module,exports){
+},{"../core/base":109,"../util/util":126,"./endpoint":94}],96:[function(require,module,exports){
 (function() {
   var Base, Manifest, Request, StoreManifest, util,
     __hasProp = {}.hasOwnProperty,
@@ -9712,7 +9907,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/base":106,"../model/store":117,"../util/util":123}],94:[function(require,module,exports){
+},{"../core/base":109,"../model/store":120,"../util/util":126}],97:[function(require,module,exports){
 (function() {
   var CattedList, DerivedList, util,
     __hasProp = {}.hasOwnProperty,
@@ -9767,7 +9962,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../util/util":123,"./list":99}],95:[function(require,module,exports){
+},{"../util/util":126,"./list":102}],98:[function(require,module,exports){
 (function() {
   var util;
 
@@ -9792,7 +9987,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../util/util":123,"./catted-list":94,"./filtered-list":96,"./indefinite-list":97,"./lazy-list":98,"./list":99,"./mapped-list":100,"./partitioned-list":101,"./set":102,"./types":103,"./uniq-list":104,"./window":105}],96:[function(require,module,exports){
+},{"../util/util":126,"./catted-list":97,"./filtered-list":99,"./indefinite-list":100,"./lazy-list":101,"./list":102,"./mapped-list":103,"./partitioned-list":104,"./set":105,"./types":106,"./uniq-list":107,"./window":108}],99:[function(require,module,exports){
 (function() {
   var DerivedList, FilteredList, Varying, util,
     __hasProp = {}.hasOwnProperty,
@@ -9869,7 +10064,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/varying":108,"../util/util":123,"./list":99}],97:[function(require,module,exports){
+},{"../core/varying":111,"../util/util":126,"./list":102}],100:[function(require,module,exports){
 (function() {
   var Base, Indefinite, IndefiniteList, Many, One, OrderedCollection, StepResult, Termination, Varying, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -10038,7 +10233,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/base":106,"../core/varying":108,"../util/util":123,"./types":103}],98:[function(require,module,exports){
+},{"../core/base":109,"../core/varying":111,"../util/util":126,"./types":106}],101:[function(require,module,exports){
 (function() {
   var CachedLazyList, Coverage, LazyList, List, Model, Range, Varying, rangeUpdater, util, wrapAndSealFate, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -10241,7 +10436,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/varying":108,"../model/model":114,"../util/range":122,"../util/util":123,"./list":99}],99:[function(require,module,exports){
+},{"../core/varying":111,"../model/model":117,"../util/range":125,"../util/util":126,"./list":102}],102:[function(require,module,exports){
 (function() {
   var Base, DerivedList, List, Model, OrderedCollection, Reference, Varying, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -10684,7 +10879,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/base":106,"../core/varying":108,"../model/model":114,"../model/reference":116,"../util/util":123,"./types":103}],100:[function(require,module,exports){
+},{"../core/base":109,"../core/varying":111,"../model/model":117,"../model/reference":119,"../util/util":126,"./types":106}],103:[function(require,module,exports){
 (function() {
   var DerivedList, List, MappedList, Varying, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -10754,7 +10949,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/varying":108,"../util/util":123,"./list":99}],101:[function(require,module,exports){
+},{"../core/varying":111,"../util/util":126,"./list":102}],104:[function(require,module,exports){
 (function() {
   var DerivedList, List, PartitionedList, Varying, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -10803,7 +10998,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/varying":108,"../util/util":123,"./list":99}],102:[function(require,module,exports){
+},{"../core/varying":111,"../util/util":126,"./list":102}],105:[function(require,module,exports){
 (function() {
   var Base, List, Set, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -10868,7 +11063,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/base":106,"../util/util":123,"./list":99}],103:[function(require,module,exports){
+},{"../core/base":109,"../util/util":126,"./list":102}],106:[function(require,module,exports){
 (function() {
   var Collection, Model, OrderedCollection, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -10951,7 +11146,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../model/model":114,"../util/util":123,"./catted-list":94,"./filtered-list":96,"./mapped-list":100,"./partitioned-list":101,"./uniq-list":104}],104:[function(require,module,exports){
+},{"../model/model":117,"../util/util":126,"./catted-list":97,"./filtered-list":99,"./mapped-list":103,"./partitioned-list":104,"./uniq-list":107}],107:[function(require,module,exports){
 (function() {
   var DerivedList, UniqList, util,
     __hasProp = {}.hasOwnProperty,
@@ -11020,7 +11215,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../util/util":123,"./list":99}],105:[function(require,module,exports){
+},{"../util/util":126,"./list":102}],108:[function(require,module,exports){
 (function() {
   var List, Model, Varying, Window, attribute, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -11105,7 +11300,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/varying":108,"../model/attribute":111,"../model/model":114,"../util/util":123,"./list":99}],106:[function(require,module,exports){
+},{"../core/varying":111,"../model/attribute":114,"../model/model":117,"../util/util":126,"./list":102}],109:[function(require,module,exports){
 (function() {
   var Base, EventEmitter, util,
     __hasProp = {}.hasOwnProperty,
@@ -11190,7 +11385,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../util/util":123,"eventemitter2":131}],107:[function(require,module,exports){
+},{"../util/util":126,"eventemitter2":134}],110:[function(require,module,exports){
 (function() {
   var Chainer, util,
     __slice = [].slice,
@@ -11289,7 +11484,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../util/util":123}],108:[function(require,module,exports){
+},{"../util/util":126}],111:[function(require,module,exports){
 (function() {
   var Base, MultiVarying, Varying, util,
     __hasProp = {}.hasOwnProperty,
@@ -11476,7 +11671,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/base":106,"../util/util":123}],109:[function(require,module,exports){
+},{"../core/base":109,"../util/util":126}],112:[function(require,module,exports){
 var global=self;(function() {
   var janus, util, _base, _ref;
 
@@ -11532,7 +11727,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"./application/app":90,"./application/endpoint":91,"./application/handler":92,"./application/manifest":93,"./collection/collection":95,"./core/base":106,"./core/chain":107,"./core/varying":108,"./library/library":110,"./model/attribute":111,"./model/issue":113,"./model/model":114,"./model/page-model":115,"./model/reference":116,"./model/store":117,"./templater/package":119,"./templater/templater":120,"./util/util":123,"./view/dom-view":124,"./view/impl/list":126,"./view/impl/list-edit":125,"./view/impl/varying":127,"./view/page-view":129,"./view/view":130}],110:[function(require,module,exports){
+},{"./application/app":93,"./application/endpoint":94,"./application/handler":95,"./application/manifest":96,"./collection/collection":98,"./core/base":109,"./core/chain":110,"./core/varying":111,"./library/library":113,"./model/attribute":114,"./model/issue":116,"./model/model":117,"./model/page-model":118,"./model/reference":119,"./model/store":120,"./templater/package":122,"./templater/templater":123,"./util/util":126,"./view/dom-view":127,"./view/impl/list":129,"./view/impl/list-edit":128,"./view/impl/varying":130,"./view/page-view":132,"./view/view":133}],113:[function(require,module,exports){
 (function() {
   var Base, Library, match, util,
     __hasProp = {}.hasOwnProperty,
@@ -11690,7 +11885,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":106,"../util/util":123}],111:[function(require,module,exports){
+},{"../core/base":109,"../util/util":126}],114:[function(require,module,exports){
 (function() {
   var Attribute, BooleanAttribute, CollectionAttribute, DateAttribute, EnumAttribute, List, Model, ModelAttribute, NumberAttribute, ObjectAttribute, ShellModel, TextAttribute, Varying, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7,
     __hasProp = {}.hasOwnProperty,
@@ -11941,7 +12136,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../collection/list":99,"../core/varying":108,"../util/util":123,"./model":114}],112:[function(require,module,exports){
+},{"../collection/list":102,"../core/varying":111,"../util/util":126,"./model":117}],115:[function(require,module,exports){
 (function() {
   var Base, Binder, MultiVarying, util,
     __hasProp = {}.hasOwnProperty,
@@ -12060,7 +12255,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":106,"../core/varying":108,"../util/util":123}],113:[function(require,module,exports){
+},{"../core/base":109,"../core/varying":111,"../util/util":126}],116:[function(require,module,exports){
 (function() {
   var Base, Issue, Varying, util,
     __hasProp = {}.hasOwnProperty,
@@ -12095,7 +12290,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":106,"../core/varying":108,"../util/util":123}],114:[function(require,module,exports){
+},{"../core/base":109,"../core/varying":111,"../util/util":126}],117:[function(require,module,exports){
 (function() {
   var Base, Binder, Model, Null, NullClass, Reference, Resolver, Varying, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -12681,7 +12876,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../collection/collection":95,"../collection/list":99,"../core/base":106,"../core/varying":108,"../util/util":123,"./binder":112,"./reference":116}],115:[function(require,module,exports){
+},{"../collection/collection":98,"../collection/list":102,"../core/base":109,"../core/varying":111,"../util/util":126,"./binder":115,"./reference":119}],118:[function(require,module,exports){
 (function() {
   var Model, PageModel, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -12715,7 +12910,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../util/util":123,"./model":114}],116:[function(require,module,exports){
+},{"../util/util":126,"./model":117}],119:[function(require,module,exports){
 (function() {
   var ModelReference, ModelResolver, Reference, RequestReference, RequestResolver, Resolver, Varying, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -12896,7 +13091,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/varying":108,"../util/util":123,"./model":114}],117:[function(require,module,exports){
+},{"../core/varying":111,"../util/util":126,"./model":117}],120:[function(require,module,exports){
 (function() {
   var Base, CompleteState, CreateRequest, DeleteRequest, ErrorState, FetchRequest, InitState, List, MemoryCacheStore, Model, OnPageCacheStore, OneOfStore, PendingState, ProgressState, Request, RequestState, ServiceErrorState, Store, SuccessState, UpdateRequest, UserErrorState, Varying, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7,
     __hasProp = {}.hasOwnProperty,
@@ -13354,7 +13549,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../collection/list":99,"../core/base":106,"../core/varying":108,"../model/model":114,"../util/util":123}],118:[function(require,module,exports){
+},{"../collection/list":102,"../core/base":109,"../core/varying":111,"../model/model":117,"../util/util":126}],121:[function(require,module,exports){
 (function() {
   var ApplyMutator, AttrMutator, Base, Binder, ClassGroupMutator, ClassMutator, CssMutator, HtmlMutator, MultiVarying, Mutator, RenderMutator, TextMutator, Varying, reference, types, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8,
     __hasProp = {}.hasOwnProperty,
@@ -13975,7 +14170,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":106,"../core/varying":108,"../model/reference":116,"../util/util":123,"./types":121}],119:[function(require,module,exports){
+},{"../core/base":109,"../core/varying":111,"../model/reference":119,"../util/util":126,"./types":124}],122:[function(require,module,exports){
 (function() {
   var util;
 
@@ -13990,7 +14185,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../util/util":123,"./templater":120,"./types":121}],120:[function(require,module,exports){
+},{"../util/util":126,"./templater":123,"./types":124}],123:[function(require,module,exports){
 (function() {
   var Binder, Templater, util;
 
@@ -14046,7 +14241,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../util/util":123,"./binder":118}],121:[function(require,module,exports){
+},{"../util/util":126,"./binder":121}],124:[function(require,module,exports){
 (function() {
   var WithAux, WithOptions, WithView, util;
 
@@ -14089,7 +14284,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../util/util":123}],122:[function(require,module,exports){
+},{"../util/util":126}],125:[function(require,module,exports){
 (function() {
   var Continuous, Coverage, Range, Varying, util,
     __hasProp = {}.hasOwnProperty,
@@ -14327,7 +14522,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/varying":108,"./util":123}],123:[function(require,module,exports){
+},{"../core/varying":111,"./util":126}],126:[function(require,module,exports){
 (function() {
   var toString, type, util, _fn, _i, _len, _ref, _ref1,
     __slice = [].slice;
@@ -14527,7 +14722,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{}],124:[function(require,module,exports){
+},{}],127:[function(require,module,exports){
 (function() {
   var DomView, List, View, util,
     __hasProp = {}.hasOwnProperty,
@@ -14680,7 +14875,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../collection/list":99,"../util/util":123,"./view":130}],125:[function(require,module,exports){
+},{"../collection/list":102,"../util/util":126,"./view":133}],128:[function(require,module,exports){
 (function() {
   var DomView, ListEditItem, ListEditItemTemplate, ListEditView, ListView, Templater, templater, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -14782,7 +14977,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../../templater/package":119,"../../templater/templater":120,"../../util/util":123,"../dom-view":124,"./list":126}],126:[function(require,module,exports){
+},{"../../templater/package":122,"../../templater/templater":123,"../../util/util":126,"../dom-view":127,"./list":129}],129:[function(require,module,exports){
 (function() {
   var ListView, Varying, ViewContainer, reference, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -14897,7 +15092,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../../core/varying":108,"../../model/reference":116,"../../util/util":123,"./view-container":128}],127:[function(require,module,exports){
+},{"../../core/varying":111,"../../model/reference":119,"../../util/util":126,"./view-container":131}],130:[function(require,module,exports){
 (function() {
   var VaryingView, ViewContainer, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -14961,7 +15156,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../../util/util":123,"./view-container":128}],128:[function(require,module,exports){
+},{"../../util/util":126,"./view-container":131}],131:[function(require,module,exports){
 (function() {
   var DomView, Varying, ViewContainer, reference, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -15035,13 +15230,13 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../../core/varying":108,"../../model/reference":116,"../../util/util":123,"../dom-view":124}],129:[function(require,module,exports){
+},{"../../core/varying":111,"../../model/reference":119,"../../util/util":126,"../dom-view":127}],132:[function(require,module,exports){
 (function() {
 
 
 }).call(this);
 
-},{}],130:[function(require,module,exports){
+},{}],133:[function(require,module,exports){
 (function() {
   var Base, View, util,
     __hasProp = {}.hasOwnProperty,
@@ -15099,7 +15294,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":106,"../util/util":123}],131:[function(require,module,exports){
+},{"../core/base":109,"../util/util":126}],134:[function(require,module,exports){
 var process=require("__browserify_process");;!function(exports, undefined) {
 
   var isArray = Array.isArray ? Array.isArray : function _isArray(obj) {
@@ -15662,5 +15857,5 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }(typeof process !== 'undefined' && typeof process.title !== 'undefined' && typeof exports !== 'undefined' ? exports : window);
 
-},{"__browserify_process":24}]},{},[3])
+},{"__browserify_process":27}]},{},[3])
 ;
