@@ -1,5 +1,12 @@
 
 # a quick task to compile jade templates into includable js files.
+
+cleanOutput = (output) ->
+  output
+    .replace(/'/g, "\\'")
+    .replace(/\n +/g, (match) -> '<br/>' + ('&nbsp;' for _ in match).join(''))
+    .replace(/\n/g, '<br/>')
+
 module.exports = (grunt) ->
   grunt.registerMultiTask 'jade', 'Compile jade into js wrapped html', ->
     for file in this.files
@@ -18,7 +25,7 @@ module.exports = (grunt) ->
 
         options = this.options( output: 'html' )
         if options.output is 'js'
-          grunt.file.write(file.dest, "(function(){module.exports = '#{markup.replace(/'/g, "\\'")}';})();")
+          grunt.file.write(file.dest, "(function(){module.exports = '#{cleanOutput(markup)}';})();")
         else
           grunt.file.write(file.dest, markup)
 
