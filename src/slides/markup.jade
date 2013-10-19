@@ -112,7 +112,10 @@
     .content
       .left
         h1 Template
-        .code &lt;div class="person"&gt;<br/>&nbsp;&nbsp;&lt;div class="name"&gt;&lt;/div&gt;<br/>&lt;/div&gt;
+        .code.
+          &lt;div class="person"&gt;
+           &lt;div class="name"&gt;&lt;/div&gt;
+          &lt;/div&gt;
       .right
         h1 Bindings
         .code binding.find('.firstName').text()<br/>.from('name.first')<br/>.and('name.last')<br/><span class="highlight flatMap">.flatMap(</span>(first, last) -&gt; 'Name: ' + first + ' ' + last)
@@ -120,7 +123,12 @@
   .slide.slide10
     .content
       h1 Varying
-      .code class Varying extends Base<br/>&nbsp;&nbsp;<span class="highlight constr">constructor:</span> (value) -&gt; &hellip;<br/><br/>&nbsp;&nbsp;setValue: (value) -&gt; <span class="highlight setVal">&hellip;</span><br/>&nbsp;&nbsp;on: (event, handler) -&gt; &hellip;
+      .code.
+        class Varying extends Base
+         <span class="highlight constr">constructor:</span> (value) -&gt; &hellip;
+
+         setValue: (value) -&gt; <span class="highlight setVal">&hellip;</span>
+         on: (event, handler) -&gt; &hellip;
       .code.map &nbsp;&nbsp;<span class="highlight map">map:</span> (f) -&gt; &hellip;
 
       .monad
@@ -129,4 +137,165 @@
           li Put a thing in a box?
           li Take that thing and put it in another box?
           li Collapse some boxes together?
+          li (who cares?)
+
+  .slide.slide11
+    .content
+      svg( width='759px' height='479px' viewBox='0 0 759 479' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' )
+        g( stroke='none' fill='none' fill-rule='evenodd' )
+          path( d='M41.5,95.5 L177.5,240.5' stroke='#FFFFFF' stroke-width='3' )
+          path( d='M71.5,384.5 L177.5,239.5' stroke='#FFFFFF' stroke-width='3' )
+          path( d='M178.500001,238.499912 L193.5,65.5' stroke='#FFFFFF' stroke-width='3' )
+          path( d='M344.5,94.499924 L453.5,49.5' stroke='#FFFFFF' stroke-width='3' )
+          path( d='M176.485982,241.499999 L497.5,241.499999' stroke='#FFFFFF' stroke-width='3' )
+          path( d='M497.5,238.5 L521.5,407.5' stroke='#FFFFFF' stroke-width='3' )
+          path( d='M498.5,240.5 L637.5,111.5' stroke='#FFFFFF' stroke-width='3' )
+          path( d='M634.5,114.5 L698.50006,309.5' stroke='#FFFFFF' stroke-width='3' )
+          g( transform='translate(112.000000, 175.000000)' )
+            path.model( d='M64,128 C99.3462257,128 128,99.3462257 128,64 C128,28.6537743 99.3462257,0 64,0 C28.6537743,0 0,28.6537743 0,64 C0,99.3462257 28.6537743,128 64,128 Z M64,128' fill='#FBA617' )
+            text( fill='#000000' font-size='30' x='15' y='77' )
+              tspan MODEL
+          g( transform='translate(264.000000, 344.000000)' )
+            path.library( d='M64,128 C99.3462257,128 128,99.3462257 128,64 C128,28.6537743 99.3462257,0 64,0 C28.6537743,0 0,28.6537743 0,64 C0,99.3462257 28.6537743,128 64,128 Z M64,128' fill='#5C2ADC' )
+            text( fill='#000000' font-size='30' x='7' y='77' )
+              tspan LIBRARY
+          g( transform='translate(304.000000, 56.000000)' )
+            path.store( d='M39.5,79 C61.3152487,79 79,61.3152487 79,39.5 C79,17.6847513 61.3152487,0 39.5,0 C17.6847513,0 0,17.6847513 0,39.5 C0,61.3152487 17.6847513,79 39.5,79 Z M39.5,79' fill='#FB1786' )
+            text( fill='#000000' font-size='18.4090909' x='13' y='47' )
+              tspan STORE
+          g( transform='translate(411.000000, 7.000000)' )
+            path.request( d='M39.5,79 C61.3152487,79 79,61.3152487 79,39.5 C79,17.6847513 61.3152487,0 39.5,0 C17.6847513,0 0,17.6847513 0,39.5 C0,61.3152487 17.6847513,79 39.5,79 Z M39.5,79' fill='#EC7FB4' )
+            text( fill='#000000' font-size='16' x='6' y='46' )
+              tspan REQUEST
+          g( transform='translate(477.000000, 358.000000)' )
+            path.viewModel( d='M45.5,91 C70.6289574,91 91,70.6289574 91,45.5 C91,20.3710426 70.6289574,0 45.5,0 C20.3710426,0 0,20.3710426 0,45.5 C0,70.6289574 20.3710426,91 45.5,91 Z M45.5,91' fill='#FBE500' )
+            text( fill='#000000' font-size='14' x='12' y='51' )
+              tspan VIEWMODEL
+          g( transform='translate(434.000000, 175.000000)' )
+            path.view( d='M64,128 C99.3462257,128 128,99.3462257 128,64 C128,28.6537743 99.3462257,0 64,0 C28.6537743,0 0,28.6537743 0,64 C0,99.3462257 28.6537743,128 64,128 Z M64,128' fill='#1266EF' )
+            text( fill='#000000' font-size='30' x='30' y='77' )
+              tspan VIEW
+          g( transform='translate(581.000000, 58.000000)' )
+            path.templater( d='M53.5,107 C83.0472356,107 107,83.0472356 107,53.5 C107,23.9527644 83.0472356,0 53.5,0 C23.9527644,0 0,23.9527644 0,53.5 C0,83.0472356 23.9527644,107 53.5,107 Z M53.5,107' fill='#E9521C' )
+            text( fill='#000000' font-size='16.6666667' x='11' y='61' )
+              tspan TEMPLATER
+          g( transform='translate(645.000000, 250.000000)' )
+            path.binder( d='M53.5,107 C83.0472356,107 107,83.0472356 107,53.5 C107,23.9527644 83.0472356,0 53.5,0 C23.9527644,0 0,23.9527644 0,53.5 C0,83.0472356 23.9527644,107 53.5,107 Z M53.5,107' fill='#19CF7F' )
+            text( fill='#000000' font-size='24' x='13' y='62.5' )
+              tspan BINDER
+          g( transform='translate(7.000000, 321.000000)' )
+            path.list( d='M64,128 C99.3462257,128 128,99.3462257 128,64 C128,28.6537743 99.3462257,0 64,0 C28.6537743,0 0,28.6537743 0,64 C0,99.3462257 28.6537743,128 64,128 Z M64,128' fill='#C000E1' )
+            text( fill='#000000' font-size='30' x='35' y='77' )
+              tspan LIST
+          g( transform='translate(148.000000, 19.000000)' )
+            path.attribute( d='M46,92 C71.4050997,92 92,71.4050997 92,46 C92,20.5949003 71.4050997,0 46,0 C20.5949003,0 0,20.5949003 0,46 C0,71.4050997 20.5949003,92 46,92 Z M46,92' fill='#18B89C' )
+            text( fill='#000000' font-size='17' x='6' y='52' )
+              tspan ATTRIBUTE
+          g( transform='translate(11.000000, 65.000000)' )
+            path.issue( d='M30,60 C46.5685433,60 60,46.5685433 60,30 C60,13.4314567 46.5685433,0 30,0 C13.4314567,0 0,13.4314567 0,30 C0,46.5685433 13.4314567,60 30,60 Z M30,60' fill='#79CF19' )
+            text( fill='#000000' font-size='17' x='9' y='37' )
+              tspan ISSUE
+
+    ul.detail
+      li Stores attribute bags representing model data.
+      li Storage and management of collections of object.
+      li Defines custom behaviour for specific model attributes.
+      li Describes a validation error on a model attribute or object.
+      li Manages the interaction between model and presentation.
+      li Manages the bindings between model and markup.
+      li Defines and executes a binding between model and markup.
+      li Allows for the management of view state that isn't model data.
+      li Represents a pending request to an asynchronous resource.
+      li Executes the request and manages its state.
+      li Stores and retrieves system classes.
+
+    .codeList
+      .code.
+        class Person extends Model
+         @bind('name.full')
+           .from('name.first')
+           .and('name.last')
+           .flatMap((first, last) -&gt; first + ' ' + last)
+
+         isOfAge: -&gt; this.watch('age').map((age) -&gt; age &gt;= 18)
+      .code.
+        class People extends List
+         @modelClass: Person
+
+         lastElement: -&gt; this.watchAt(-1)
+      .code.
+        class Person extends Model
+         @attribute 'alive', class extends attribute.BooleanAttribute
+           default: -&gt; true
+           writeDefault: true
+      .code.
+        class Person extends Model
+         @attribute 'age', class extends attribute.NumberAttribute
+           issues: -&gt; new List([
+             new Issue(
+               active: -&gt; this.watchValue().map((age) -&gt; age &gt;= 0)
+               severity: -&gt; 0
+               message: -&gt; this.watchValue().map((age) -&gt; "The age #{age} is not valid because it is less than zero.")
+             )
+           ])
+      .code.
+        class PersonView extends DomView
+         @templateClass: PersonTemplate
+         _wireEvents: -&gt;
+           dom = this.artifact()
+           dom.find('a.delete').on 'click', (event) =&gt;
+             event.preventDefault()
+             this.subject.destroy()
+      .code.
+        class PersonTemplate extends Templater
+         _dom: -&gt; $(markup)
+         _binding: -&gt;
+           binding = super()
+           binding.find('.person').classed('ofAge').from('age').flatMap((age) -&gt; age &gt;= 21)
+           binding.find('.name').text().from('name.full')
+           binding.find('.friendList').render().from('friends')
+      .code.
+        &hellip;well, you just saw this.
+      .code.
+        class PersonModel extends ViewModel
+         @attribute 'expanded', class extends attribute.BooleanAttribute
+           default: -&gt; true
+
+         @attribute 'person', class extends attribute.ModelAttribute
+           model: Person
+      .code.
+        class FetchRequest extends HttpRequest
+         path: -&gt; "/api/users/\#{this.options.id}.json"
+
+        &hellip;
+
+        class InitState extends RequestState
+        class PendingState extends RequestState
+         constructor: (@status) -&gt;
+        class SuccessState extends RequestState
+         constructor: (@result) -&gt;
+
+        &hellip;
+
+        succeeded = myRequest.watch((value) -&gt; value instanceof SuccessState)
+      .code.
+        class HttpStore extends Store
+         _handle: -&gt;
+           &hellip;imperative async code
+           this.request.setValue(&hellip;result&hellip;)
+
+        &hellip;
+
+        request = new FetchRequest( id: 4747 )
+        storeLibrary.get(request).handle()
+      .code.
+        library = new Library()
+        library.register(Model, GeneralModelEditView, context: 'edit')
+        library.get(person, context: 'edit') &hellip;yields GeneralModelEditView
+
+  .slide.slide12
+    .content
+      h1 Putting it all together
+      .personEdit
+      .personView
 

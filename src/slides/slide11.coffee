@@ -3,12 +3,12 @@
 Slide = require('../models/slide').Slide
 SlideTemplate = require('./base').SlideTemplate
 
-class Slide10 extends Slide
-  subject: 'Origins'
-  stages: 6
+class Slide11 extends Slide
+  subject: 'Consequences'
+  stages: 33
 
-class Slide10Template extends SlideTemplate
-  _number: 10
+class Slide11Template extends SlideTemplate
+  _number: 11
 
   _binding: ->
     binding = super()
@@ -17,12 +17,12 @@ class Slide10Template extends SlideTemplate
     binding.find('.highlight.map').classed('active').from('stage').flatMap((stage) -> stage is 4)
     binding.find('.highlight.setVal').classed('active').from('stage').flatMap((stage) -> stage is 5)
 
-class Slide10View extends DomView
-  templateClass: Slide10Template
+class Slide11View extends DomView
+  templateClass: Slide11Template
 
 util.extend(module.exports,
-  Model: Slide10
+  Model: Slide11
 
-  registerWith: (library) -> library.register(Slide10, Slide10View)
+  registerWith: (library) -> library.register(Slide11, Slide11View)
 )
 

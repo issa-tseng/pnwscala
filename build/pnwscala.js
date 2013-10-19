@@ -55,7 +55,7 @@
     Deck.prototype.previous = function() {
       var slide;
       slide = this.get('current');
-      if (slide.get('stage') === 0) {
+      if ((slide == null) || slide.get('stage') === 0) {
         return this.previousSlide();
       } else {
         return slide.previous();
@@ -82,7 +82,7 @@
 
 }).call(this);
 
-},{"janus":118}],2:[function(require,module,exports){
+},{"janus":119}],2:[function(require,module,exports){
 (function() {
   var List, Model, Slide, Slides, Varying, attribute, util, _ref, _ref1, _ref2, _ref3, _ref4,
     __hasProp = {}.hasOwnProperty,
@@ -157,7 +157,7 @@
 
 }).call(this);
 
-},{"janus":118}],3:[function(require,module,exports){
+},{"janus":119}],3:[function(require,module,exports){
 (function() {
   var App, Library, app, deck, deckView, jConsole, lib, slide, slides, stdlib, storeLibrary, util, viewLibrary, _i, _j, _len, _len1, _ref, _ref1;
 
@@ -208,7 +208,7 @@
 
 }).call(this);
 
-},{"./slides/deck":5,"./slides/slides":18,"./views/deck":20,"./views/stdlib/stdlib":30,"janus":118,"janus-console":38}],4:[function(require,module,exports){
+},{"./slides/deck":5,"./slides/slides":19,"./views/deck":21,"./views/stdlib/stdlib":31,"janus":119,"janus-console":39}],4:[function(require,module,exports){
 (function() {
   var SlideTemplate, Templater, markup, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -249,7 +249,7 @@
 
 }).call(this);
 
-},{"./markup.html":6,"janus":118}],5:[function(require,module,exports){
+},{"./markup.html":6,"janus":119}],5:[function(require,module,exports){
 (function() {
   var Deck, Slides, slide, slides, util;
 
@@ -275,8 +275,8 @@
 
 }).call(this);
 
-},{"../models/deck":1,"../models/slide":2,"./slides":18,"janus":118}],6:[function(require,module,exports){
-(function(){module.exports = '<div id="slides"><div class="slide slide0"><div class="content"><h2>PNW Scala 2013</h2><h1 class="left">Scala<br/>for<br/>Javascript<br/>Kiddies</h1><h1 class="right">Javascript<br/>for<br/>Scala<br/>Nerds</h1><h2>Clint Tseng &bull; Socrata</h2></div></div><div class="slide slide1"><div class="content"><h1>Nothing here is new.<span class="asterisk">*</span></h1><p class="asterisk">* (I&apos;m pretty sure)</p></div></div><div class="slide slide2"><div class="content"><h1>Janus</h1><ul><li>Definition</li><li>Justification</li><li>Origins</li><li>Consequences</li><li>Difficulties</li></ul></div></div><div class="slide slide3"><div class="content"><h1>Janus is a web application framework focused on the organization of interface code into resuable, manageable pieces.</h1><ul><li>Backbone.js</li><li>Angular</li><li>Batman</li><li>Meteor</li><li>&hellip;</li></ul></div></div><div class="slide slide4"><div class="logo"><svg width="800px" height="800px" viewBox="0 0 92 93" version="1.1" xmlns="http://www.w3.org/2000/svg"><g stroke="none" fill="none" fill-rule="evenodd"><path d="M46,93 C20.594936,93 0,72.405064 0,47 C0,21.594936 20.594936,1 46,1 C51.4597667,1 56.6973743,1.95119167 61.556167,3.69690668 L58.8668408,11.233666 C54.8486348,9.7878885 50.5163265,9 46,9 C25.013208,9 8,26.013208 8,47 C8,67.986792 25.013208,85 46,85 C66.986792,85 84,67.986792 84,47 C84,41.2799175 82.7361408,35.8550204 80.4724563,30.9893605 L87.664672,27.47929 C90.4458161,33.4050551 92,40.0210309 92,47 C92,72.405064 71.405064,93 46,93 Z M46,93" fill="#FFFFFF"></path><path d="M46,72 C59.8071,72 71,60.8071 71,47 C71,43.3255893 70.2072923,39.8363224 68.783598,36.6939607 L75.0779322,33.6220901 C76.953734,37.6925211 78,42.2240783 78,47 C78,64.673088 63.673088,79 46,79 C28.326912,79 14,64.673088 14,47 C14,29.326912 28.326912,15 46,15 C49.8086157,15 53.4618289,15.6653682 56.8498436,16.8862424 L54.4966754,23.4809286 C51.844103,22.5224723 48.9830655,22 46,22 C32.1929,22 21,33.1929 21,47 C21,60.8071 32.1929,72 46,72 Z M46,72" fill="#CCCCCC"></path><path d="M46,58.921875 C52.5842608,58.921875 57.921875,53.5842608 57.921875,47 C57.921875,45.3834723 57.6001392,43.8420889 57.0172118,42.4363975 L63.3872146,39.3275978 C64.424117,41.6739689 65,44.2697332 65,47 C65,57.493396 56.493396,66 46,66 C35.506604,66 27,57.493396 27,47 C27,36.506604 35.506604,28 46,28 C48.2754558,28 50.457488,28.4000008 52.4796657,29.1335403 L50.1001978,35.8019307 C48.8217306,35.3336807 47.4407089,35.078125 46,35.078125 C39.4157392,35.078125 34.078125,40.4157392 34.078125,47 C34.078125,53.5842608 39.4157392,58.921875 46,58.921875 Z M46,58.921875" fill="#999999"></path><path d="M55.2235296,37.2255025 L89.7927586,20.8635706 C89.7927586,20.8635706 87.5783575,16.1886963 80.0740001,9.29946184 C72.5696428,2.41022735 68.0178432,0.687918726 68.0178432,0.687918726 L55.2235296,37.2255025 Z M55.2235296,37.2255025" fill="#DE0000"></path></g></svg></div><div class="content"><h1>Socrata</h1><h2>We use data and technology to improve informed governance.</h2><ul class="tech"><li>rojoma-json<div class="sub">JSON library with type-driven codecs</div></li><li>socrata-http<div class="sub">Awesome HTTP client/server library</div></li><li>soda server<div class="sub">Our open source data server</div></li><li>everything!<div class="sub">All our new backend projects!</div></li></ul><ul class="reasons"><li>508 compliance<div class="sub">Support for accesible users</div></li><li>SEO<div class="sub">Accounting for search engines</div></li></ul></div></div><div class="slide slide5"><div class="content"><h1>Principles</h1><ul><li>Reusable code<div class="sub">Almost identical across envs</div></li><li>Componentized<div class="sub">Library of components to use and grow</div></li><li>Unit testable<div class="sub">Trivial to inject values, dependencies</div></li><li>Live bound<div class="sub">The framework should handle display state</div></li></ul></div></div><div class="slide slide6"><div class="content"><h1>Influences</h1><ul><li>jQuery<div class="sub">Elegant, expressive solution to the DOM</div></li><li>Backbone<div class="sub">Preeminent application organization library</div></li><li>D3<div class="sub">Beautiful declarative+functional API</div></li><li>Scala?<div class="sub">Hadn\'t even crossed my mind</div></li></ul></div></div><div class="slide slide7"><div class="content"><div class="code">&lt;div class="person <span class="highlight class">new</span>"&gt;Person: <span class="highlight text">Martin Odersky</span>&lt;/div&gt;</div></div></div><div class="slide slide8"><div class="content"><div class="left"><h1>Backbone</h1><div class="code">person.get(\'first_name\')</div><div class="code">person.set(\'first_name\', \'Lilia\')</div><hr/><div class="code">person.on(\'change:first_name\', &hellip;)</div></div><div class="right"><h1>Janus</h1><div class="code">person.get(\'name.first\')</div><div class="code">person.set(\'name.first\', \'Lilia\')</div><hr/><div class="code">person.watch(\'name.first\', (value) -&gt; value + \'!\')</div></div></div></div><div class="slide slide9"><div class="content"><div class="left"><h1>Template</h1><div class="code">&lt;div class="person"&gt;<br/>&nbsp;&nbsp;&lt;div class="name"&gt;&lt;/div&gt;<br/>&lt;/div&gt;</div></div><div class="right"><h1>Bindings</h1><div class="code">binding.find(\'.firstName\').text()<br/>.from(\'name.first\')<br/>.and(\'name.last\')<br/><span class="highlight flatMap">.flatMap(</span>(first, last) -&gt; \'Name: \' + first + \' \' + last)</div></div></div></div><div class="slide slide10"><div class="content"><h1>Varying</h1><div class="code">class Varying extends Base<br/>&nbsp;&nbsp;<span class="highlight constr">constructor:</span> (value) -&gt; &hellip;<br/><br/>&nbsp;&nbsp;setValue: (value) -&gt; <span class="highlight setVal">&hellip;</span><br/>&nbsp;&nbsp;on: (event, handler) -&gt; &hellip;</div><div class="code map">&nbsp;&nbsp;<span class="highlight map">map:</span> (f) -&gt; &hellip;</div><div class="monad"><h1>&hellip;is this a monad?</h1><ul><li>Put a thing in a box?</li><li>Take that thing and put it in another box?</li><li>Collapse some boxes together?</li></ul></div></div></div></div>';})();
+},{"../models/deck":1,"../models/slide":2,"./slides":19,"janus":119}],6:[function(require,module,exports){
+(function(){module.exports = '<div id="slides"><div class="slide slide0"><div class="content"><h2>PNW Scala 2013</h2><h1 class="left">Scala<br/>for<br/>Javascript<br/>Kiddies</h1><h1 class="right">Javascript<br/>for<br/>Scala<br/>Nerds</h1><h2>Clint Tseng &bull; Socrata</h2></div></div><div class="slide slide1"><div class="content"><h1>Nothing here is new.<span class="asterisk">*</span></h1><p class="asterisk">* (I&apos;m pretty sure)</p></div></div><div class="slide slide2"><div class="content"><h1>Janus</h1><ul><li>Definition</li><li>Justification</li><li>Origins</li><li>Consequences</li><li>Difficulties</li></ul></div></div><div class="slide slide3"><div class="content"><h1>Janus is a web application framework focused on the organization of interface code into resuable, manageable pieces.</h1><ul><li>Backbone.js</li><li>Angular</li><li>Batman</li><li>Meteor</li><li>&hellip;</li></ul></div></div><div class="slide slide4"><div class="logo"><svg width="800px" height="800px" viewBox="0 0 92 93" version="1.1" xmlns="http://www.w3.org/2000/svg"><g stroke="none" fill="none" fill-rule="evenodd"><path d="M46,93 C20.594936,93 0,72.405064 0,47 C0,21.594936 20.594936,1 46,1 C51.4597667,1 56.6973743,1.95119167 61.556167,3.69690668 L58.8668408,11.233666 C54.8486348,9.7878885 50.5163265,9 46,9 C25.013208,9 8,26.013208 8,47 C8,67.986792 25.013208,85 46,85 C66.986792,85 84,67.986792 84,47 C84,41.2799175 82.7361408,35.8550204 80.4724563,30.9893605 L87.664672,27.47929 C90.4458161,33.4050551 92,40.0210309 92,47 C92,72.405064 71.405064,93 46,93 Z M46,93" fill="#FFFFFF"></path><path d="M46,72 C59.8071,72 71,60.8071 71,47 C71,43.3255893 70.2072923,39.8363224 68.783598,36.6939607 L75.0779322,33.6220901 C76.953734,37.6925211 78,42.2240783 78,47 C78,64.673088 63.673088,79 46,79 C28.326912,79 14,64.673088 14,47 C14,29.326912 28.326912,15 46,15 C49.8086157,15 53.4618289,15.6653682 56.8498436,16.8862424 L54.4966754,23.4809286 C51.844103,22.5224723 48.9830655,22 46,22 C32.1929,22 21,33.1929 21,47 C21,60.8071 32.1929,72 46,72 Z M46,72" fill="#CCCCCC"></path><path d="M46,58.921875 C52.5842608,58.921875 57.921875,53.5842608 57.921875,47 C57.921875,45.3834723 57.6001392,43.8420889 57.0172118,42.4363975 L63.3872146,39.3275978 C64.424117,41.6739689 65,44.2697332 65,47 C65,57.493396 56.493396,66 46,66 C35.506604,66 27,57.493396 27,47 C27,36.506604 35.506604,28 46,28 C48.2754558,28 50.457488,28.4000008 52.4796657,29.1335403 L50.1001978,35.8019307 C48.8217306,35.3336807 47.4407089,35.078125 46,35.078125 C39.4157392,35.078125 34.078125,40.4157392 34.078125,47 C34.078125,53.5842608 39.4157392,58.921875 46,58.921875 Z M46,58.921875" fill="#999999"></path><path d="M55.2235296,37.2255025 L89.7927586,20.8635706 C89.7927586,20.8635706 87.5783575,16.1886963 80.0740001,9.29946184 C72.5696428,2.41022735 68.0178432,0.687918726 68.0178432,0.687918726 L55.2235296,37.2255025 Z M55.2235296,37.2255025" fill="#DE0000"></path></g></svg></div><div class="content"><h1>Socrata</h1><h2>We use data and technology to improve informed governance.</h2><ul class="tech"><li>rojoma-json<div class="sub">JSON library with type-driven codecs</div></li><li>socrata-http<div class="sub">Awesome HTTP client/server library</div></li><li>soda server<div class="sub">Our open source data server</div></li><li>everything!<div class="sub">All our new backend projects!</div></li></ul><ul class="reasons"><li>508 compliance<div class="sub">Support for accesible users</div></li><li>SEO<div class="sub">Accounting for search engines</div></li></ul></div></div><div class="slide slide5"><div class="content"><h1>Principles</h1><ul><li>Reusable code<div class="sub">Almost identical across envs</div></li><li>Componentized<div class="sub">Library of components to use and grow</div></li><li>Unit testable<div class="sub">Trivial to inject values, dependencies</div></li><li>Live bound<div class="sub">The framework should handle display state</div></li></ul></div></div><div class="slide slide6"><div class="content"><h1>Influences</h1><ul><li>jQuery<div class="sub">Elegant, expressive solution to the DOM</div></li><li>Backbone<div class="sub">Preeminent application organization library</div></li><li>D3<div class="sub">Beautiful declarative+functional API</div></li><li>Scala?<div class="sub">Hadn\'t even crossed my mind</div></li></ul></div></div><div class="slide slide7"><div class="content"><div class="code">&lt;div class="person <span class="highlight class">new</span>"&gt;Person: <span class="highlight text">Martin Odersky</span>&lt;/div&gt;</div></div></div><div class="slide slide8"><div class="content"><div class="left"><h1>Backbone</h1><div class="code">person.get(\'first_name\')</div><div class="code">person.set(\'first_name\', \'Lilia\')</div><hr/><div class="code">person.on(\'change:first_name\', &hellip;)</div></div><div class="right"><h1>Janus</h1><div class="code">person.get(\'name.first\')</div><div class="code">person.set(\'name.first\', \'Lilia\')</div><hr/><div class="code">person.watch(\'name.first\', (value) -&gt; value + \'!\')</div></div></div></div><div class="slide slide9"><div class="content"><div class="left"><h1>Template</h1><div class="code">&lt;div class="person"&gt;<br/>&nbsp;&nbsp;&lt;div class="name"&gt;&lt;/div&gt;<br/>&lt;/div&gt;</div></div><div class="right"><h1>Bindings</h1><div class="code">binding.find(\'.firstName\').text()<br/>.from(\'name.first\')<br/>.and(\'name.last\')<br/><span class="highlight flatMap">.flatMap(</span>(first, last) -&gt; \'Name: \' + first + \' \' + last)</div></div></div></div><div class="slide slide10"><div class="content"><h1>Varying</h1><div class="code">class Varying extends Base<br/>&nbsp;&nbsp;<span class="highlight constr">constructor:</span> (value) -&gt; &hellip;<br/>&nbsp;&nbsp;<br/>&nbsp;&nbsp;setValue: (value) -&gt; <span class="highlight setVal">&hellip;</span><br/>&nbsp;&nbsp;on: (event, handler) -&gt; &hellip;</div><div class="code map">&nbsp;&nbsp;<span class="highlight map">map:</span> (f) -&gt; &hellip;</div><div class="monad"><h1>&hellip;is this a monad?</h1><ul><li>Put a thing in a box?</li><li>Take that thing and put it in another box?</li><li>Collapse some boxes together?</li><li>(who cares?)</li></ul></div></div></div><div class="slide slide11"><div class="content"><svg width="759px" height="479px" viewBox="0 0 759 479" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g stroke="none" fill="none" fill-rule="evenodd"><path d="M41.5,95.5 L177.5,240.5" stroke="#FFFFFF" stroke-width="3"></path><path d="M71.5,384.5 L177.5,239.5" stroke="#FFFFFF" stroke-width="3"></path><path d="M178.500001,238.499912 L193.5,65.5" stroke="#FFFFFF" stroke-width="3"></path><path d="M344.5,94.499924 L453.5,49.5" stroke="#FFFFFF" stroke-width="3"></path><path d="M176.485982,241.499999 L497.5,241.499999" stroke="#FFFFFF" stroke-width="3"></path><path d="M497.5,238.5 L521.5,407.5" stroke="#FFFFFF" stroke-width="3"></path><path d="M498.5,240.5 L637.5,111.5" stroke="#FFFFFF" stroke-width="3"></path><path d="M634.5,114.5 L698.50006,309.5" stroke="#FFFFFF" stroke-width="3"></path><g transform="translate(112.000000, 175.000000)"><path d="M64,128 C99.3462257,128 128,99.3462257 128,64 C128,28.6537743 99.3462257,0 64,0 C28.6537743,0 0,28.6537743 0,64 C0,99.3462257 28.6537743,128 64,128 Z M64,128" fill="#FBA617" class="model"></path><text fill="#000000" font-size="30" x="15" y="77"><tspan>MODEL</tspan></text></g><g transform="translate(264.000000, 344.000000)"><path d="M64,128 C99.3462257,128 128,99.3462257 128,64 C128,28.6537743 99.3462257,0 64,0 C28.6537743,0 0,28.6537743 0,64 C0,99.3462257 28.6537743,128 64,128 Z M64,128" fill="#5C2ADC" class="library"></path><text fill="#000000" font-size="30" x="7" y="77"><tspan>LIBRARY</tspan></text></g><g transform="translate(304.000000, 56.000000)"><path d="M39.5,79 C61.3152487,79 79,61.3152487 79,39.5 C79,17.6847513 61.3152487,0 39.5,0 C17.6847513,0 0,17.6847513 0,39.5 C0,61.3152487 17.6847513,79 39.5,79 Z M39.5,79" fill="#FB1786" class="store"></path><text fill="#000000" font-size="18.4090909" x="13" y="47"><tspan>STORE</tspan></text></g><g transform="translate(411.000000, 7.000000)"><path d="M39.5,79 C61.3152487,79 79,61.3152487 79,39.5 C79,17.6847513 61.3152487,0 39.5,0 C17.6847513,0 0,17.6847513 0,39.5 C0,61.3152487 17.6847513,79 39.5,79 Z M39.5,79" fill="#EC7FB4" class="request"></path><text fill="#000000" font-size="16" x="6" y="46"><tspan>REQUEST</tspan></text></g><g transform="translate(477.000000, 358.000000)"><path d="M45.5,91 C70.6289574,91 91,70.6289574 91,45.5 C91,20.3710426 70.6289574,0 45.5,0 C20.3710426,0 0,20.3710426 0,45.5 C0,70.6289574 20.3710426,91 45.5,91 Z M45.5,91" fill="#FBE500" class="viewModel"></path><text fill="#000000" font-size="14" x="12" y="51"><tspan>VIEWMODEL</tspan></text></g><g transform="translate(434.000000, 175.000000)"><path d="M64,128 C99.3462257,128 128,99.3462257 128,64 C128,28.6537743 99.3462257,0 64,0 C28.6537743,0 0,28.6537743 0,64 C0,99.3462257 28.6537743,128 64,128 Z M64,128" fill="#1266EF" class="view"></path><text fill="#000000" font-size="30" x="30" y="77"><tspan>VIEW</tspan></text></g><g transform="translate(581.000000, 58.000000)"><path d="M53.5,107 C83.0472356,107 107,83.0472356 107,53.5 C107,23.9527644 83.0472356,0 53.5,0 C23.9527644,0 0,23.9527644 0,53.5 C0,83.0472356 23.9527644,107 53.5,107 Z M53.5,107" fill="#E9521C" class="templater"></path><text fill="#000000" font-size="16.6666667" x="11" y="61"><tspan>TEMPLATER</tspan></text></g><g transform="translate(645.000000, 250.000000)"><path d="M53.5,107 C83.0472356,107 107,83.0472356 107,53.5 C107,23.9527644 83.0472356,0 53.5,0 C23.9527644,0 0,23.9527644 0,53.5 C0,83.0472356 23.9527644,107 53.5,107 Z M53.5,107" fill="#19CF7F" class="binder"></path><text fill="#000000" font-size="24" x="13" y="62.5"><tspan>BINDER</tspan></text></g><g transform="translate(7.000000, 321.000000)"><path d="M64,128 C99.3462257,128 128,99.3462257 128,64 C128,28.6537743 99.3462257,0 64,0 C28.6537743,0 0,28.6537743 0,64 C0,99.3462257 28.6537743,128 64,128 Z M64,128" fill="#C000E1" class="list"></path><text fill="#000000" font-size="30" x="35" y="77"><tspan>LIST</tspan></text></g><g transform="translate(148.000000, 19.000000)"><path d="M46,92 C71.4050997,92 92,71.4050997 92,46 C92,20.5949003 71.4050997,0 46,0 C20.5949003,0 0,20.5949003 0,46 C0,71.4050997 20.5949003,92 46,92 Z M46,92" fill="#18B89C" class="attribute"></path><text fill="#000000" font-size="17" x="6" y="52"><tspan>ATTRIBUTE</tspan></text></g><g transform="translate(11.000000, 65.000000)"><path d="M30,60 C46.5685433,60 60,46.5685433 60,30 C60,13.4314567 46.5685433,0 30,0 C13.4314567,0 0,13.4314567 0,30 C0,46.5685433 13.4314567,60 30,60 Z M30,60" fill="#79CF19" class="issue"></path><text fill="#000000" font-size="17" x="9" y="37"><tspan>ISSUE</tspan></text></g></g></svg></div><ul class="detail"><li>Stores attribute bags representing model data.</li><li>Storage and management of collections of object.</li><li>Defines custom behaviour for specific model attributes.</li><li>Describes a validation error on a model attribute or object.</li><li>Manages the interaction between model and presentation.</li><li>Manages the bindings between model and markup.</li><li>Defines and executes a binding between model and markup.</li><li>Allows for the management of view state that isn\'t model data.</li><li>Represents a pending request to an asynchronous resource.</li><li>Executes the request and manages its state.</li><li>Stores and retrieves system classes.</li></ul><div class="codeList"><div class="code">class Person extends Model<br/>&nbsp;&nbsp;@bind(\'name.full\')<br/>&nbsp;&nbsp;&nbsp;&nbsp;.from(\'name.first\')<br/>&nbsp;&nbsp;&nbsp;&nbsp;.and(\'name.last\')<br/>&nbsp;&nbsp;&nbsp;&nbsp;.flatMap((first, last) -&gt; first + \' \' + last)<br/>&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;isOfAge: -&gt; this.watch(\'age\').map((age) -&gt; age &gt;= 18)</div><div class="code">class People extends List<br/>&nbsp;&nbsp;@modelClass: Person<br/>&nbsp;&nbsp;<br/>&nbsp;&nbsp;lastElement: -&gt; this.watchAt(-1)</div><div class="code">class Person extends Model<br/>&nbsp;&nbsp;@attribute \'alive\', class extends attribute.BooleanAttribute<br/>&nbsp;&nbsp;&nbsp;&nbsp;default: -&gt; true<br/>&nbsp;&nbsp;&nbsp;&nbsp;writeDefault: true</div><div class="code">class Person extends Model<br/>&nbsp;&nbsp;@attribute \'age\', class extends attribute.NumberAttribute<br/>&nbsp;&nbsp;&nbsp;&nbsp;issues: -&gt; new List([<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new Issue(<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;active: -&gt; this.watchValue().map((age) -&gt; age &gt;= 0)<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;severity: -&gt; 0<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;message: -&gt; this.watchValue().map((age) -&gt; "The age  is not valid because it is less than zero.")<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>&nbsp;&nbsp;&nbsp;&nbsp;])</div><div class="code">class PersonView extends DomView<br/>&nbsp;&nbsp;@templateClass: PersonTemplate<br/>&nbsp;&nbsp;_wireEvents: -&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;dom = this.artifact()<br/>&nbsp;&nbsp;&nbsp;&nbsp;dom.find(\'a.delete\').on \'click\', (event) =&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event.preventDefault()<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.subject.destroy()</div><div class="code">class PersonTemplate extends Templater<br/>&nbsp;&nbsp;_dom: -&gt; $(markup)<br/>&nbsp;&nbsp;_binding: -&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;binding = super()<br/>&nbsp;&nbsp;&nbsp;&nbsp;binding.find(\'.person\').classed(\'ofAge\').from(\'age\').flatMap((age) -&gt; age &gt;= 21)<br/>&nbsp;&nbsp;&nbsp;&nbsp;binding.find(\'.name\').text().from(\'name.full\')<br/>&nbsp;&nbsp;&nbsp;&nbsp;binding.find(\'.friendList\').render().from(\'friends\')</div><div class="code">&hellip;well, you just saw this.</div><div class="code">class PersonModel extends ViewModel<br/>&nbsp;&nbsp;@attribute \'expanded\', class extends attribute.BooleanAttribute<br/>&nbsp;&nbsp;&nbsp;&nbsp;default: -&gt; true<br/>&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;@attribute \'person\', class extends attribute.ModelAttribute<br/>&nbsp;&nbsp;&nbsp;&nbsp;model: Person</div><div class="code">class FetchRequest extends HttpRequest<br/>&nbsp;&nbsp;path: -&gt; "/api/users/#{this.options.id}.json"<br/>&nbsp;&nbsp;<br/>&hellip;<br/><br/>class InitState extends RequestState<br/>class PendingState extends RequestState<br/>&nbsp;&nbsp;constructor: (@status) -&gt;<br/>class SuccessState extends RequestState<br/>&nbsp;&nbsp;constructor: (@result) -&gt;<br/>&nbsp;&nbsp;<br/>&hellip;<br/><br/>succeeded = myRequest.watch((value) -&gt; value instanceof SuccessState)</div><div class="code">class HttpStore extends Store<br/>&nbsp;&nbsp;_handle: -&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&hellip;imperative async code<br/>&nbsp;&nbsp;&nbsp;&nbsp;this.request.setValue(&hellip;result&hellip;)<br/>&nbsp;&nbsp;&nbsp;&nbsp;<br/>&hellip;<br/><br/>request = new FetchRequest( id: 4747 )<br/>storeLibrary.get(request).handle()</div><div class="code">library = new Library()<br/>library.register(Model, GeneralModelEditView, context: \'edit\')<br/>library.get(person, context: \'edit\') &hellip;yields GeneralModelEditView<br/></div></div></div></div>';})();
 },{}],7:[function(require,module,exports){
 (function() {
   var DomView, Slide, Slide0, Slide0Template, Slide0View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
@@ -340,7 +340,7 @@
 
 }).call(this);
 
-},{"../models/slide":2,"./base":4,"janus":118}],8:[function(require,module,exports){
+},{"../models/slide":2,"./base":4,"janus":119}],8:[function(require,module,exports){
 (function() {
   var DomView, Slide, Slide1, Slide1Template, Slide1View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -403,7 +403,7 @@
 
 }).call(this);
 
-},{"../models/slide":2,"./base":4,"janus":118}],9:[function(require,module,exports){
+},{"../models/slide":2,"./base":4,"janus":119}],9:[function(require,module,exports){
 (function() {
   var DomView, Slide, Slide10, Slide10Template, Slide10View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -425,7 +425,7 @@
 
     Slide10.prototype.subject = 'Origins';
 
-    Slide10.prototype.stages = 5;
+    Slide10.prototype.stages = 6;
 
     return Slide10;
 
@@ -482,7 +482,86 @@
 
 }).call(this);
 
-},{"../models/slide":2,"./base":4,"janus":118}],10:[function(require,module,exports){
+},{"../models/slide":2,"./base":4,"janus":119}],10:[function(require,module,exports){
+(function() {
+  var DomView, Slide, Slide11, Slide11Template, Slide11View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _ref = require('janus'), util = _ref.util, DomView = _ref.DomView;
+
+  Slide = require('../models/slide').Slide;
+
+  SlideTemplate = require('./base').SlideTemplate;
+
+  Slide11 = (function(_super) {
+    __extends(Slide11, _super);
+
+    function Slide11() {
+      _ref1 = Slide11.__super__.constructor.apply(this, arguments);
+      return _ref1;
+    }
+
+    Slide11.prototype.subject = 'Consequences';
+
+    Slide11.prototype.stages = 33;
+
+    return Slide11;
+
+  })(Slide);
+
+  Slide11Template = (function(_super) {
+    __extends(Slide11Template, _super);
+
+    function Slide11Template() {
+      _ref2 = Slide11Template.__super__.constructor.apply(this, arguments);
+      return _ref2;
+    }
+
+    Slide11Template.prototype._number = 11;
+
+    Slide11Template.prototype._binding = function() {
+      var binding;
+      binding = Slide11Template.__super__._binding.call(this);
+      binding.find('.highlight.constr').classed('active').from('stage').flatMap(function(stage) {
+        return stage === 3;
+      });
+      binding.find('.highlight.map').classed('active').from('stage').flatMap(function(stage) {
+        return stage === 4;
+      });
+      return binding.find('.highlight.setVal').classed('active').from('stage').flatMap(function(stage) {
+        return stage === 5;
+      });
+    };
+
+    return Slide11Template;
+
+  })(SlideTemplate);
+
+  Slide11View = (function(_super) {
+    __extends(Slide11View, _super);
+
+    function Slide11View() {
+      _ref3 = Slide11View.__super__.constructor.apply(this, arguments);
+      return _ref3;
+    }
+
+    Slide11View.prototype.templateClass = Slide11Template;
+
+    return Slide11View;
+
+  })(DomView);
+
+  util.extend(module.exports, {
+    Model: Slide11,
+    registerWith: function(library) {
+      return library.register(Slide11, Slide11View);
+    }
+  });
+
+}).call(this);
+
+},{"../models/slide":2,"./base":4,"janus":119}],11:[function(require,module,exports){
 (function() {
   var DomView, Slide, Slide2, Slide2Template, Slide2View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -547,7 +626,7 @@
 
 }).call(this);
 
-},{"../models/slide":2,"./base":4,"janus":118}],11:[function(require,module,exports){
+},{"../models/slide":2,"./base":4,"janus":119}],12:[function(require,module,exports){
 (function() {
   var DomView, Slide, Slide3, Slide3Template, Slide3View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -612,7 +691,7 @@
 
 }).call(this);
 
-},{"../models/slide":2,"./base":4,"janus":118}],12:[function(require,module,exports){
+},{"../models/slide":2,"./base":4,"janus":119}],13:[function(require,module,exports){
 (function() {
   var DomView, Slide, Slide4, Slide4Template, Slide4View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -677,7 +756,7 @@
 
 }).call(this);
 
-},{"../models/slide":2,"./base":4,"janus":118}],13:[function(require,module,exports){
+},{"../models/slide":2,"./base":4,"janus":119}],14:[function(require,module,exports){
 (function() {
   var DomView, Slide, Slide5, Slide5Template, Slide5View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -742,7 +821,7 @@
 
 }).call(this);
 
-},{"../models/slide":2,"./base":4,"janus":118}],14:[function(require,module,exports){
+},{"../models/slide":2,"./base":4,"janus":119}],15:[function(require,module,exports){
 (function() {
   var DomView, Slide, Slide6, Slide6Template, Slide6View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -807,7 +886,7 @@
 
 }).call(this);
 
-},{"../models/slide":2,"./base":4,"janus":118}],15:[function(require,module,exports){
+},{"../models/slide":2,"./base":4,"janus":119}],16:[function(require,module,exports){
 (function() {
   var DomView, Slide, Slide7, Slide7Template, Slide7View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -883,7 +962,7 @@
 
 }).call(this);
 
-},{"../models/slide":2,"./base":4,"janus":118}],16:[function(require,module,exports){
+},{"../models/slide":2,"./base":4,"janus":119}],17:[function(require,module,exports){
 (function() {
   var DomView, Slide, Slide8, Slide8Template, Slide8View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -948,7 +1027,7 @@
 
 }).call(this);
 
-},{"../models/slide":2,"./base":4,"janus":118}],17:[function(require,module,exports){
+},{"../models/slide":2,"./base":4,"janus":119}],18:[function(require,module,exports){
 (function() {
   var DomView, Slide, Slide9, Slide9Template, Slide9View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -1021,15 +1100,15 @@
 
 }).call(this);
 
-},{"../models/slide":2,"./base":4,"janus":118}],18:[function(require,module,exports){
+},{"../models/slide":2,"./base":4,"janus":119}],19:[function(require,module,exports){
 (function() {
-  module.exports = [require('./slide0'), require('./slide1'), require('./slide2'), require('./slide3'), require('./slide4'), require('./slide5'), require('./slide6'), require('./slide7'), require('./slide8'), require('./slide9'), require('./slide10')];
+  module.exports = [require('./slide0'), require('./slide1'), require('./slide2'), require('./slide3'), require('./slide4'), require('./slide5'), require('./slide6'), require('./slide7'), require('./slide8'), require('./slide9'), require('./slide10'), require('./slide11')];
 
 }).call(this);
 
-},{"./slide0":7,"./slide1":8,"./slide10":9,"./slide2":10,"./slide3":11,"./slide4":12,"./slide5":13,"./slide6":14,"./slide7":15,"./slide8":16,"./slide9":17}],19:[function(require,module,exports){
+},{"./slide0":7,"./slide1":8,"./slide10":9,"./slide11":10,"./slide2":11,"./slide3":12,"./slide4":13,"./slide5":14,"./slide6":15,"./slide7":16,"./slide8":17,"./slide9":18}],20:[function(require,module,exports){
 (function(){module.exports = '<div class="deck"><div class="slides"></div><div class="chrome"><div class="byLine">PNW Scala 2013 &bull; Clint Tseng &bull; Socrata</div><div class="subject"></div></div></div>';})();
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 (function() {
   var Deck, DeckTemplate, DeckView, DomView, Templater, keys, markup, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -1117,7 +1196,7 @@
 
 }).call(this);
 
-},{"../models/deck":1,"./deck.html":19,"janus":118}],21:[function(require,module,exports){
+},{"../models/deck":1,"./deck.html":20,"janus":119}],22:[function(require,module,exports){
 (function() {
   var BooleanAttribute, BooleanCheckboxView, BooleanToggleButtonView, DomView, Templater, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -1224,9 +1303,9 @@
 
 }).call(this);
 
-},{"janus":118}],22:[function(require,module,exports){
+},{"janus":119}],23:[function(require,module,exports){
 (function(){module.exports = '<li><div class="editHandle"></div><a href="#remove" class="editRemove ss-delete">Remove</a><div class="editItem"></div></li>';})();
-},{}],23:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 (function() {
   var Base, CollectionEditItemImpl, CollectionEditItemTemplate, CollectionEditViewImpl, CollectionEditViewTemplate, ListEditItem, ListEditItemTemplate, ListEditView, OrderedCollection, Templater, itemMarkup, util, _ref, _ref1, _ref2, _ref3, _ref4,
     __hasProp = {}.hasOwnProperty,
@@ -1325,9 +1404,9 @@
 
 }).call(this);
 
-},{"./collection-edit-item.html":22,"janus":118}],24:[function(require,module,exports){
+},{"./collection-edit-item.html":23,"janus":119}],25:[function(require,module,exports){
 (function(){module.exports = '<li><div class="selectControls"><a href="#select" class="selectButton button">Select</a></div><div class="selectItem"></div></li>';})();
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 (function() {
   var Base, CollectionSelectItemTemplate, CollectionSelectItemView, CollectionSelectView, CollectionView, DomView, OrderedCollection, Templater, itemMarkup, templater, util, _ref, _ref1, _ref2, _ref3, _ref4,
     __hasProp = {}.hasOwnProperty,
@@ -1467,7 +1546,7 @@
 
 }).call(this);
 
-},{"./collection":26,"./collection-select-item.html":24,"janus":118}],26:[function(require,module,exports){
+},{"./collection":27,"./collection-select-item.html":25,"janus":119}],27:[function(require,module,exports){
 (function() {
   var CollectionViewImpl, CollectionViewTemplater, ListView, OrderedCollection, Templater, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -1527,7 +1606,7 @@
 
 }).call(this);
 
-},{"janus":118}],27:[function(require,module,exports){
+},{"janus":119}],28:[function(require,module,exports){
 (function() {
   var Base, CollectionViewImpl, CollectionViewTemplater, DomView, EnumAttribute, EnumAttributeListTemplate, EnumAttributeListView, EnumAttributeView, List, OrderedCollection, Templater, Varying, templater, textItemMarkup, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -1805,9 +1884,9 @@
 
 }).call(this);
 
-},{"./collection":26,"./enum-text-item.html":28,"janus":118}],28:[function(require,module,exports){
+},{"./collection":27,"./enum-text-item.html":29,"janus":119}],29:[function(require,module,exports){
 (function(){module.exports = '<li class="textItem"><a class="button selectItem"></a><div class="selectItem"></div></li>';})();
-},{}],29:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 (function() {
   var DomView, LiteralTemplate, LiteralView, Templater, Varying, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -1875,13 +1954,13 @@
 
 }).call(this);
 
-},{"janus":118}],30:[function(require,module,exports){
+},{"janus":119}],31:[function(require,module,exports){
 (function() {
   module.exports = [require('./boolean-attribute'), require('./enum-attribute'), require('./collection-edit'), require('./collection-select'), require('./collection'), require('./literal'), require('./text-attribute'), require('./varying')];
 
 }).call(this);
 
-},{"./boolean-attribute":21,"./collection":26,"./collection-edit":23,"./collection-select":25,"./enum-attribute":27,"./literal":29,"./text-attribute":31,"./varying":32}],31:[function(require,module,exports){
+},{"./boolean-attribute":22,"./collection":27,"./collection-edit":24,"./collection-select":26,"./enum-attribute":28,"./literal":30,"./text-attribute":32,"./varying":33}],32:[function(require,module,exports){
 (function() {
   var DomView, MultilineTextAttributeView, TextAttribute, TextAttributeView, eventMap, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -1986,7 +2065,7 @@
 
 }).call(this);
 
-},{"janus":118}],32:[function(require,module,exports){
+},{"janus":119}],33:[function(require,module,exports){
 (function() {
   var Templater, Varying, VaryingView, VaryingViewImpl, VaryingViewTemplate, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -2041,7 +2120,7 @@
 
 }).call(this);
 
-},{"janus":118}],33:[function(require,module,exports){
+},{"janus":119}],34:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -2095,7 +2174,7 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],34:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 (function() {
   var CommandRequest, EvalAction, Varying, exec, store, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -2168,7 +2247,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../models/command":39,"../../util/eval":44,"janus":76}],35:[function(require,module,exports){
+},{"../../models/command":40,"../../util/eval":45,"janus":77}],36:[function(require,module,exports){
 (function() {
   var CommandRequest, InspectAction, ReadyState, Varying, store, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -2240,7 +2319,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../models/command":39,"../../models/ready-state":41,"janus":76}],36:[function(require,module,exports){
+},{"../../models/command":40,"../../models/ready-state":42,"janus":77}],37:[function(require,module,exports){
 (function() {
   var CommandRequest, ReadyState, RenderAction, Varying, exec, store, templater, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -2312,7 +2391,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../models/command":39,"../../models/ready-state":41,"../../util/eval":44,"janus":76}],37:[function(require,module,exports){
+},{"../../models/command":40,"../../models/ready-state":42,"../../util/eval":45,"janus":77}],38:[function(require,module,exports){
 (function() {
   var CommandRequest, List, Model, ReadyState, TraverseAction, Varying, exec, store, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -2421,7 +2500,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../models/command":39,"../../models/ready-state":41,"../../util/eval":44,"janus":76}],38:[function(require,module,exports){
+},{"../../models/command":40,"../../models/ready-state":42,"../../util/eval":45,"janus":77}],39:[function(require,module,exports){
 (function() {
   var util;
 
@@ -2491,7 +2570,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"./actions/local/eval":34,"./actions/local/inspect":35,"./actions/local/render":36,"./actions/local/traverse":37,"./models/command":39,"./models/node":40,"./models/ready-state":41,"./models/repl":42,"./util/hook":45,"./views/command/default":47,"./views/command/edit":49,"./views/generic/base-fallback":50,"./views/generic/function":51,"./views/generic/request-state":52,"./views/repl/repl":54,"./views/varying/live":56,"janus":76}],39:[function(require,module,exports){
+},{"./actions/local/eval":35,"./actions/local/inspect":36,"./actions/local/render":37,"./actions/local/traverse":38,"./models/command":40,"./models/node":41,"./models/ready-state":42,"./models/repl":43,"./util/hook":46,"./views/command/default":48,"./views/command/edit":50,"./views/generic/base-fallback":51,"./views/generic/function":52,"./views/generic/request-state":53,"./views/repl/repl":55,"./views/varying/live":57,"janus":77}],40:[function(require,module,exports){
 (function() {
   var Command, CommandRequest, Commands, Model, attribute, collection, reference, store, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -2586,7 +2665,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"janus":76}],40:[function(require,module,exports){
+},{"janus":77}],41:[function(require,module,exports){
 (function() {
   var Model, Node, Nodes, attribute, collection, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -2643,7 +2722,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"janus":76}],41:[function(require,module,exports){
+},{"janus":77}],42:[function(require,module,exports){
 (function() {
   var ReadyState, store, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -2668,7 +2747,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"janus":76}],42:[function(require,module,exports){
+},{"janus":77}],43:[function(require,module,exports){
 (function() {
   var Model, Repl, Repls, attribute, collection, command, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -2763,13 +2842,13 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"./command":39,"janus":76}],43:[function(require,module,exports){
+},{"./command":40,"janus":77}],44:[function(require,module,exports){
 (function() {
   module.exports = typeof window === 'undefined' ? require('zepto-node')(require('domino').createWindow()) : window.jQuery;
 
 }).call(this);
 
-},{"domino":false,"zepto-node":false}],44:[function(require,module,exports){
+},{"domino":false,"zepto-node":false}],45:[function(require,module,exports){
 (function() {
   var util;
 
@@ -2806,7 +2885,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"janus":76}],45:[function(require,module,exports){
+},{"janus":77}],46:[function(require,module,exports){
 (function() {
   var $, Repl, ReplView, util;
 
@@ -2850,9 +2929,9 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../models/repl":42,"../views/repl/repl":54,"./dollar":43,"janus":76}],46:[function(require,module,exports){
+},{"../models/repl":43,"../views/repl/repl":55,"./dollar":44,"janus":77}],47:[function(require,module,exports){
 (function(){module.exports = '<li class="commandOutput"><div class="commandNumber"></div><div class="commandText"></div><div class="resultNumber"></div><div class="resultBody"></div></li>';})();
-},{}],47:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 (function() {
   var $, Command, CommandTemplate, CommandView, DomView, Templater, collection, markup, util, varying, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -2921,9 +3000,9 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../models/command":39,"../../util/dollar":43,"./default.html":46,"janus":76}],48:[function(require,module,exports){
+},{"../../models/command":40,"../../util/dollar":44,"./default.html":47,"janus":77}],49:[function(require,module,exports){
 (function(){module.exports = '<div class="janusConsolePrompt"><div class="caret">&rsaquo;</div><div class="consolePrompt"></div></div>';})();
-},{}],49:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 (function() {
   var $, Command, CommandEditTemplate, CommandEditView, DomView, Templater, collection, markup, util, varying, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -2990,7 +3069,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../models/command":39,"../../util/dollar":43,"./edit.html":48,"janus":76}],50:[function(require,module,exports){
+},{"../../models/command":40,"../../util/dollar":44,"./edit.html":49,"janus":77}],51:[function(require,module,exports){
 (function() {
   var $, Base, BaseFallbackTemplate, BaseFallbackView, DomView, Model, Templater, domViewIdent, ident, modelIdent, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -3085,7 +3164,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../util/dollar":43,"janus":76}],51:[function(require,module,exports){
+},{"../../util/dollar":44,"janus":77}],52:[function(require,module,exports){
 (function() {
   var $, DomView, FunctionTemplate, FunctionView, Templater, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -3145,7 +3224,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../util/dollar":43,"janus":76}],52:[function(require,module,exports){
+},{"../../util/dollar":44,"janus":77}],53:[function(require,module,exports){
 (function() {
   var $, DomView, PendingTemplate, PendingView, ReadyState, ReadyTemplate, ReadyView, Request, SuccessTemplate, SuccessView, Templater, UserErrorTemplate, UserErrorView, reference, templater, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9,
     __hasProp = {}.hasOwnProperty,
@@ -3339,9 +3418,9 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../models/ready-state":41,"../../util/dollar":43,"janus":76}],53:[function(require,module,exports){
+},{"../../models/ready-state":42,"../../util/dollar":44,"janus":77}],54:[function(require,module,exports){
 (function(){module.exports = '<div class="janusConsole"><div class="scrollback"></div><div class="prompt"></div></div>';})();
-},{}],54:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 (function() {
   var $, DomView, Repl, ReplTemplate, ReplView, Templater, markup, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -3422,9 +3501,9 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../models/repl":42,"../../util/dollar":43,"./repl.html":53,"janus":76}],55:[function(require,module,exports){
+},{"../../models/repl":43,"../../util/dollar":44,"./repl.html":54,"janus":77}],56:[function(require,module,exports){
 (function(){module.exports = '<ul class="varyingLive"></ul>';})();
-},{}],56:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 (function() {
   var $, DomView, Templater, VaryingLiveTemplate, VaryingLiveView, collection, markup, util, varying, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -3498,7 +3577,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../util/dollar":43,"./live.html":55,"janus":76}],57:[function(require,module,exports){
+},{"../../util/dollar":44,"./live.html":56,"janus":77}],58:[function(require,module,exports){
 (function() {
   var App, Model, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -3567,7 +3646,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../model/model":81,"../util/util":90}],58:[function(require,module,exports){
+},{"../model/model":82,"../util/util":91}],59:[function(require,module,exports){
 (function() {
   var App, Base, Endpoint, EndpointResponse, ForbiddenResponse, InternalErrorResponse, InvalidRequestResponse, NotFoundResponse, OkResponse, Request, StoreManifest, UnauthorizedResponse, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5,
     __hasProp = {}.hasOwnProperty,
@@ -3767,7 +3846,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/base":73,"../model/store":84,"../util/util":90,"./app":57,"./manifest":60}],59:[function(require,module,exports){
+},{"../core/base":74,"../model/store":85,"../util/util":91,"./app":58,"./manifest":61}],60:[function(require,module,exports){
 (function() {
   var Base, Endpoint, Handler, HttpHandler, util,
     __hasProp = {}.hasOwnProperty,
@@ -3849,7 +3928,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/base":73,"../util/util":90,"./endpoint":58}],60:[function(require,module,exports){
+},{"../core/base":74,"../util/util":91,"./endpoint":59}],61:[function(require,module,exports){
 (function() {
   var Base, Manifest, Request, StoreManifest, util,
     __hasProp = {}.hasOwnProperty,
@@ -3939,7 +4018,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/base":73,"../model/store":84,"../util/util":90}],61:[function(require,module,exports){
+},{"../core/base":74,"../model/store":85,"../util/util":91}],62:[function(require,module,exports){
 (function() {
   var CattedList, DerivedList, util,
     __hasProp = {}.hasOwnProperty,
@@ -3994,7 +4073,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../util/util":90,"./list":66}],62:[function(require,module,exports){
+},{"../util/util":91,"./list":67}],63:[function(require,module,exports){
 (function() {
   var util;
 
@@ -4019,7 +4098,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../util/util":90,"./catted-list":61,"./filtered-list":63,"./indefinite-list":64,"./lazy-list":65,"./list":66,"./mapped-list":67,"./partitioned-list":68,"./set":69,"./types":70,"./uniq-list":71,"./window":72}],63:[function(require,module,exports){
+},{"../util/util":91,"./catted-list":62,"./filtered-list":64,"./indefinite-list":65,"./lazy-list":66,"./list":67,"./mapped-list":68,"./partitioned-list":69,"./set":70,"./types":71,"./uniq-list":72,"./window":73}],64:[function(require,module,exports){
 (function() {
   var DerivedList, FilteredList, Varying, util,
     __hasProp = {}.hasOwnProperty,
@@ -4096,7 +4175,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/varying":75,"../util/util":90,"./list":66}],64:[function(require,module,exports){
+},{"../core/varying":76,"../util/util":91,"./list":67}],65:[function(require,module,exports){
 (function() {
   var Base, Indefinite, IndefiniteList, Many, One, OrderedCollection, StepResult, Termination, Varying, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -4265,7 +4344,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/base":73,"../core/varying":75,"../util/util":90,"./types":70}],65:[function(require,module,exports){
+},{"../core/base":74,"../core/varying":76,"../util/util":91,"./types":71}],66:[function(require,module,exports){
 (function() {
   var CachedLazyList, Coverage, LazyList, List, Model, Range, Varying, rangeUpdater, util, wrapAndSealFate, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -4468,7 +4547,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/varying":75,"../model/model":81,"../util/range":89,"../util/util":90,"./list":66}],66:[function(require,module,exports){
+},{"../core/varying":76,"../model/model":82,"../util/range":90,"../util/util":91,"./list":67}],67:[function(require,module,exports){
 (function() {
   var Base, DerivedList, List, Model, OrderedCollection, Reference, Varying, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -4911,7 +4990,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/base":73,"../core/varying":75,"../model/model":81,"../model/reference":83,"../util/util":90,"./types":70}],67:[function(require,module,exports){
+},{"../core/base":74,"../core/varying":76,"../model/model":82,"../model/reference":84,"../util/util":91,"./types":71}],68:[function(require,module,exports){
 (function() {
   var DerivedList, List, MappedList, Varying, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -4981,7 +5060,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/varying":75,"../util/util":90,"./list":66}],68:[function(require,module,exports){
+},{"../core/varying":76,"../util/util":91,"./list":67}],69:[function(require,module,exports){
 (function() {
   var DerivedList, List, PartitionedList, Varying, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -5030,7 +5109,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/varying":75,"../util/util":90,"./list":66}],69:[function(require,module,exports){
+},{"../core/varying":76,"../util/util":91,"./list":67}],70:[function(require,module,exports){
 (function() {
   var Base, List, Set, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -5095,7 +5174,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/base":73,"../util/util":90,"./list":66}],70:[function(require,module,exports){
+},{"../core/base":74,"../util/util":91,"./list":67}],71:[function(require,module,exports){
 (function() {
   var Collection, Model, OrderedCollection, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -5178,7 +5257,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../model/model":81,"../util/util":90,"./catted-list":61,"./filtered-list":63,"./mapped-list":67,"./partitioned-list":68,"./uniq-list":71}],71:[function(require,module,exports){
+},{"../model/model":82,"../util/util":91,"./catted-list":62,"./filtered-list":64,"./mapped-list":68,"./partitioned-list":69,"./uniq-list":72}],72:[function(require,module,exports){
 (function() {
   var DerivedList, UniqList, util,
     __hasProp = {}.hasOwnProperty,
@@ -5247,7 +5326,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../util/util":90,"./list":66}],72:[function(require,module,exports){
+},{"../util/util":91,"./list":67}],73:[function(require,module,exports){
 (function() {
   var List, Model, Varying, Window, attribute, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -5332,7 +5411,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/varying":75,"../model/attribute":78,"../model/model":81,"../util/util":90,"./list":66}],73:[function(require,module,exports){
+},{"../core/varying":76,"../model/attribute":79,"../model/model":82,"../util/util":91,"./list":67}],74:[function(require,module,exports){
 (function() {
   var Base, EventEmitter, util,
     __hasProp = {}.hasOwnProperty,
@@ -5417,7 +5496,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../util/util":90,"eventemitter2":98}],74:[function(require,module,exports){
+},{"../util/util":91,"eventemitter2":99}],75:[function(require,module,exports){
 (function() {
   var Chainer, util,
     __slice = [].slice,
@@ -5516,7 +5595,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../util/util":90}],75:[function(require,module,exports){
+},{"../util/util":91}],76:[function(require,module,exports){
 (function() {
   var Base, MultiVarying, Varying, util,
     __hasProp = {}.hasOwnProperty,
@@ -5703,7 +5782,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/base":73,"../util/util":90}],76:[function(require,module,exports){
+},{"../core/base":74,"../util/util":91}],77:[function(require,module,exports){
 var global=self;(function() {
   var janus, util, _base, _ref;
 
@@ -5759,7 +5838,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"./application/app":57,"./application/endpoint":58,"./application/handler":59,"./application/manifest":60,"./collection/collection":62,"./core/base":73,"./core/chain":74,"./core/varying":75,"./library/library":77,"./model/attribute":78,"./model/issue":80,"./model/model":81,"./model/page-model":82,"./model/reference":83,"./model/store":84,"./templater/package":86,"./templater/templater":87,"./util/util":90,"./view/dom-view":91,"./view/impl/list":93,"./view/impl/list-edit":92,"./view/impl/varying":94,"./view/page-view":96,"./view/view":97}],77:[function(require,module,exports){
+},{"./application/app":58,"./application/endpoint":59,"./application/handler":60,"./application/manifest":61,"./collection/collection":63,"./core/base":74,"./core/chain":75,"./core/varying":76,"./library/library":78,"./model/attribute":79,"./model/issue":81,"./model/model":82,"./model/page-model":83,"./model/reference":84,"./model/store":85,"./templater/package":87,"./templater/templater":88,"./util/util":91,"./view/dom-view":92,"./view/impl/list":94,"./view/impl/list-edit":93,"./view/impl/varying":95,"./view/page-view":97,"./view/view":98}],78:[function(require,module,exports){
 (function() {
   var Base, Library, match, util,
     __hasProp = {}.hasOwnProperty,
@@ -5917,7 +5996,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":73,"../util/util":90}],78:[function(require,module,exports){
+},{"../core/base":74,"../util/util":91}],79:[function(require,module,exports){
 (function() {
   var Attribute, BooleanAttribute, CollectionAttribute, DateAttribute, EnumAttribute, List, Model, ModelAttribute, NumberAttribute, ObjectAttribute, ShellModel, TextAttribute, Varying, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7,
     __hasProp = {}.hasOwnProperty,
@@ -6168,7 +6247,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../collection/list":66,"../core/varying":75,"../util/util":90,"./model":81}],79:[function(require,module,exports){
+},{"../collection/list":67,"../core/varying":76,"../util/util":91,"./model":82}],80:[function(require,module,exports){
 (function() {
   var Base, Binder, MultiVarying, util,
     __hasProp = {}.hasOwnProperty,
@@ -6287,7 +6366,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":73,"../core/varying":75,"../util/util":90}],80:[function(require,module,exports){
+},{"../core/base":74,"../core/varying":76,"../util/util":91}],81:[function(require,module,exports){
 (function() {
   var Base, Issue, Varying, util,
     __hasProp = {}.hasOwnProperty,
@@ -6322,7 +6401,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":73,"../core/varying":75,"../util/util":90}],81:[function(require,module,exports){
+},{"../core/base":74,"../core/varying":76,"../util/util":91}],82:[function(require,module,exports){
 (function() {
   var Base, Binder, Model, Null, NullClass, Reference, Resolver, Varying, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -6908,7 +6987,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../collection/collection":62,"../collection/list":66,"../core/base":73,"../core/varying":75,"../util/util":90,"./binder":79,"./reference":83}],82:[function(require,module,exports){
+},{"../collection/collection":63,"../collection/list":67,"../core/base":74,"../core/varying":76,"../util/util":91,"./binder":80,"./reference":84}],83:[function(require,module,exports){
 (function() {
   var Model, PageModel, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -6942,7 +7021,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../util/util":90,"./model":81}],83:[function(require,module,exports){
+},{"../util/util":91,"./model":82}],84:[function(require,module,exports){
 (function() {
   var ModelReference, ModelResolver, Reference, RequestReference, RequestResolver, Resolver, Varying, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -7123,7 +7202,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/varying":75,"../util/util":90,"./model":81}],84:[function(require,module,exports){
+},{"../core/varying":76,"../util/util":91,"./model":82}],85:[function(require,module,exports){
 (function() {
   var Base, CompleteState, CreateRequest, DeleteRequest, ErrorState, FetchRequest, InitState, List, MemoryCacheStore, Model, OnPageCacheStore, OneOfStore, PendingState, ProgressState, Request, RequestState, ServiceErrorState, Store, SuccessState, UpdateRequest, UserErrorState, Varying, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7,
     __hasProp = {}.hasOwnProperty,
@@ -7581,7 +7660,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../collection/list":66,"../core/base":73,"../core/varying":75,"../model/model":81,"../util/util":90}],85:[function(require,module,exports){
+},{"../collection/list":67,"../core/base":74,"../core/varying":76,"../model/model":82,"../util/util":91}],86:[function(require,module,exports){
 (function() {
   var ApplyMutator, AttrMutator, Base, Binder, ClassGroupMutator, ClassMutator, CssMutator, HtmlMutator, MultiVarying, Mutator, RenderMutator, TextMutator, Varying, reference, types, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8,
     __hasProp = {}.hasOwnProperty,
@@ -8202,7 +8281,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":73,"../core/varying":75,"../model/reference":83,"../util/util":90,"./types":88}],86:[function(require,module,exports){
+},{"../core/base":74,"../core/varying":76,"../model/reference":84,"../util/util":91,"./types":89}],87:[function(require,module,exports){
 (function() {
   var util;
 
@@ -8217,7 +8296,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../util/util":90,"./templater":87,"./types":88}],87:[function(require,module,exports){
+},{"../util/util":91,"./templater":88,"./types":89}],88:[function(require,module,exports){
 (function() {
   var Binder, Templater, util;
 
@@ -8273,7 +8352,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../util/util":90,"./binder":85}],88:[function(require,module,exports){
+},{"../util/util":91,"./binder":86}],89:[function(require,module,exports){
 (function() {
   var WithAux, WithOptions, WithView, util;
 
@@ -8316,7 +8395,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../util/util":90}],89:[function(require,module,exports){
+},{"../util/util":91}],90:[function(require,module,exports){
 (function() {
   var Continuous, Coverage, Range, Varying, util,
     __hasProp = {}.hasOwnProperty,
@@ -8554,7 +8633,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/varying":75,"./util":90}],90:[function(require,module,exports){
+},{"../core/varying":76,"./util":91}],91:[function(require,module,exports){
 (function() {
   var toString, type, util, _fn, _i, _len, _ref, _ref1,
     __slice = [].slice;
@@ -8754,7 +8833,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{}],91:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 (function() {
   var DomView, List, View, util,
     __hasProp = {}.hasOwnProperty,
@@ -8907,7 +8986,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../collection/list":66,"../util/util":90,"./view":97}],92:[function(require,module,exports){
+},{"../collection/list":67,"../util/util":91,"./view":98}],93:[function(require,module,exports){
 (function() {
   var DomView, ListEditItem, ListEditItemTemplate, ListEditView, ListView, Templater, templater, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -9009,7 +9088,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../../templater/package":86,"../../templater/templater":87,"../../util/util":90,"../dom-view":91,"./list":93}],93:[function(require,module,exports){
+},{"../../templater/package":87,"../../templater/templater":88,"../../util/util":91,"../dom-view":92,"./list":94}],94:[function(require,module,exports){
 (function() {
   var ListView, Varying, ViewContainer, reference, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -9124,7 +9203,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../../core/varying":75,"../../model/reference":83,"../../util/util":90,"./view-container":95}],94:[function(require,module,exports){
+},{"../../core/varying":76,"../../model/reference":84,"../../util/util":91,"./view-container":96}],95:[function(require,module,exports){
 (function() {
   var VaryingView, ViewContainer, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -9188,7 +9267,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../../util/util":90,"./view-container":95}],95:[function(require,module,exports){
+},{"../../util/util":91,"./view-container":96}],96:[function(require,module,exports){
 (function() {
   var DomView, Varying, ViewContainer, reference, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -9262,13 +9341,13 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../../core/varying":75,"../../model/reference":83,"../../util/util":90,"../dom-view":91}],96:[function(require,module,exports){
+},{"../../core/varying":76,"../../model/reference":84,"../../util/util":91,"../dom-view":92}],97:[function(require,module,exports){
 (function() {
 
 
 }).call(this);
 
-},{}],97:[function(require,module,exports){
+},{}],98:[function(require,module,exports){
 (function() {
   var Base, View, util,
     __hasProp = {}.hasOwnProperty,
@@ -9326,7 +9405,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":73,"../util/util":90}],98:[function(require,module,exports){
+},{"../core/base":74,"../util/util":91}],99:[function(require,module,exports){
 var process=require("__browserify_process");;!function(exports, undefined) {
 
   var isArray = Array.isArray ? Array.isArray : function _isArray(obj) {
@@ -9889,7 +9968,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }(typeof process !== 'undefined' && typeof process.title !== 'undefined' && typeof exports !== 'undefined' ? exports : window);
 
-},{"__browserify_process":33}],99:[function(require,module,exports){
+},{"__browserify_process":34}],100:[function(require,module,exports){
 (function() {
   var App, Model, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -9958,7 +10037,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../model/model":123,"../util/util":132}],100:[function(require,module,exports){
+},{"../model/model":124,"../util/util":133}],101:[function(require,module,exports){
 (function() {
   var App, Base, Endpoint, EndpointResponse, ForbiddenResponse, InternalErrorResponse, InvalidRequestResponse, NotFoundResponse, OkResponse, Request, StoreManifest, UnauthorizedResponse, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5,
     __hasProp = {}.hasOwnProperty,
@@ -10158,7 +10237,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/base":115,"../model/store":126,"../util/util":132,"./app":99,"./manifest":102}],101:[function(require,module,exports){
+},{"../core/base":116,"../model/store":127,"../util/util":133,"./app":100,"./manifest":103}],102:[function(require,module,exports){
 (function() {
   var Base, Endpoint, Handler, HttpHandler, util,
     __hasProp = {}.hasOwnProperty,
@@ -10240,7 +10319,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/base":115,"../util/util":132,"./endpoint":100}],102:[function(require,module,exports){
+},{"../core/base":116,"../util/util":133,"./endpoint":101}],103:[function(require,module,exports){
 (function() {
   var Base, Manifest, Request, StoreManifest, util,
     __hasProp = {}.hasOwnProperty,
@@ -10330,7 +10409,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/base":115,"../model/store":126,"../util/util":132}],103:[function(require,module,exports){
+},{"../core/base":116,"../model/store":127,"../util/util":133}],104:[function(require,module,exports){
 (function() {
   var CattedList, DerivedList, util,
     __hasProp = {}.hasOwnProperty,
@@ -10385,7 +10464,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../util/util":132,"./list":108}],104:[function(require,module,exports){
+},{"../util/util":133,"./list":109}],105:[function(require,module,exports){
 (function() {
   var util;
 
@@ -10410,7 +10489,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../util/util":132,"./catted-list":103,"./filtered-list":105,"./indefinite-list":106,"./lazy-list":107,"./list":108,"./mapped-list":109,"./partitioned-list":110,"./set":111,"./types":112,"./uniq-list":113,"./window":114}],105:[function(require,module,exports){
+},{"../util/util":133,"./catted-list":104,"./filtered-list":106,"./indefinite-list":107,"./lazy-list":108,"./list":109,"./mapped-list":110,"./partitioned-list":111,"./set":112,"./types":113,"./uniq-list":114,"./window":115}],106:[function(require,module,exports){
 (function() {
   var DerivedList, FilteredList, Varying, util,
     __hasProp = {}.hasOwnProperty,
@@ -10487,7 +10566,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/varying":117,"../util/util":132,"./list":108}],106:[function(require,module,exports){
+},{"../core/varying":118,"../util/util":133,"./list":109}],107:[function(require,module,exports){
 (function() {
   var Base, Indefinite, IndefiniteList, Many, One, OrderedCollection, StepResult, Termination, Varying, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -10656,7 +10735,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/base":115,"../core/varying":117,"../util/util":132,"./types":112}],107:[function(require,module,exports){
+},{"../core/base":116,"../core/varying":118,"../util/util":133,"./types":113}],108:[function(require,module,exports){
 (function() {
   var CachedLazyList, Coverage, LazyList, List, Model, Range, Varying, rangeUpdater, util, wrapAndSealFate, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -10859,7 +10938,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/varying":117,"../model/model":123,"../util/range":131,"../util/util":132,"./list":108}],108:[function(require,module,exports){
+},{"../core/varying":118,"../model/model":124,"../util/range":132,"../util/util":133,"./list":109}],109:[function(require,module,exports){
 (function() {
   var Base, DerivedList, List, Model, OrderedCollection, Reference, Varying, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -11302,7 +11381,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/base":115,"../core/varying":117,"../model/model":123,"../model/reference":125,"../util/util":132,"./types":112}],109:[function(require,module,exports){
+},{"../core/base":116,"../core/varying":118,"../model/model":124,"../model/reference":126,"../util/util":133,"./types":113}],110:[function(require,module,exports){
 (function() {
   var DerivedList, List, MappedList, Varying, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -11372,7 +11451,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/varying":117,"../util/util":132,"./list":108}],110:[function(require,module,exports){
+},{"../core/varying":118,"../util/util":133,"./list":109}],111:[function(require,module,exports){
 (function() {
   var DerivedList, List, PartitionedList, Varying, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -11421,7 +11500,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/varying":117,"../util/util":132,"./list":108}],111:[function(require,module,exports){
+},{"../core/varying":118,"../util/util":133,"./list":109}],112:[function(require,module,exports){
 (function() {
   var Base, List, Set, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -11486,7 +11565,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/base":115,"../util/util":132,"./list":108}],112:[function(require,module,exports){
+},{"../core/base":116,"../util/util":133,"./list":109}],113:[function(require,module,exports){
 (function() {
   var Collection, Model, OrderedCollection, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -11569,7 +11648,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../model/model":123,"../util/util":132,"./catted-list":103,"./filtered-list":105,"./mapped-list":109,"./partitioned-list":110,"./uniq-list":113}],113:[function(require,module,exports){
+},{"../model/model":124,"../util/util":133,"./catted-list":104,"./filtered-list":106,"./mapped-list":110,"./partitioned-list":111,"./uniq-list":114}],114:[function(require,module,exports){
 (function() {
   var DerivedList, UniqList, util,
     __hasProp = {}.hasOwnProperty,
@@ -11638,7 +11717,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../util/util":132,"./list":108}],114:[function(require,module,exports){
+},{"../util/util":133,"./list":109}],115:[function(require,module,exports){
 (function() {
   var List, Model, Varying, Window, attribute, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -11723,7 +11802,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/varying":117,"../model/attribute":120,"../model/model":123,"../util/util":132,"./list":108}],115:[function(require,module,exports){
+},{"../core/varying":118,"../model/attribute":121,"../model/model":124,"../util/util":133,"./list":109}],116:[function(require,module,exports){
 (function() {
   var Base, EventEmitter, util,
     __hasProp = {}.hasOwnProperty,
@@ -11808,7 +11887,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../util/util":132,"eventemitter2":140}],116:[function(require,module,exports){
+},{"../util/util":133,"eventemitter2":141}],117:[function(require,module,exports){
 (function() {
   var Chainer, util,
     __slice = [].slice,
@@ -11907,7 +11986,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../util/util":132}],117:[function(require,module,exports){
+},{"../util/util":133}],118:[function(require,module,exports){
 (function() {
   var Base, MultiVarying, Varying, util,
     __hasProp = {}.hasOwnProperty,
@@ -12094,7 +12173,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/base":115,"../util/util":132}],118:[function(require,module,exports){
+},{"../core/base":116,"../util/util":133}],119:[function(require,module,exports){
 var global=self;(function() {
   var janus, util, _base, _ref;
 
@@ -12150,7 +12229,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"./application/app":99,"./application/endpoint":100,"./application/handler":101,"./application/manifest":102,"./collection/collection":104,"./core/base":115,"./core/chain":116,"./core/varying":117,"./library/library":119,"./model/attribute":120,"./model/issue":122,"./model/model":123,"./model/page-model":124,"./model/reference":125,"./model/store":126,"./templater/package":128,"./templater/templater":129,"./util/util":132,"./view/dom-view":133,"./view/impl/list":135,"./view/impl/list-edit":134,"./view/impl/varying":136,"./view/page-view":138,"./view/view":139}],119:[function(require,module,exports){
+},{"./application/app":100,"./application/endpoint":101,"./application/handler":102,"./application/manifest":103,"./collection/collection":105,"./core/base":116,"./core/chain":117,"./core/varying":118,"./library/library":120,"./model/attribute":121,"./model/issue":123,"./model/model":124,"./model/page-model":125,"./model/reference":126,"./model/store":127,"./templater/package":129,"./templater/templater":130,"./util/util":133,"./view/dom-view":134,"./view/impl/list":136,"./view/impl/list-edit":135,"./view/impl/varying":137,"./view/page-view":139,"./view/view":140}],120:[function(require,module,exports){
 (function() {
   var Base, Library, match, util,
     __hasProp = {}.hasOwnProperty,
@@ -12308,7 +12387,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":115,"../util/util":132}],120:[function(require,module,exports){
+},{"../core/base":116,"../util/util":133}],121:[function(require,module,exports){
 (function() {
   var Attribute, BooleanAttribute, CollectionAttribute, DateAttribute, EnumAttribute, List, Model, ModelAttribute, NumberAttribute, ObjectAttribute, ShellModel, TextAttribute, Varying, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7,
     __hasProp = {}.hasOwnProperty,
@@ -12559,7 +12638,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../collection/list":108,"../core/varying":117,"../util/util":132,"./model":123}],121:[function(require,module,exports){
+},{"../collection/list":109,"../core/varying":118,"../util/util":133,"./model":124}],122:[function(require,module,exports){
 (function() {
   var Base, Binder, MultiVarying, util,
     __hasProp = {}.hasOwnProperty,
@@ -12678,7 +12757,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":115,"../core/varying":117,"../util/util":132}],122:[function(require,module,exports){
+},{"../core/base":116,"../core/varying":118,"../util/util":133}],123:[function(require,module,exports){
 (function() {
   var Base, Issue, Varying, util,
     __hasProp = {}.hasOwnProperty,
@@ -12713,7 +12792,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":115,"../core/varying":117,"../util/util":132}],123:[function(require,module,exports){
+},{"../core/base":116,"../core/varying":118,"../util/util":133}],124:[function(require,module,exports){
 (function() {
   var Base, Binder, Model, Null, NullClass, Reference, Resolver, Varying, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -13299,7 +13378,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../collection/collection":104,"../collection/list":108,"../core/base":115,"../core/varying":117,"../util/util":132,"./binder":121,"./reference":125}],124:[function(require,module,exports){
+},{"../collection/collection":105,"../collection/list":109,"../core/base":116,"../core/varying":118,"../util/util":133,"./binder":122,"./reference":126}],125:[function(require,module,exports){
 (function() {
   var Model, PageModel, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -13333,7 +13412,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../util/util":132,"./model":123}],125:[function(require,module,exports){
+},{"../util/util":133,"./model":124}],126:[function(require,module,exports){
 (function() {
   var ModelReference, ModelResolver, Reference, RequestReference, RequestResolver, Resolver, Varying, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -13514,7 +13593,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/varying":117,"../util/util":132,"./model":123}],126:[function(require,module,exports){
+},{"../core/varying":118,"../util/util":133,"./model":124}],127:[function(require,module,exports){
 (function() {
   var Base, CompleteState, CreateRequest, DeleteRequest, ErrorState, FetchRequest, InitState, List, MemoryCacheStore, Model, OnPageCacheStore, OneOfStore, PendingState, ProgressState, Request, RequestState, ServiceErrorState, Store, SuccessState, UpdateRequest, UserErrorState, Varying, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7,
     __hasProp = {}.hasOwnProperty,
@@ -13972,7 +14051,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../collection/list":108,"../core/base":115,"../core/varying":117,"../model/model":123,"../util/util":132}],127:[function(require,module,exports){
+},{"../collection/list":109,"../core/base":116,"../core/varying":118,"../model/model":124,"../util/util":133}],128:[function(require,module,exports){
 (function() {
   var ApplyMutator, AttrMutator, Base, Binder, ClassGroupMutator, ClassMutator, CssMutator, HtmlMutator, MultiVarying, Mutator, RenderMutator, TextMutator, Varying, reference, types, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8,
     __hasProp = {}.hasOwnProperty,
@@ -14593,7 +14672,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":115,"../core/varying":117,"../model/reference":125,"../util/util":132,"./types":130}],128:[function(require,module,exports){
+},{"../core/base":116,"../core/varying":118,"../model/reference":126,"../util/util":133,"./types":131}],129:[function(require,module,exports){
 (function() {
   var util;
 
@@ -14608,7 +14687,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../util/util":132,"./templater":129,"./types":130}],129:[function(require,module,exports){
+},{"../util/util":133,"./templater":130,"./types":131}],130:[function(require,module,exports){
 (function() {
   var Binder, Templater, util;
 
@@ -14664,7 +14743,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../util/util":132,"./binder":127}],130:[function(require,module,exports){
+},{"../util/util":133,"./binder":128}],131:[function(require,module,exports){
 (function() {
   var WithAux, WithOptions, WithView, util;
 
@@ -14707,7 +14786,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../util/util":132}],131:[function(require,module,exports){
+},{"../util/util":133}],132:[function(require,module,exports){
 (function() {
   var Continuous, Coverage, Range, Varying, util,
     __hasProp = {}.hasOwnProperty,
@@ -14945,7 +15024,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/varying":117,"./util":132}],132:[function(require,module,exports){
+},{"../core/varying":118,"./util":133}],133:[function(require,module,exports){
 (function() {
   var toString, type, util, _fn, _i, _len, _ref, _ref1,
     __slice = [].slice;
@@ -15145,7 +15224,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{}],133:[function(require,module,exports){
+},{}],134:[function(require,module,exports){
 (function() {
   var DomView, List, View, util,
     __hasProp = {}.hasOwnProperty,
@@ -15298,7 +15377,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../collection/list":108,"../util/util":132,"./view":139}],134:[function(require,module,exports){
+},{"../collection/list":109,"../util/util":133,"./view":140}],135:[function(require,module,exports){
 (function() {
   var DomView, ListEditItem, ListEditItemTemplate, ListEditView, ListView, Templater, templater, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -15400,7 +15479,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../../templater/package":128,"../../templater/templater":129,"../../util/util":132,"../dom-view":133,"./list":135}],135:[function(require,module,exports){
+},{"../../templater/package":129,"../../templater/templater":130,"../../util/util":133,"../dom-view":134,"./list":136}],136:[function(require,module,exports){
 (function() {
   var ListView, Varying, ViewContainer, reference, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -15515,7 +15594,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../../core/varying":117,"../../model/reference":125,"../../util/util":132,"./view-container":137}],136:[function(require,module,exports){
+},{"../../core/varying":118,"../../model/reference":126,"../../util/util":133,"./view-container":138}],137:[function(require,module,exports){
 (function() {
   var VaryingView, ViewContainer, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -15579,7 +15658,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../../util/util":132,"./view-container":137}],137:[function(require,module,exports){
+},{"../../util/util":133,"./view-container":138}],138:[function(require,module,exports){
 (function() {
   var DomView, Varying, ViewContainer, reference, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -15653,13 +15732,13 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../../core/varying":117,"../../model/reference":125,"../../util/util":132,"../dom-view":133}],138:[function(require,module,exports){
+},{"../../core/varying":118,"../../model/reference":126,"../../util/util":133,"../dom-view":134}],139:[function(require,module,exports){
 (function() {
 
 
 }).call(this);
 
-},{}],139:[function(require,module,exports){
+},{}],140:[function(require,module,exports){
 (function() {
   var Base, View, util,
     __hasProp = {}.hasOwnProperty,
@@ -15717,7 +15796,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":115,"../util/util":132}],140:[function(require,module,exports){
+},{"../core/base":116,"../util/util":133}],141:[function(require,module,exports){
 var process=require("__browserify_process");;!function(exports, undefined) {
 
   var isArray = Array.isArray ? Array.isArray : function _isArray(obj) {
@@ -16280,5 +16359,5 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }(typeof process !== 'undefined' && typeof process.title !== 'undefined' && typeof exports !== 'undefined' ? exports : window);
 
-},{"__browserify_process":33}]},{},[3])
+},{"__browserify_process":34}]},{},[3])
 ;

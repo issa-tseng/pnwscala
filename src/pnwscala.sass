@@ -241,7 +241,7 @@ ul
       width: 100%
 
 // layout styles
-.main, .deck, .slides, .slides ul
+.main, .deck, .slides, .slides > ul
   height: 100%
 
 .deck
@@ -502,7 +502,7 @@ ul
 
 .slide10
   .content
-    margin: 8em
+    padding: 8em
 
     h1
       color: $accent_tan
@@ -521,7 +521,7 @@ ul
     .code.map
       margin-top: 1.3em
 
-  @for $idx from 2 through 5
+  @for $idx from 2 through 6
     &.stage-#{$idx}
       li:nth-child(#{$idx - 1}),
       li:nth-child(#{$idx - 1}) ~ li
@@ -534,4 +534,100 @@ ul
   &.stage-1 .content
     .monad, .monad li
       opacity: 0
+
+.slide11
+  .content
+    padding-top: 12em
+    text-align: center
+
+    svg
+      @include transition(0.3s, all)
+
+      text
+        @include trade-light
+        letter-spacing: -1px
+
+  ul
+    bottom: 12em
+    position: absolute
+    text-align: center
+    width: 100%
+
+    li
+      opacity: 0
+      position: absolute
+      top: 0
+      @include transition(0.3s, opacity)
+      width: 100%
+
+  .codeList
+    position: absolute
+    top: 0
+    width: 100%
+
+    .code
+      background-color: rgba(34, 34, 34, 0.65)
+      min-height: 9em
+      opacity: 0
+      padding: 6.5em 5em
+      position: absolute
+      text-shadow: 0 0 4px #000
+      top: 0
+      @include transition(0.3s, opacity)
+
+  @for $idx from 1 through 11
+    &.stage-#{($idx * 3) - 1}
+      svg
+        @include prefixer(filter, blur(20px) brightness(70%))
+
+      .code:nth-child(#{$idx})
+        opacity: 1
+
+    &.stage-#{($idx * 3) - 2}, &.stage-#{$idx * 3 - 1}
+      .detail li:nth-child(#{$idx})
+        opacity: 1
+
+  &.stage-1 .model
+    stroke: #fff
+    stroke-width: 10px
+
+  &.stage-4 .list
+    stroke: #fff
+    stroke-width: 10px
+
+  &.stage-7 .attribute
+    stroke: #fff
+    stroke-width: 10px
+
+  &.stage-10 .issue
+    stroke: #fff
+    stroke-width: 10px
+
+  &.stage-13 .view
+    stroke: #fff
+    stroke-width: 10px
+
+  &.stage-16 .templater
+    stroke: #fff
+    stroke-width: 10px
+
+  &.stage-19 .binding
+    stroke: #fff
+    stroke-width: 10px
+
+  &.stage-22 .viewModel
+    stroke: #fff
+    stroke-width: 10px
+
+  &.stage-25 .request
+    stroke: #fff
+    stroke-width: 10px
+
+  &.stage-28 .store
+    stroke: #fff
+    stroke-width: 10px
+
+  &.stage-31 .library
+    stroke: #fff
+    stroke-width: 10px
 

@@ -23,7 +23,7 @@ class Deck extends Model
 
   previous: ->
     slide = this.get('current')
-    if slide.get('stage') is 0
+    if !slide? or slide.get('stage') is 0
       this.previousSlide()
     else
       slide.previous()

@@ -10,5 +10,6 @@ module.exports = [
   require('./slide8')
   require('./slide9')
   require('./slide10')
+  require('./slide11')
 ]
 
