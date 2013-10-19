@@ -82,7 +82,85 @@
 
 }).call(this);
 
-},{"janus":119}],2:[function(require,module,exports){
+},{"janus":135}],2:[function(require,module,exports){
+(function() {
+  var Issue, List, Model, Person, attribute, util, _ref, _ref1, _ref2,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _ref = require('janus'), util = _ref.util, Model = _ref.Model, Issue = _ref.Issue, attribute = _ref.attribute, (_ref1 = _ref.collection, List = _ref1.List);
+
+  Person = (function(_super) {
+    var _ref3, _ref4;
+
+    __extends(Person, _super);
+
+    function Person() {
+      _ref2 = Person.__super__.constructor.apply(this, arguments);
+      return _ref2;
+    }
+
+    Person.attribute('age', (function(_super1) {
+      __extends(_Class, _super1);
+
+      function _Class() {
+        _ref3 = _Class.__super__.constructor.apply(this, arguments);
+        return _ref3;
+      }
+
+      _Class.prototype._issues = function() {
+        return new List([
+          new Issue({
+            active: this.watchValue().map(function(age) {
+              return age < 0;
+            }),
+            message: this.watchValue().map(function(age) {
+              return "" + age + " is not a valid age; it is less than zero!";
+            })
+          })
+        ]);
+      };
+
+      return _Class;
+
+    })(attribute.NumberAttribute));
+
+    Person.attribute('name.first', (function(_super1) {
+      __extends(_Class, _super1);
+
+      function _Class() {
+        _ref4 = _Class.__super__.constructor.apply(this, arguments);
+        return _ref4;
+      }
+
+      _Class.prototype._issues = function() {
+        return new List([
+          new Issue({
+            active: this.watchValue().map(function(name) {
+              return (name != null) && /[0-9]/.test(name);
+            }),
+            message: 'First name cannot contain numbers! What kind of name is that?'
+          })
+        ]);
+      };
+
+      return _Class;
+
+    })(attribute.TextAttribute));
+
+    Person.attribute('name.last', attribute.TextAttribute);
+
+    return Person;
+
+  })(Model);
+
+  util.extend(module.exports, {
+    Person: Person
+  });
+
+}).call(this);
+
+},{"janus":135}],3:[function(require,module,exports){
 (function() {
   var List, Model, Slide, Slides, Varying, attribute, util, _ref, _ref1, _ref2, _ref3, _ref4,
     __hasProp = {}.hasOwnProperty,
@@ -157,9 +235,9 @@
 
 }).call(this);
 
-},{"janus":119}],3:[function(require,module,exports){
+},{"janus":135}],4:[function(require,module,exports){
 (function() {
-  var App, Library, app, deck, deckView, jConsole, lib, slide, slides, stdlib, storeLibrary, util, viewLibrary, _i, _j, _len, _len1, _ref, _ref1;
+  var App, Library, app, deck, deckView, jConsole, lib, person, slide, slides, stdlib, storeLibrary, util, viewLibrary, _i, _j, _k, _len, _len1, _len2, _ref, _ref1;
 
   _ref = require('janus'), util = _ref.util, Library = _ref.Library, (_ref1 = _ref.application, App = _ref1.App);
 
@@ -198,6 +276,13 @@
     slide.registerWith(viewLibrary);
   }
 
+  person = require('./views/person');
+
+  for (_k = 0, _len2 = slides.length; _k < _len2; _k++) {
+    slide = slides[_k];
+    person.registerWith(viewLibrary);
+  }
+
   deck = require('./slides/deck');
 
   deckView = app.getView(deck);
@@ -208,7 +293,7 @@
 
 }).call(this);
 
-},{"./slides/deck":5,"./slides/slides":19,"./views/deck":21,"./views/stdlib/stdlib":31,"janus":119,"janus-console":39}],4:[function(require,module,exports){
+},{"./slides/deck":6,"./slides/slides":30,"./views/deck":32,"./views/person":34,"./views/stdlib/stdlib":47,"janus":135,"janus-console":55}],5:[function(require,module,exports){
 (function() {
   var SlideTemplate, Templater, markup, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -249,7 +334,7 @@
 
 }).call(this);
 
-},{"./markup.html":6,"janus":119}],5:[function(require,module,exports){
+},{"./markup.html":7,"janus":135}],6:[function(require,module,exports){
 (function() {
   var Deck, Slides, slide, slides, util;
 
@@ -275,9 +360,9 @@
 
 }).call(this);
 
-},{"../models/deck":1,"../models/slide":2,"./slides":19,"janus":119}],6:[function(require,module,exports){
-(function(){module.exports = '<div id="slides"><div class="slide slide0"><div class="content"><h2>PNW Scala 2013</h2><h1 class="left">Scala<br/>for<br/>Javascript<br/>Kiddies</h1><h1 class="right">Javascript<br/>for<br/>Scala<br/>Nerds</h1><h2>Clint Tseng &bull; Socrata</h2></div></div><div class="slide slide1"><div class="content"><h1>Nothing here is new.<span class="asterisk">*</span></h1><p class="asterisk">* (I&apos;m pretty sure)</p></div></div><div class="slide slide2"><div class="content"><h1>Janus</h1><ul><li>Definition</li><li>Justification</li><li>Origins</li><li>Consequences</li><li>Difficulties</li></ul></div></div><div class="slide slide3"><div class="content"><h1>Janus is a web application framework focused on the organization of interface code into resuable, manageable pieces.</h1><ul><li>Backbone.js</li><li>Angular</li><li>Batman</li><li>Meteor</li><li>&hellip;</li></ul></div></div><div class="slide slide4"><div class="logo"><svg width="800px" height="800px" viewBox="0 0 92 93" version="1.1" xmlns="http://www.w3.org/2000/svg"><g stroke="none" fill="none" fill-rule="evenodd"><path d="M46,93 C20.594936,93 0,72.405064 0,47 C0,21.594936 20.594936,1 46,1 C51.4597667,1 56.6973743,1.95119167 61.556167,3.69690668 L58.8668408,11.233666 C54.8486348,9.7878885 50.5163265,9 46,9 C25.013208,9 8,26.013208 8,47 C8,67.986792 25.013208,85 46,85 C66.986792,85 84,67.986792 84,47 C84,41.2799175 82.7361408,35.8550204 80.4724563,30.9893605 L87.664672,27.47929 C90.4458161,33.4050551 92,40.0210309 92,47 C92,72.405064 71.405064,93 46,93 Z M46,93" fill="#FFFFFF"></path><path d="M46,72 C59.8071,72 71,60.8071 71,47 C71,43.3255893 70.2072923,39.8363224 68.783598,36.6939607 L75.0779322,33.6220901 C76.953734,37.6925211 78,42.2240783 78,47 C78,64.673088 63.673088,79 46,79 C28.326912,79 14,64.673088 14,47 C14,29.326912 28.326912,15 46,15 C49.8086157,15 53.4618289,15.6653682 56.8498436,16.8862424 L54.4966754,23.4809286 C51.844103,22.5224723 48.9830655,22 46,22 C32.1929,22 21,33.1929 21,47 C21,60.8071 32.1929,72 46,72 Z M46,72" fill="#CCCCCC"></path><path d="M46,58.921875 C52.5842608,58.921875 57.921875,53.5842608 57.921875,47 C57.921875,45.3834723 57.6001392,43.8420889 57.0172118,42.4363975 L63.3872146,39.3275978 C64.424117,41.6739689 65,44.2697332 65,47 C65,57.493396 56.493396,66 46,66 C35.506604,66 27,57.493396 27,47 C27,36.506604 35.506604,28 46,28 C48.2754558,28 50.457488,28.4000008 52.4796657,29.1335403 L50.1001978,35.8019307 C48.8217306,35.3336807 47.4407089,35.078125 46,35.078125 C39.4157392,35.078125 34.078125,40.4157392 34.078125,47 C34.078125,53.5842608 39.4157392,58.921875 46,58.921875 Z M46,58.921875" fill="#999999"></path><path d="M55.2235296,37.2255025 L89.7927586,20.8635706 C89.7927586,20.8635706 87.5783575,16.1886963 80.0740001,9.29946184 C72.5696428,2.41022735 68.0178432,0.687918726 68.0178432,0.687918726 L55.2235296,37.2255025 Z M55.2235296,37.2255025" fill="#DE0000"></path></g></svg></div><div class="content"><h1>Socrata</h1><h2>We use data and technology to improve informed governance.</h2><ul class="tech"><li>rojoma-json<div class="sub">JSON library with type-driven codecs</div></li><li>socrata-http<div class="sub">Awesome HTTP client/server library</div></li><li>soda server<div class="sub">Our open source data server</div></li><li>everything!<div class="sub">All our new backend projects!</div></li></ul><ul class="reasons"><li>508 compliance<div class="sub">Support for accesible users</div></li><li>SEO<div class="sub">Accounting for search engines</div></li></ul></div></div><div class="slide slide5"><div class="content"><h1>Principles</h1><ul><li>Reusable code<div class="sub">Almost identical across envs</div></li><li>Componentized<div class="sub">Library of components to use and grow</div></li><li>Unit testable<div class="sub">Trivial to inject values, dependencies</div></li><li>Live bound<div class="sub">The framework should handle display state</div></li></ul></div></div><div class="slide slide6"><div class="content"><h1>Influences</h1><ul><li>jQuery<div class="sub">Elegant, expressive solution to the DOM</div></li><li>Backbone<div class="sub">Preeminent application organization library</div></li><li>D3<div class="sub">Beautiful declarative+functional API</div></li><li>Scala?<div class="sub">Hadn\'t even crossed my mind</div></li></ul></div></div><div class="slide slide7"><div class="content"><div class="code">&lt;div class="person <span class="highlight class">new</span>"&gt;Person: <span class="highlight text">Martin Odersky</span>&lt;/div&gt;</div></div></div><div class="slide slide8"><div class="content"><div class="left"><h1>Backbone</h1><div class="code">person.get(\'first_name\')</div><div class="code">person.set(\'first_name\', \'Lilia\')</div><hr/><div class="code">person.on(\'change:first_name\', &hellip;)</div></div><div class="right"><h1>Janus</h1><div class="code">person.get(\'name.first\')</div><div class="code">person.set(\'name.first\', \'Lilia\')</div><hr/><div class="code">person.watch(\'name.first\', (value) -&gt; value + \'!\')</div></div></div></div><div class="slide slide9"><div class="content"><div class="left"><h1>Template</h1><div class="code">&lt;div class="person"&gt;<br/>&nbsp;&nbsp;&lt;div class="name"&gt;&lt;/div&gt;<br/>&lt;/div&gt;</div></div><div class="right"><h1>Bindings</h1><div class="code">binding.find(\'.firstName\').text()<br/>.from(\'name.first\')<br/>.and(\'name.last\')<br/><span class="highlight flatMap">.flatMap(</span>(first, last) -&gt; \'Name: \' + first + \' \' + last)</div></div></div></div><div class="slide slide10"><div class="content"><h1>Varying</h1><div class="code">class Varying extends Base<br/>&nbsp;&nbsp;<span class="highlight constr">constructor:</span> (value) -&gt; &hellip;<br/>&nbsp;&nbsp;<br/>&nbsp;&nbsp;setValue: (value) -&gt; <span class="highlight setVal">&hellip;</span><br/>&nbsp;&nbsp;on: (event, handler) -&gt; &hellip;</div><div class="code map">&nbsp;&nbsp;<span class="highlight map">map:</span> (f) -&gt; &hellip;</div><div class="monad"><h1>&hellip;is this a monad?</h1><ul><li>Put a thing in a box?</li><li>Take that thing and put it in another box?</li><li>Collapse some boxes together?</li><li>(who cares?)</li></ul></div></div></div><div class="slide slide11"><div class="content"><svg width="759px" height="479px" viewBox="0 0 759 479" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g stroke="none" fill="none" fill-rule="evenodd"><path d="M41.5,95.5 L177.5,240.5" stroke="#FFFFFF" stroke-width="3"></path><path d="M71.5,384.5 L177.5,239.5" stroke="#FFFFFF" stroke-width="3"></path><path d="M178.500001,238.499912 L193.5,65.5" stroke="#FFFFFF" stroke-width="3"></path><path d="M344.5,94.499924 L453.5,49.5" stroke="#FFFFFF" stroke-width="3"></path><path d="M176.485982,241.499999 L497.5,241.499999" stroke="#FFFFFF" stroke-width="3"></path><path d="M497.5,238.5 L521.5,407.5" stroke="#FFFFFF" stroke-width="3"></path><path d="M498.5,240.5 L637.5,111.5" stroke="#FFFFFF" stroke-width="3"></path><path d="M634.5,114.5 L698.50006,309.5" stroke="#FFFFFF" stroke-width="3"></path><g transform="translate(112.000000, 175.000000)"><path d="M64,128 C99.3462257,128 128,99.3462257 128,64 C128,28.6537743 99.3462257,0 64,0 C28.6537743,0 0,28.6537743 0,64 C0,99.3462257 28.6537743,128 64,128 Z M64,128" fill="#FBA617" class="model"></path><text fill="#000000" font-size="30" x="15" y="77"><tspan>MODEL</tspan></text></g><g transform="translate(264.000000, 344.000000)"><path d="M64,128 C99.3462257,128 128,99.3462257 128,64 C128,28.6537743 99.3462257,0 64,0 C28.6537743,0 0,28.6537743 0,64 C0,99.3462257 28.6537743,128 64,128 Z M64,128" fill="#5C2ADC" class="library"></path><text fill="#000000" font-size="30" x="7" y="77"><tspan>LIBRARY</tspan></text></g><g transform="translate(304.000000, 56.000000)"><path d="M39.5,79 C61.3152487,79 79,61.3152487 79,39.5 C79,17.6847513 61.3152487,0 39.5,0 C17.6847513,0 0,17.6847513 0,39.5 C0,61.3152487 17.6847513,79 39.5,79 Z M39.5,79" fill="#FB1786" class="store"></path><text fill="#000000" font-size="18.4090909" x="13" y="47"><tspan>STORE</tspan></text></g><g transform="translate(411.000000, 7.000000)"><path d="M39.5,79 C61.3152487,79 79,61.3152487 79,39.5 C79,17.6847513 61.3152487,0 39.5,0 C17.6847513,0 0,17.6847513 0,39.5 C0,61.3152487 17.6847513,79 39.5,79 Z M39.5,79" fill="#EC7FB4" class="request"></path><text fill="#000000" font-size="16" x="6" y="46"><tspan>REQUEST</tspan></text></g><g transform="translate(477.000000, 358.000000)"><path d="M45.5,91 C70.6289574,91 91,70.6289574 91,45.5 C91,20.3710426 70.6289574,0 45.5,0 C20.3710426,0 0,20.3710426 0,45.5 C0,70.6289574 20.3710426,91 45.5,91 Z M45.5,91" fill="#FBE500" class="viewModel"></path><text fill="#000000" font-size="14" x="12" y="51"><tspan>VIEWMODEL</tspan></text></g><g transform="translate(434.000000, 175.000000)"><path d="M64,128 C99.3462257,128 128,99.3462257 128,64 C128,28.6537743 99.3462257,0 64,0 C28.6537743,0 0,28.6537743 0,64 C0,99.3462257 28.6537743,128 64,128 Z M64,128" fill="#1266EF" class="view"></path><text fill="#000000" font-size="30" x="30" y="77"><tspan>VIEW</tspan></text></g><g transform="translate(581.000000, 58.000000)"><path d="M53.5,107 C83.0472356,107 107,83.0472356 107,53.5 C107,23.9527644 83.0472356,0 53.5,0 C23.9527644,0 0,23.9527644 0,53.5 C0,83.0472356 23.9527644,107 53.5,107 Z M53.5,107" fill="#E9521C" class="templater"></path><text fill="#000000" font-size="16.6666667" x="11" y="61"><tspan>TEMPLATER</tspan></text></g><g transform="translate(645.000000, 250.000000)"><path d="M53.5,107 C83.0472356,107 107,83.0472356 107,53.5 C107,23.9527644 83.0472356,0 53.5,0 C23.9527644,0 0,23.9527644 0,53.5 C0,83.0472356 23.9527644,107 53.5,107 Z M53.5,107" fill="#19CF7F" class="binder"></path><text fill="#000000" font-size="24" x="13" y="62.5"><tspan>BINDER</tspan></text></g><g transform="translate(7.000000, 321.000000)"><path d="M64,128 C99.3462257,128 128,99.3462257 128,64 C128,28.6537743 99.3462257,0 64,0 C28.6537743,0 0,28.6537743 0,64 C0,99.3462257 28.6537743,128 64,128 Z M64,128" fill="#C000E1" class="list"></path><text fill="#000000" font-size="30" x="35" y="77"><tspan>LIST</tspan></text></g><g transform="translate(148.000000, 19.000000)"><path d="M46,92 C71.4050997,92 92,71.4050997 92,46 C92,20.5949003 71.4050997,0 46,0 C20.5949003,0 0,20.5949003 0,46 C0,71.4050997 20.5949003,92 46,92 Z M46,92" fill="#18B89C" class="attribute"></path><text fill="#000000" font-size="17" x="6" y="52"><tspan>ATTRIBUTE</tspan></text></g><g transform="translate(11.000000, 65.000000)"><path d="M30,60 C46.5685433,60 60,46.5685433 60,30 C60,13.4314567 46.5685433,0 30,0 C13.4314567,0 0,13.4314567 0,30 C0,46.5685433 13.4314567,60 30,60 Z M30,60" fill="#79CF19" class="issue"></path><text fill="#000000" font-size="17" x="9" y="37"><tspan>ISSUE</tspan></text></g></g></svg></div><ul class="detail"><li>Stores attribute bags representing model data.</li><li>Storage and management of collections of object.</li><li>Defines custom behaviour for specific model attributes.</li><li>Describes a validation error on a model attribute or object.</li><li>Manages the interaction between model and presentation.</li><li>Manages the bindings between model and markup.</li><li>Defines and executes a binding between model and markup.</li><li>Allows for the management of view state that isn\'t model data.</li><li>Represents a pending request to an asynchronous resource.</li><li>Executes the request and manages its state.</li><li>Stores and retrieves system classes.</li></ul><div class="codeList"><div class="code">class Person extends Model<br/>&nbsp;&nbsp;@bind(\'name.full\')<br/>&nbsp;&nbsp;&nbsp;&nbsp;.from(\'name.first\')<br/>&nbsp;&nbsp;&nbsp;&nbsp;.and(\'name.last\')<br/>&nbsp;&nbsp;&nbsp;&nbsp;.flatMap((first, last) -&gt; first + \' \' + last)<br/>&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;isOfAge: -&gt; this.watch(\'age\').map((age) -&gt; age &gt;= 18)</div><div class="code">class People extends List<br/>&nbsp;&nbsp;@modelClass: Person<br/>&nbsp;&nbsp;<br/>&nbsp;&nbsp;lastElement: -&gt; this.watchAt(-1)</div><div class="code">class Person extends Model<br/>&nbsp;&nbsp;@attribute \'alive\', class extends attribute.BooleanAttribute<br/>&nbsp;&nbsp;&nbsp;&nbsp;default: -&gt; true<br/>&nbsp;&nbsp;&nbsp;&nbsp;writeDefault: true</div><div class="code">class Person extends Model<br/>&nbsp;&nbsp;@attribute \'age\', class extends attribute.NumberAttribute<br/>&nbsp;&nbsp;&nbsp;&nbsp;issues: -&gt; new List([<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new Issue(<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;active: -&gt; this.watchValue().map((age) -&gt; age &gt;= 0)<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;severity: -&gt; 0<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;message: -&gt; this.watchValue().map((age) -&gt; "The age  is not valid because it is less than zero.")<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>&nbsp;&nbsp;&nbsp;&nbsp;])</div><div class="code">class PersonView extends DomView<br/>&nbsp;&nbsp;@templateClass: PersonTemplate<br/>&nbsp;&nbsp;_wireEvents: -&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;dom = this.artifact()<br/>&nbsp;&nbsp;&nbsp;&nbsp;dom.find(\'a.delete\').on \'click\', (event) =&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event.preventDefault()<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.subject.destroy()</div><div class="code">class PersonTemplate extends Templater<br/>&nbsp;&nbsp;_dom: -&gt; $(markup)<br/>&nbsp;&nbsp;_binding: -&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;binding = super()<br/>&nbsp;&nbsp;&nbsp;&nbsp;binding.find(\'.person\').classed(\'ofAge\').from(\'age\').flatMap((age) -&gt; age &gt;= 21)<br/>&nbsp;&nbsp;&nbsp;&nbsp;binding.find(\'.name\').text().from(\'name.full\')<br/>&nbsp;&nbsp;&nbsp;&nbsp;binding.find(\'.friendList\').render().from(\'friends\')</div><div class="code">&hellip;well, you just saw this.</div><div class="code">class PersonModel extends ViewModel<br/>&nbsp;&nbsp;@attribute \'expanded\', class extends attribute.BooleanAttribute<br/>&nbsp;&nbsp;&nbsp;&nbsp;default: -&gt; true<br/>&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;@attribute \'person\', class extends attribute.ModelAttribute<br/>&nbsp;&nbsp;&nbsp;&nbsp;model: Person</div><div class="code">class FetchRequest extends HttpRequest<br/>&nbsp;&nbsp;path: -&gt; "/api/users/#{this.options.id}.json"<br/>&nbsp;&nbsp;<br/>&hellip;<br/><br/>class InitState extends RequestState<br/>class PendingState extends RequestState<br/>&nbsp;&nbsp;constructor: (@status) -&gt;<br/>class SuccessState extends RequestState<br/>&nbsp;&nbsp;constructor: (@result) -&gt;<br/>&nbsp;&nbsp;<br/>&hellip;<br/><br/>succeeded = myRequest.watch((value) -&gt; value instanceof SuccessState)</div><div class="code">class HttpStore extends Store<br/>&nbsp;&nbsp;_handle: -&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&hellip;imperative async code<br/>&nbsp;&nbsp;&nbsp;&nbsp;this.request.setValue(&hellip;result&hellip;)<br/>&nbsp;&nbsp;&nbsp;&nbsp;<br/>&hellip;<br/><br/>request = new FetchRequest( id: 4747 )<br/>storeLibrary.get(request).handle()</div><div class="code">library = new Library()<br/>library.register(Model, GeneralModelEditView, context: \'edit\')<br/>library.get(person, context: \'edit\') &hellip;yields GeneralModelEditView<br/></div></div></div></div>';})();
-},{}],7:[function(require,module,exports){
+},{"../models/deck":1,"../models/slide":3,"./slides":30,"janus":135}],7:[function(require,module,exports){
+(function(){module.exports = '<div id="slides"><div class="slide slide0"><div class="content"><h2>PNW Scala 2013</h2><h1 class="left">Scala<br/>for<br/>Javascript<br/>Kiddies</h1><h1 class="right">Javascript<br/>for<br/>Scala<br/>Nerds</h1><h2>Clint Tseng &bull; Socrata</h2></div></div><div class="slide slide1"><div class="content"><h1>Nothing here is new.<span class="asterisk">*</span></h1><p class="asterisk">* (I&apos;m pretty sure)</p></div></div><div class="slide slide2"><div class="content"><h1>Janus</h1><ul><li>Definition</li><li>Justification</li><li>Origins</li><li>Consequences</li><li>Difficulties</li></ul></div></div><div class="slide slide3"><div class="content"><h1>Janus is a web application framework focused on the organization of interface code into resuable, manageable pieces.</h1><ul><li>Backbone.js</li><li>Angular</li><li>Batman</li><li>Meteor</li><li>&hellip;</li></ul></div></div><div class="slide slide4"><div class="logo"><svg width="800px" height="800px" viewBox="0 0 92 93" version="1.1" xmlns="http://www.w3.org/2000/svg"><g stroke="none" fill="none" fill-rule="evenodd"><path d="M46,93 C20.594936,93 0,72.405064 0,47 C0,21.594936 20.594936,1 46,1 C51.4597667,1 56.6973743,1.95119167 61.556167,3.69690668 L58.8668408,11.233666 C54.8486348,9.7878885 50.5163265,9 46,9 C25.013208,9 8,26.013208 8,47 C8,67.986792 25.013208,85 46,85 C66.986792,85 84,67.986792 84,47 C84,41.2799175 82.7361408,35.8550204 80.4724563,30.9893605 L87.664672,27.47929 C90.4458161,33.4050551 92,40.0210309 92,47 C92,72.405064 71.405064,93 46,93 Z M46,93" fill="#FFFFFF"></path><path d="M46,72 C59.8071,72 71,60.8071 71,47 C71,43.3255893 70.2072923,39.8363224 68.783598,36.6939607 L75.0779322,33.6220901 C76.953734,37.6925211 78,42.2240783 78,47 C78,64.673088 63.673088,79 46,79 C28.326912,79 14,64.673088 14,47 C14,29.326912 28.326912,15 46,15 C49.8086157,15 53.4618289,15.6653682 56.8498436,16.8862424 L54.4966754,23.4809286 C51.844103,22.5224723 48.9830655,22 46,22 C32.1929,22 21,33.1929 21,47 C21,60.8071 32.1929,72 46,72 Z M46,72" fill="#CCCCCC"></path><path d="M46,58.921875 C52.5842608,58.921875 57.921875,53.5842608 57.921875,47 C57.921875,45.3834723 57.6001392,43.8420889 57.0172118,42.4363975 L63.3872146,39.3275978 C64.424117,41.6739689 65,44.2697332 65,47 C65,57.493396 56.493396,66 46,66 C35.506604,66 27,57.493396 27,47 C27,36.506604 35.506604,28 46,28 C48.2754558,28 50.457488,28.4000008 52.4796657,29.1335403 L50.1001978,35.8019307 C48.8217306,35.3336807 47.4407089,35.078125 46,35.078125 C39.4157392,35.078125 34.078125,40.4157392 34.078125,47 C34.078125,53.5842608 39.4157392,58.921875 46,58.921875 Z M46,58.921875" fill="#999999"></path><path d="M55.2235296,37.2255025 L89.7927586,20.8635706 C89.7927586,20.8635706 87.5783575,16.1886963 80.0740001,9.29946184 C72.5696428,2.41022735 68.0178432,0.687918726 68.0178432,0.687918726 L55.2235296,37.2255025 Z M55.2235296,37.2255025" fill="#DE0000"></path></g></svg></div><div class="content"><h1>Socrata</h1><h2>We use data and technology to improve informed governance.</h2><ul class="tech"><li>rojoma-json<div class="sub">JSON library with type-driven codecs</div></li><li>socrata-http<div class="sub">Awesome HTTP client/server library</div></li><li>soda server<div class="sub">Our open source data server</div></li><li>everything!<div class="sub">All our new backend projects!</div></li></ul><ul class="reasons"><li>508 compliance<div class="sub">Support for accesible users</div></li><li>SEO<div class="sub">Accounting for search engines</div></li></ul></div></div><div class="slide slide5"><div class="content"><h1>Principles</h1><ul><li>Reusable code<div class="sub">Almost identical across envs</div></li><li>Componentized<div class="sub">Library of components to use and grow</div></li><li>Unit testable<div class="sub">Trivial to inject values, dependencies</div></li><li>Live bound<div class="sub">The framework should handle display state</div></li></ul></div></div><div class="slide slide6"><div class="content"><h1>Influences</h1><ul><li>jQuery<div class="sub">Elegant, expressive solution to the DOM</div></li><li>Backbone<div class="sub">Preeminent application organization library</div></li><li>D3<div class="sub">Beautiful declarative+functional API</div></li><li>Scala?<div class="sub">Hadn\'t even crossed my mind</div></li></ul></div></div><div class="slide slide7"><div class="content"><div class="code">&lt;div class="person <span class="highlight class">new</span>"&gt;Person: <span class="highlight text">Martin Odersky</span>&lt;/div&gt;</div></div></div><div class="slide slide8"><div class="content"><div class="left"><h1>Backbone</h1><div class="code">person.get(\'first_name\')</div><div class="code">person.set(\'first_name\', \'Lilia\')</div><hr/><div class="code">person.on(\'change:first_name\', &hellip;)</div></div><div class="right"><h1>Janus</h1><div class="code">person.get(\'name.first\')</div><div class="code">person.set(\'name.first\', \'Lilia\')</div><hr/><div class="code">person.watch(\'name.first\', (value) -&gt; value + \'!\')</div></div></div></div><div class="slide slide9"><div class="content"><div class="left"><h1>Template</h1><div class="code">&lt;div class="person"&gt;<br/>&nbsp;&nbsp;&lt;div class="name"&gt;&lt;/div&gt;<br/>&lt;/div&gt;</div></div><div class="right"><h1>Bindings</h1><div class="code">binding.find(\'.firstName\').text()<br/>.from(\'name.first\')<br/>.and(\'name.last\')<br/><span class="highlight flatMap">.flatMap(</span>(first, last) -&gt; \'Name: \' + first + \' \' + last)</div></div></div></div><div class="slide slide10"><div class="content"><h1>Varying</h1><div class="code">class Varying extends Base<br/>&nbsp;&nbsp;<span class="highlight constr">constructor:</span> (value) -&gt; &hellip;<br/>&nbsp;&nbsp;<br/>&nbsp;&nbsp;setValue: (value) -&gt; <span class="highlight setVal">&hellip;</span><br/>&nbsp;&nbsp;on: (event, handler) -&gt; &hellip;</div><div class="code map">&nbsp;&nbsp;<span class="highlight map">map:</span> (f) -&gt; &hellip;</div><div class="monad"><h1>&hellip;is this a monad?</h1><ul><li>Put a thing in a box?</li><li>Take that thing and put it in another box?</li><li>Collapse some boxes together?</li><li>(who cares?)</li></ul></div></div></div><div class="slide slide11"><div class="content"><svg width="759px" height="479px" viewBox="0 0 759 479" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g stroke="none" fill="none" fill-rule="evenodd"><path d="M41.5,95.5 L177.5,240.5" stroke="#FFFFFF" stroke-width="3"></path><path d="M71.5,384.5 L177.5,239.5" stroke="#FFFFFF" stroke-width="3"></path><path d="M178.500001,238.499912 L193.5,65.5" stroke="#FFFFFF" stroke-width="3"></path><path d="M344.5,94.499924 L453.5,49.5" stroke="#FFFFFF" stroke-width="3"></path><path d="M176.485982,241.499999 L497.5,241.499999" stroke="#FFFFFF" stroke-width="3"></path><path d="M497.5,238.5 L521.5,407.5" stroke="#FFFFFF" stroke-width="3"></path><path d="M498.5,240.5 L637.5,111.5" stroke="#FFFFFF" stroke-width="3"></path><path d="M634.5,114.5 L698.50006,309.5" stroke="#FFFFFF" stroke-width="3"></path><g transform="translate(112.000000, 175.000000)"><path d="M64,128 C99.3462257,128 128,99.3462257 128,64 C128,28.6537743 99.3462257,0 64,0 C28.6537743,0 0,28.6537743 0,64 C0,99.3462257 28.6537743,128 64,128 Z M64,128" fill="#FBA617" class="model"></path><text fill="#000000" font-size="30" x="15" y="77"><tspan>MODEL</tspan></text></g><g transform="translate(264.000000, 344.000000)"><path d="M64,128 C99.3462257,128 128,99.3462257 128,64 C128,28.6537743 99.3462257,0 64,0 C28.6537743,0 0,28.6537743 0,64 C0,99.3462257 28.6537743,128 64,128 Z M64,128" fill="#5C2ADC" class="library"></path><text fill="#000000" font-size="30" x="7" y="77"><tspan>LIBRARY</tspan></text></g><g transform="translate(304.000000, 56.000000)"><path d="M39.5,79 C61.3152487,79 79,61.3152487 79,39.5 C79,17.6847513 61.3152487,0 39.5,0 C17.6847513,0 0,17.6847513 0,39.5 C0,61.3152487 17.6847513,79 39.5,79 Z M39.5,79" fill="#FB1786" class="store"></path><text fill="#000000" font-size="18.4090909" x="13" y="47"><tspan>STORE</tspan></text></g><g transform="translate(411.000000, 7.000000)"><path d="M39.5,79 C61.3152487,79 79,61.3152487 79,39.5 C79,17.6847513 61.3152487,0 39.5,0 C17.6847513,0 0,17.6847513 0,39.5 C0,61.3152487 17.6847513,79 39.5,79 Z M39.5,79" fill="#EC7FB4" class="request"></path><text fill="#000000" font-size="16" x="6" y="46"><tspan>REQUEST</tspan></text></g><g transform="translate(477.000000, 358.000000)"><path d="M45.5,91 C70.6289574,91 91,70.6289574 91,45.5 C91,20.3710426 70.6289574,0 45.5,0 C20.3710426,0 0,20.3710426 0,45.5 C0,70.6289574 20.3710426,91 45.5,91 Z M45.5,91" fill="#FBE500" class="viewModel"></path><text fill="#000000" font-size="14" x="12" y="51"><tspan>VIEWMODEL</tspan></text></g><g transform="translate(434.000000, 175.000000)"><path d="M64,128 C99.3462257,128 128,99.3462257 128,64 C128,28.6537743 99.3462257,0 64,0 C28.6537743,0 0,28.6537743 0,64 C0,99.3462257 28.6537743,128 64,128 Z M64,128" fill="#1266EF" class="view"></path><text fill="#000000" font-size="30" x="30" y="77"><tspan>VIEW</tspan></text></g><g transform="translate(581.000000, 58.000000)"><path d="M53.5,107 C83.0472356,107 107,83.0472356 107,53.5 C107,23.9527644 83.0472356,0 53.5,0 C23.9527644,0 0,23.9527644 0,53.5 C0,83.0472356 23.9527644,107 53.5,107 Z M53.5,107" fill="#E9521C" class="templater"></path><text fill="#000000" font-size="16.6666667" x="11" y="61"><tspan>TEMPLATER</tspan></text></g><g transform="translate(645.000000, 250.000000)"><path d="M53.5,107 C83.0472356,107 107,83.0472356 107,53.5 C107,23.9527644 83.0472356,0 53.5,0 C23.9527644,0 0,23.9527644 0,53.5 C0,83.0472356 23.9527644,107 53.5,107 Z M53.5,107" fill="#19CF7F" class="binder"></path><text fill="#000000" font-size="24" x="13" y="62.5"><tspan>BINDER</tspan></text></g><g transform="translate(7.000000, 321.000000)"><path d="M64,128 C99.3462257,128 128,99.3462257 128,64 C128,28.6537743 99.3462257,0 64,0 C28.6537743,0 0,28.6537743 0,64 C0,99.3462257 28.6537743,128 64,128 Z M64,128" fill="#C000E1" class="list"></path><text fill="#000000" font-size="30" x="35" y="77"><tspan>LIST</tspan></text></g><g transform="translate(148.000000, 19.000000)"><path d="M46,92 C71.4050997,92 92,71.4050997 92,46 C92,20.5949003 71.4050997,0 46,0 C20.5949003,0 0,20.5949003 0,46 C0,71.4050997 20.5949003,92 46,92 Z M46,92" fill="#18B89C" class="attribute"></path><text fill="#000000" font-size="17" x="6" y="52"><tspan>ATTRIBUTE</tspan></text></g><g transform="translate(11.000000, 65.000000)"><path d="M30,60 C46.5685433,60 60,46.5685433 60,30 C60,13.4314567 46.5685433,0 30,0 C13.4314567,0 0,13.4314567 0,30 C0,46.5685433 13.4314567,60 30,60 Z M30,60" fill="#79CF19" class="issue"></path><text fill="#000000" font-size="17" x="9" y="37"><tspan>ISSUE</tspan></text></g></g></svg></div><ul class="detail"><li>Stores attribute bags representing model data.</li><li>Storage and management of collections of object.</li><li>Defines custom behaviour for specific model attributes.</li><li>Describes a validation error on a model attribute or object.</li><li>Manages the interaction between model and presentation.</li><li>Manages the bindings between model and markup.</li><li>Defines and executes a binding between model and markup.</li><li>Allows for the management of view state that isn\'t model data.</li><li>Represents a pending request to an asynchronous resource.</li><li>Executes the request and manages its state.</li><li>Stores and retrieves system classes.</li></ul><div class="codeList"><div class="code">class Person extends Model<br/>&nbsp;&nbsp;@bind(\'name.full\')<br/>&nbsp;&nbsp;&nbsp;&nbsp;.from(\'name.first\')<br/>&nbsp;&nbsp;&nbsp;&nbsp;.and(\'name.last\')<br/>&nbsp;&nbsp;&nbsp;&nbsp;.flatMap((first, last) -&gt; first + \' \' + last)<br/>&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;isOfAge: -&gt; this.watch(\'age\').map((age) -&gt; age &gt;= 18)</div><div class="code">class People extends List<br/>&nbsp;&nbsp;@modelClass: Person<br/>&nbsp;&nbsp;<br/>&nbsp;&nbsp;lastElement: -&gt; this.watchAt(-1)</div><div class="code">class Person extends Model<br/>&nbsp;&nbsp;@attribute \'alive\', class extends attribute.BooleanAttribute<br/>&nbsp;&nbsp;&nbsp;&nbsp;default: -&gt; true<br/>&nbsp;&nbsp;&nbsp;&nbsp;writeDefault: true</div><div class="code">class Person extends Model<br/>&nbsp;&nbsp;@attribute \'age\', class extends attribute.NumberAttribute<br/>&nbsp;&nbsp;&nbsp;&nbsp;issues: -&gt; new List([<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new Issue(<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;active: -&gt; this.watchValue().map((age) -&gt; age &gt;= 0)<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;severity: -&gt; 0<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;message: -&gt; this.watchValue().map((age) -&gt; "The age  is not valid because it is less than zero.")<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>&nbsp;&nbsp;&nbsp;&nbsp;])</div><div class="code">class PersonView extends DomView<br/>&nbsp;&nbsp;@templateClass: PersonTemplate<br/>&nbsp;&nbsp;_wireEvents: -&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;dom = this.artifact()<br/>&nbsp;&nbsp;&nbsp;&nbsp;dom.find(\'a.delete\').on \'click\', (event) =&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event.preventDefault()<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.subject.destroy()</div><div class="code">class PersonTemplate extends Templater<br/>&nbsp;&nbsp;_dom: -&gt; $(markup)<br/>&nbsp;&nbsp;_binding: -&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;binding = super()<br/>&nbsp;&nbsp;&nbsp;&nbsp;binding.find(\'.person\').classed(\'ofAge\').from(\'age\').flatMap((age) -&gt; age &gt;= 21)<br/>&nbsp;&nbsp;&nbsp;&nbsp;binding.find(\'.name\').text().from(\'name.full\')<br/>&nbsp;&nbsp;&nbsp;&nbsp;binding.find(\'.friendList\').render().from(\'friends\')</div><div class="code">&hellip;well, you just saw this.</div><div class="code">class PersonModel extends ViewModel<br/>&nbsp;&nbsp;@attribute \'expanded\', class extends attribute.BooleanAttribute<br/>&nbsp;&nbsp;&nbsp;&nbsp;default: -&gt; true<br/>&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;@attribute \'person\', class extends attribute.ModelAttribute<br/>&nbsp;&nbsp;&nbsp;&nbsp;model: Person</div><div class="code">class FetchRequest extends HttpRequest<br/>&nbsp;&nbsp;path: -&gt; "/api/users/#{this.options.id}.json"<br/>&nbsp;&nbsp;<br/>&hellip;<br/><br/>class InitState extends RequestState<br/>class PendingState extends RequestState<br/>&nbsp;&nbsp;constructor: (@status) -&gt;<br/>class SuccessState extends RequestState<br/>&nbsp;&nbsp;constructor: (@result) -&gt;<br/>&nbsp;&nbsp;<br/>&hellip;<br/><br/>succeeded = myRequest.watch((value) -&gt; value instanceof SuccessState)</div><div class="code">class HttpStore extends Store<br/>&nbsp;&nbsp;_handle: -&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&hellip;imperative async code<br/>&nbsp;&nbsp;&nbsp;&nbsp;this.request.setValue(&hellip;result&hellip;)<br/>&nbsp;&nbsp;&nbsp;&nbsp;<br/>&hellip;<br/><br/>request = new FetchRequest( id: 4747 )<br/>storeLibrary.get(request).handle()</div><div class="code">library = new Library()<br/>library.register(Model, GeneralModelEditView, context: \'edit\')<br/>library.get(person, context: \'edit\') &hellip;yields GeneralModelEditView<br/></div></div></div><div class="slide slide12"><div class="content"><h1>Putting it all together</h1><div class="personEdit"></div><div class="personView"></div></div></div><div class="slide slide13"><div class="content"><h1>NPM</h1><svg width="287px" height="400px" viewBox="0 0 386 537" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><path d="M65.5,229.749802 L65.5,67.4999994" id="Line" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square"></path><path d="M317.5,428.749795 L317.5,266.499999" id="Line" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square"></path><path d="M316.5,470.5 L65.5,266.499999" id="Line" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square"></path><g transform="translate(1.000000, 1.000000)"><path d="M66,132 C102.450795,132 132,102.450795 132,66 C132,29.5492047 102.450795,0 66,0 C29.5492047,0 0,29.5492047 0,66 C0,102.450795 29.5492047,132 66,132 Z M66,132" stroke="#979797" fill="#FBA617"></path><text fill="#000000" font-size="36" font-weight="260" x="21" y="81"><tspan>Janus</tspan></text></g><g transform="translate(1.000000, 200.000000)"><path d="M66,132 C102.450795,132 132,102.450795 132,66 C132,29.5492047 102.450795,0 66,0 C29.5492047,0 0,29.5492047 0,66 C0,102.450795 29.5492047,132 66,132 Z M66,132" stroke="#979797" fill="#79CF19"></path><text fill="#000000" font-size="36" font-weight="260" x="13" y="81"><tspan>Project</tspan></text></g><g transform="translate(253.000000, 404.000000)"><path d="M66,132 C102.450795,132 132,102.450795 132,66 C132,29.5492047 102.450795,0 66,0 C29.5492047,0 0,29.5492047 0,66 C0,102.450795 29.5492047,132 66,132 Z M66,132" stroke="#979797" fill="#34E0C2"></path><text fill="#000000" font-size="36" font-weight="260" x="35" y="81"><tspan>App</tspan></text></g><g transform="translate(253.000000, 200.000000)"><path d="M66,132 C102.450795,132 132,102.450795 132,66 C132,29.5492047 102.450795,0 66,0 C29.5492047,0 0,29.5492047 0,66 C0,102.450795 29.5492047,132 66,132 Z M66,132" stroke="#979797" fill="#FBA617"></path><text fill="#000000" font-size="36" font-weight="260" x="21" y="81"><tspan>Janus</tspan></text></g></g></svg><div class="code">x instanceof y</div></div></div><div class="slide slide14"><div class="content"><h1>Lying to the user</h1><div class="code bad">timer = null<br/>view = null<br/>link = dom.find(\'.personLink\')<br/>link.hover(<br/>&nbsp;&nbsp;(=><br/>&nbsp;&nbsp;&nbsp;&nbsp;clearTimeout(timer)<br/>&nbsp;&nbsp;&nbsp;&nbsp;timer = setTimeout((=><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;view = &hellip;show popup<br/>&nbsp;&nbsp;&nbsp;&nbsp;), 400)<br/>&nbsp;&nbsp;),<br/>&nbsp;&nbsp;(-&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;clearTimeout(timer)<br/>&nbsp;&nbsp;&nbsp;&nbsp;view?.destroy()<br/>&nbsp;&nbsp;)<br/>)</div><div class="code good">hovered = new Varying(false)<br/>active = Varying.lie.sticky(hovered, true: 800, false: 400)<br/>personLink.hover((-&gt; hovered.setValue(true)), (-&gt; hovered.setValue(false)))<br/><br/>view = null<br/>active.react((isActive) -&gt; view = &hellip;show popup if isActive is true)<br/></div></div></div><div class="slide slide15"><div class="content"><h1>The language hates you</h1><div class="code">dataSeries.map((series) -&gt; series.reverse())</div></div></div><div class="slide slide16"><div class="content"><h1>No compiler. No types.</h1><h1>(the language hates you)</h1></div></div><div class="slide slide17"><div class="content"><h1>Tough to debug</h1><ul><li class="code">my functional code!</li><li class="code">&hellip;imperative framework code&hellip;</li><li class="code">&hellip;imperative framework code&hellip;</li><li class="code">&hellip;imperative framework code&hellip;</li><li class="code">&hellip;imperative framework code&hellip;</li><li class="code">&hellip;imperative framework code&hellip;</li><li class="code">&hellip;imperative framework code&hellip;</li><li class="code">&hellip;imperative framework code&hellip;</li></ul></div></div><div class="slide slide18"></div><div class="slide slide19"></div><div class="slide slide20"><div class="content"><h1>Never be satisfied</h1><ul><li>With your knowledge<div class="sub">Learn every day.</div></li><li>With your own community<div class="sub">Spread out. Cross-pollinate.</div></li><li>With accepted practices<div class="sub">Challenge everything.</div></li></ul></div></div><div class="slide slide21"><div class="content"><h1>Thank you.</h1></div></div></div>';})();
+},{}],8:[function(require,module,exports){
 (function() {
   var DomView, Slide, Slide0, Slide0Template, Slide0View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -340,7 +425,7 @@
 
 }).call(this);
 
-},{"../models/slide":2,"./base":4,"janus":119}],8:[function(require,module,exports){
+},{"../models/slide":3,"./base":5,"janus":135}],9:[function(require,module,exports){
 (function() {
   var DomView, Slide, Slide1, Slide1Template, Slide1View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -403,7 +488,7 @@
 
 }).call(this);
 
-},{"../models/slide":2,"./base":4,"janus":119}],9:[function(require,module,exports){
+},{"../models/slide":3,"./base":5,"janus":135}],10:[function(require,module,exports){
 (function() {
   var DomView, Slide, Slide10, Slide10Template, Slide10View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -482,7 +567,7 @@
 
 }).call(this);
 
-},{"../models/slide":2,"./base":4,"janus":119}],10:[function(require,module,exports){
+},{"../models/slide":3,"./base":5,"janus":135}],11:[function(require,module,exports){
 (function() {
   var DomView, Slide, Slide11, Slide11Template, Slide11View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -561,7 +646,548 @@
 
 }).call(this);
 
-},{"../models/slide":2,"./base":4,"janus":119}],11:[function(require,module,exports){
+},{"../models/slide":3,"./base":5,"janus":135}],12:[function(require,module,exports){
+(function() {
+  var DomView, Person, Slide, Slide12, Slide12Template, Slide12View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _ref = require('janus'), util = _ref.util, DomView = _ref.DomView;
+
+  Person = require('../models/person').Person;
+
+  Slide = require('../models/slide').Slide;
+
+  SlideTemplate = require('./base').SlideTemplate;
+
+  Slide12 = (function(_super) {
+    __extends(Slide12, _super);
+
+    function Slide12() {
+      _ref1 = Slide12.__super__.constructor.apply(this, arguments);
+      return _ref1;
+    }
+
+    Slide12.prototype.subject = 'Consequences';
+
+    Slide12.prototype.stages = 0;
+
+    return Slide12;
+
+  })(Slide);
+
+  Slide12Template = (function(_super) {
+    __extends(Slide12Template, _super);
+
+    function Slide12Template() {
+      _ref2 = Slide12Template.__super__.constructor.apply(this, arguments);
+      return _ref2;
+    }
+
+    Slide12Template.prototype._number = 12;
+
+    Slide12Template.prototype._binding = function() {
+      var binding;
+      binding = Slide12Template.__super__._binding.call(this);
+      binding.find('.personEdit').render(this.options.app, {
+        context: 'edit'
+      }).fromAux('person');
+      return binding.find('.personView').render(this.options.app).fromAux('person');
+    };
+
+    return Slide12Template;
+
+  })(SlideTemplate);
+
+  Slide12View = (function(_super) {
+    __extends(Slide12View, _super);
+
+    function Slide12View() {
+      _ref3 = Slide12View.__super__.constructor.apply(this, arguments);
+      return _ref3;
+    }
+
+    Slide12View.prototype.templateClass = Slide12Template;
+
+    Slide12View.prototype._initialize = function() {
+      return this.person = new Person();
+    };
+
+    Slide12View.prototype._auxData = function() {
+      return {
+        person: this.person
+      };
+    };
+
+    return Slide12View;
+
+  })(DomView);
+
+  util.extend(module.exports, {
+    Model: Slide12,
+    registerWith: function(library) {
+      return library.register(Slide12, Slide12View);
+    }
+  });
+
+}).call(this);
+
+},{"../models/person":2,"../models/slide":3,"./base":5,"janus":135}],13:[function(require,module,exports){
+(function() {
+  var DomView, Slide, Slide13, Slide13Template, Slide13View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _ref = require('janus'), util = _ref.util, DomView = _ref.DomView;
+
+  Slide = require('../models/slide').Slide;
+
+  SlideTemplate = require('./base').SlideTemplate;
+
+  Slide13 = (function(_super) {
+    __extends(Slide13, _super);
+
+    function Slide13() {
+      _ref1 = Slide13.__super__.constructor.apply(this, arguments);
+      return _ref1;
+    }
+
+    Slide13.prototype.subject = 'Difficulties';
+
+    Slide13.prototype.stages = 0;
+
+    return Slide13;
+
+  })(Slide);
+
+  Slide13Template = (function(_super) {
+    __extends(Slide13Template, _super);
+
+    function Slide13Template() {
+      _ref2 = Slide13Template.__super__.constructor.apply(this, arguments);
+      return _ref2;
+    }
+
+    Slide13Template.prototype._number = 13;
+
+    return Slide13Template;
+
+  })(SlideTemplate);
+
+  Slide13View = (function(_super) {
+    __extends(Slide13View, _super);
+
+    function Slide13View() {
+      _ref3 = Slide13View.__super__.constructor.apply(this, arguments);
+      return _ref3;
+    }
+
+    Slide13View.prototype.templateClass = Slide13Template;
+
+    return Slide13View;
+
+  })(DomView);
+
+  util.extend(module.exports, {
+    Model: Slide13,
+    registerWith: function(library) {
+      return library.register(Slide13, Slide13View);
+    }
+  });
+
+}).call(this);
+
+},{"../models/slide":3,"./base":5,"janus":135}],14:[function(require,module,exports){
+(function() {
+  var DomView, Slide, Slide14, Slide14Template, Slide14View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _ref = require('janus'), util = _ref.util, DomView = _ref.DomView;
+
+  Slide = require('../models/slide').Slide;
+
+  SlideTemplate = require('./base').SlideTemplate;
+
+  Slide14 = (function(_super) {
+    __extends(Slide14, _super);
+
+    function Slide14() {
+      _ref1 = Slide14.__super__.constructor.apply(this, arguments);
+      return _ref1;
+    }
+
+    Slide14.prototype.subject = 'Difficulties';
+
+    Slide14.prototype.stages = 1;
+
+    return Slide14;
+
+  })(Slide);
+
+  Slide14Template = (function(_super) {
+    __extends(Slide14Template, _super);
+
+    function Slide14Template() {
+      _ref2 = Slide14Template.__super__.constructor.apply(this, arguments);
+      return _ref2;
+    }
+
+    Slide14Template.prototype._number = 14;
+
+    return Slide14Template;
+
+  })(SlideTemplate);
+
+  Slide14View = (function(_super) {
+    __extends(Slide14View, _super);
+
+    function Slide14View() {
+      _ref3 = Slide14View.__super__.constructor.apply(this, arguments);
+      return _ref3;
+    }
+
+    Slide14View.prototype.templateClass = Slide14Template;
+
+    return Slide14View;
+
+  })(DomView);
+
+  util.extend(module.exports, {
+    Model: Slide14,
+    registerWith: function(library) {
+      return library.register(Slide14, Slide14View);
+    }
+  });
+
+}).call(this);
+
+},{"../models/slide":3,"./base":5,"janus":135}],15:[function(require,module,exports){
+(function() {
+  var DomView, Slide, Slide15, Slide15Template, Slide15View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _ref = require('janus'), util = _ref.util, DomView = _ref.DomView;
+
+  Slide = require('../models/slide').Slide;
+
+  SlideTemplate = require('./base').SlideTemplate;
+
+  Slide15 = (function(_super) {
+    __extends(Slide15, _super);
+
+    function Slide15() {
+      _ref1 = Slide15.__super__.constructor.apply(this, arguments);
+      return _ref1;
+    }
+
+    Slide15.prototype.subject = 'Difficulties';
+
+    Slide15.prototype.stages = 0;
+
+    return Slide15;
+
+  })(Slide);
+
+  Slide15Template = (function(_super) {
+    __extends(Slide15Template, _super);
+
+    function Slide15Template() {
+      _ref2 = Slide15Template.__super__.constructor.apply(this, arguments);
+      return _ref2;
+    }
+
+    Slide15Template.prototype._number = 15;
+
+    return Slide15Template;
+
+  })(SlideTemplate);
+
+  Slide15View = (function(_super) {
+    __extends(Slide15View, _super);
+
+    function Slide15View() {
+      _ref3 = Slide15View.__super__.constructor.apply(this, arguments);
+      return _ref3;
+    }
+
+    Slide15View.prototype.templateClass = Slide15Template;
+
+    return Slide15View;
+
+  })(DomView);
+
+  util.extend(module.exports, {
+    Model: Slide15,
+    registerWith: function(library) {
+      return library.register(Slide15, Slide15View);
+    }
+  });
+
+}).call(this);
+
+},{"../models/slide":3,"./base":5,"janus":135}],16:[function(require,module,exports){
+(function() {
+  var DomView, Slide, Slide16, Slide16Template, Slide16View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _ref = require('janus'), util = _ref.util, DomView = _ref.DomView;
+
+  Slide = require('../models/slide').Slide;
+
+  SlideTemplate = require('./base').SlideTemplate;
+
+  Slide16 = (function(_super) {
+    __extends(Slide16, _super);
+
+    function Slide16() {
+      _ref1 = Slide16.__super__.constructor.apply(this, arguments);
+      return _ref1;
+    }
+
+    Slide16.prototype.subject = 'Difficulties';
+
+    Slide16.prototype.stages = 0;
+
+    return Slide16;
+
+  })(Slide);
+
+  Slide16Template = (function(_super) {
+    __extends(Slide16Template, _super);
+
+    function Slide16Template() {
+      _ref2 = Slide16Template.__super__.constructor.apply(this, arguments);
+      return _ref2;
+    }
+
+    Slide16Template.prototype._number = 16;
+
+    return Slide16Template;
+
+  })(SlideTemplate);
+
+  Slide16View = (function(_super) {
+    __extends(Slide16View, _super);
+
+    function Slide16View() {
+      _ref3 = Slide16View.__super__.constructor.apply(this, arguments);
+      return _ref3;
+    }
+
+    Slide16View.prototype.templateClass = Slide16Template;
+
+    return Slide16View;
+
+  })(DomView);
+
+  util.extend(module.exports, {
+    Model: Slide16,
+    registerWith: function(library) {
+      return library.register(Slide16, Slide16View);
+    }
+  });
+
+}).call(this);
+
+},{"../models/slide":3,"./base":5,"janus":135}],17:[function(require,module,exports){
+(function() {
+  var DomView, Slide, Slide17, Slide17Template, Slide17View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _ref = require('janus'), util = _ref.util, DomView = _ref.DomView;
+
+  Slide = require('../models/slide').Slide;
+
+  SlideTemplate = require('./base').SlideTemplate;
+
+  Slide17 = (function(_super) {
+    __extends(Slide17, _super);
+
+    function Slide17() {
+      _ref1 = Slide17.__super__.constructor.apply(this, arguments);
+      return _ref1;
+    }
+
+    Slide17.prototype.subject = 'Difficulties';
+
+    Slide17.prototype.stages = 0;
+
+    return Slide17;
+
+  })(Slide);
+
+  Slide17Template = (function(_super) {
+    __extends(Slide17Template, _super);
+
+    function Slide17Template() {
+      _ref2 = Slide17Template.__super__.constructor.apply(this, arguments);
+      return _ref2;
+    }
+
+    Slide17Template.prototype._number = 17;
+
+    return Slide17Template;
+
+  })(SlideTemplate);
+
+  Slide17View = (function(_super) {
+    __extends(Slide17View, _super);
+
+    function Slide17View() {
+      _ref3 = Slide17View.__super__.constructor.apply(this, arguments);
+      return _ref3;
+    }
+
+    Slide17View.prototype.templateClass = Slide17Template;
+
+    return Slide17View;
+
+  })(DomView);
+
+  util.extend(module.exports, {
+    Model: Slide17,
+    registerWith: function(library) {
+      return library.register(Slide17, Slide17View);
+    }
+  });
+
+}).call(this);
+
+},{"../models/slide":3,"./base":5,"janus":135}],18:[function(require,module,exports){
+(function() {
+  var DomView, Slide, Slide18, Slide18Template, Slide18View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _ref = require('janus'), util = _ref.util, DomView = _ref.DomView;
+
+  Slide = require('../models/slide').Slide;
+
+  SlideTemplate = require('./base').SlideTemplate;
+
+  Slide18 = (function(_super) {
+    __extends(Slide18, _super);
+
+    function Slide18() {
+      _ref1 = Slide18.__super__.constructor.apply(this, arguments);
+      return _ref1;
+    }
+
+    Slide18.prototype.subject = 'Difficulties';
+
+    Slide18.prototype.stages = 0;
+
+    return Slide18;
+
+  })(Slide);
+
+  Slide18Template = (function(_super) {
+    __extends(Slide18Template, _super);
+
+    function Slide18Template() {
+      _ref2 = Slide18Template.__super__.constructor.apply(this, arguments);
+      return _ref2;
+    }
+
+    Slide18Template.prototype._number = 18;
+
+    return Slide18Template;
+
+  })(SlideTemplate);
+
+  Slide18View = (function(_super) {
+    __extends(Slide18View, _super);
+
+    function Slide18View() {
+      _ref3 = Slide18View.__super__.constructor.apply(this, arguments);
+      return _ref3;
+    }
+
+    Slide18View.prototype.templateClass = Slide18Template;
+
+    return Slide18View;
+
+  })(DomView);
+
+  util.extend(module.exports, {
+    Model: Slide18,
+    registerWith: function(library) {
+      return library.register(Slide18, Slide18View);
+    }
+  });
+
+}).call(this);
+
+},{"../models/slide":3,"./base":5,"janus":135}],19:[function(require,module,exports){
+(function() {
+  var DomView, Slide, Slide19, Slide19Template, Slide19View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _ref = require('janus'), util = _ref.util, DomView = _ref.DomView;
+
+  Slide = require('../models/slide').Slide;
+
+  SlideTemplate = require('./base').SlideTemplate;
+
+  Slide19 = (function(_super) {
+    __extends(Slide19, _super);
+
+    function Slide19() {
+      _ref1 = Slide19.__super__.constructor.apply(this, arguments);
+      return _ref1;
+    }
+
+    Slide19.prototype.subject = 'Difficulties';
+
+    Slide19.prototype.stages = 0;
+
+    return Slide19;
+
+  })(Slide);
+
+  Slide19Template = (function(_super) {
+    __extends(Slide19Template, _super);
+
+    function Slide19Template() {
+      _ref2 = Slide19Template.__super__.constructor.apply(this, arguments);
+      return _ref2;
+    }
+
+    Slide19Template.prototype._number = 19;
+
+    return Slide19Template;
+
+  })(SlideTemplate);
+
+  Slide19View = (function(_super) {
+    __extends(Slide19View, _super);
+
+    function Slide19View() {
+      _ref3 = Slide19View.__super__.constructor.apply(this, arguments);
+      return _ref3;
+    }
+
+    Slide19View.prototype.templateClass = Slide19Template;
+
+    return Slide19View;
+
+  })(DomView);
+
+  util.extend(module.exports, {
+    Model: Slide19,
+    registerWith: function(library) {
+      return library.register(Slide19, Slide19View);
+    }
+  });
+
+}).call(this);
+
+},{"../models/slide":3,"./base":5,"janus":135}],20:[function(require,module,exports){
 (function() {
   var DomView, Slide, Slide2, Slide2Template, Slide2View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -626,7 +1252,135 @@
 
 }).call(this);
 
-},{"../models/slide":2,"./base":4,"janus":119}],12:[function(require,module,exports){
+},{"../models/slide":3,"./base":5,"janus":135}],21:[function(require,module,exports){
+(function() {
+  var DomView, Slide, Slide20, Slide20Template, Slide20View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _ref = require('janus'), util = _ref.util, DomView = _ref.DomView;
+
+  Slide = require('../models/slide').Slide;
+
+  SlideTemplate = require('./base').SlideTemplate;
+
+  Slide20 = (function(_super) {
+    __extends(Slide20, _super);
+
+    function Slide20() {
+      _ref1 = Slide20.__super__.constructor.apply(this, arguments);
+      return _ref1;
+    }
+
+    Slide20.prototype.subject = 'Lessons';
+
+    Slide20.prototype.stages = 0;
+
+    return Slide20;
+
+  })(Slide);
+
+  Slide20Template = (function(_super) {
+    __extends(Slide20Template, _super);
+
+    function Slide20Template() {
+      _ref2 = Slide20Template.__super__.constructor.apply(this, arguments);
+      return _ref2;
+    }
+
+    Slide20Template.prototype._number = 20;
+
+    return Slide20Template;
+
+  })(SlideTemplate);
+
+  Slide20View = (function(_super) {
+    __extends(Slide20View, _super);
+
+    function Slide20View() {
+      _ref3 = Slide20View.__super__.constructor.apply(this, arguments);
+      return _ref3;
+    }
+
+    Slide20View.prototype.templateClass = Slide20Template;
+
+    return Slide20View;
+
+  })(DomView);
+
+  util.extend(module.exports, {
+    Model: Slide20,
+    registerWith: function(library) {
+      return library.register(Slide20, Slide20View);
+    }
+  });
+
+}).call(this);
+
+},{"../models/slide":3,"./base":5,"janus":135}],22:[function(require,module,exports){
+(function() {
+  var DomView, Slide, Slide21, Slide21Template, Slide21View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _ref = require('janus'), util = _ref.util, DomView = _ref.DomView;
+
+  Slide = require('../models/slide').Slide;
+
+  SlideTemplate = require('./base').SlideTemplate;
+
+  Slide21 = (function(_super) {
+    __extends(Slide21, _super);
+
+    function Slide21() {
+      _ref1 = Slide21.__super__.constructor.apply(this, arguments);
+      return _ref1;
+    }
+
+    Slide21.prototype.stages = 0;
+
+    return Slide21;
+
+  })(Slide);
+
+  Slide21Template = (function(_super) {
+    __extends(Slide21Template, _super);
+
+    function Slide21Template() {
+      _ref2 = Slide21Template.__super__.constructor.apply(this, arguments);
+      return _ref2;
+    }
+
+    Slide21Template.prototype._number = 21;
+
+    return Slide21Template;
+
+  })(SlideTemplate);
+
+  Slide21View = (function(_super) {
+    __extends(Slide21View, _super);
+
+    function Slide21View() {
+      _ref3 = Slide21View.__super__.constructor.apply(this, arguments);
+      return _ref3;
+    }
+
+    Slide21View.prototype.templateClass = Slide21Template;
+
+    return Slide21View;
+
+  })(DomView);
+
+  util.extend(module.exports, {
+    Model: Slide21,
+    registerWith: function(library) {
+      return library.register(Slide21, Slide21View);
+    }
+  });
+
+}).call(this);
+
+},{"../models/slide":3,"./base":5,"janus":135}],23:[function(require,module,exports){
 (function() {
   var DomView, Slide, Slide3, Slide3Template, Slide3View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -691,7 +1445,7 @@
 
 }).call(this);
 
-},{"../models/slide":2,"./base":4,"janus":119}],13:[function(require,module,exports){
+},{"../models/slide":3,"./base":5,"janus":135}],24:[function(require,module,exports){
 (function() {
   var DomView, Slide, Slide4, Slide4Template, Slide4View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -756,7 +1510,7 @@
 
 }).call(this);
 
-},{"../models/slide":2,"./base":4,"janus":119}],14:[function(require,module,exports){
+},{"../models/slide":3,"./base":5,"janus":135}],25:[function(require,module,exports){
 (function() {
   var DomView, Slide, Slide5, Slide5Template, Slide5View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -821,7 +1575,7 @@
 
 }).call(this);
 
-},{"../models/slide":2,"./base":4,"janus":119}],15:[function(require,module,exports){
+},{"../models/slide":3,"./base":5,"janus":135}],26:[function(require,module,exports){
 (function() {
   var DomView, Slide, Slide6, Slide6Template, Slide6View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -886,7 +1640,7 @@
 
 }).call(this);
 
-},{"../models/slide":2,"./base":4,"janus":119}],16:[function(require,module,exports){
+},{"../models/slide":3,"./base":5,"janus":135}],27:[function(require,module,exports){
 (function() {
   var DomView, Slide, Slide7, Slide7Template, Slide7View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -962,7 +1716,7 @@
 
 }).call(this);
 
-},{"../models/slide":2,"./base":4,"janus":119}],17:[function(require,module,exports){
+},{"../models/slide":3,"./base":5,"janus":135}],28:[function(require,module,exports){
 (function() {
   var DomView, Slide, Slide8, Slide8Template, Slide8View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -1027,7 +1781,7 @@
 
 }).call(this);
 
-},{"../models/slide":2,"./base":4,"janus":119}],18:[function(require,module,exports){
+},{"../models/slide":3,"./base":5,"janus":135}],29:[function(require,module,exports){
 (function() {
   var DomView, Slide, Slide9, Slide9Template, Slide9View, SlideTemplate, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -1100,15 +1854,15 @@
 
 }).call(this);
 
-},{"../models/slide":2,"./base":4,"janus":119}],19:[function(require,module,exports){
+},{"../models/slide":3,"./base":5,"janus":135}],30:[function(require,module,exports){
 (function() {
-  module.exports = [require('./slide0'), require('./slide1'), require('./slide2'), require('./slide3'), require('./slide4'), require('./slide5'), require('./slide6'), require('./slide7'), require('./slide8'), require('./slide9'), require('./slide10'), require('./slide11')];
+  module.exports = [require('./slide0'), require('./slide1'), require('./slide2'), require('./slide3'), require('./slide4'), require('./slide5'), require('./slide6'), require('./slide7'), require('./slide8'), require('./slide9'), require('./slide10'), require('./slide11'), require('./slide12'), require('./slide13'), require('./slide14'), require('./slide15'), require('./slide16'), require('./slide17'), require('./slide18'), require('./slide19'), require('./slide20'), require('./slide21')];
 
 }).call(this);
 
-},{"./slide0":7,"./slide1":8,"./slide10":9,"./slide11":10,"./slide2":11,"./slide3":12,"./slide4":13,"./slide5":14,"./slide6":15,"./slide7":16,"./slide8":17,"./slide9":18}],20:[function(require,module,exports){
+},{"./slide0":8,"./slide1":9,"./slide10":10,"./slide11":11,"./slide12":12,"./slide13":13,"./slide14":14,"./slide15":15,"./slide16":16,"./slide17":17,"./slide18":18,"./slide19":19,"./slide2":20,"./slide20":21,"./slide21":22,"./slide3":23,"./slide4":24,"./slide5":25,"./slide6":26,"./slide7":27,"./slide8":28,"./slide9":29}],31:[function(require,module,exports){
 (function(){module.exports = '<div class="deck"><div class="slides"></div><div class="chrome"><div class="byLine">PNW Scala 2013 &bull; Clint Tseng &bull; Socrata</div><div class="subject"></div></div></div>';})();
-},{}],21:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 (function() {
   var Deck, DeckTemplate, DeckView, DomView, Templater, keys, markup, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -1196,7 +1950,120 @@
 
 }).call(this);
 
-},{"../models/deck":1,"./deck.html":20,"janus":119}],22:[function(require,module,exports){
+},{"../models/deck":1,"./deck.html":31,"janus":135}],33:[function(require,module,exports){
+(function(){module.exports = '<div id="person"><div class="person view"><div class="name"><div class="first"></div><div class="last"></div></div><div class="age"></div><div class="ageLabel">years old</div></div><div class="person edit"><div class="first"></div><div class="label">First Name</div><div class="last"></div><div class="label">Last Name</div><div class="age"></div><div class="label">Age</div><div class="issues"></div></div></div>';})();
+},{}],34:[function(require,module,exports){
+(function() {
+  var DomView, List, Person, PersonEditTemplate, PersonEditView, PersonTemplate, PersonView, Templater, Varying, attribute, markup, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _ref = require('janus'), util = _ref.util, DomView = _ref.DomView, attribute = _ref.attribute, (_ref1 = _ref.collection, List = _ref1.List), Templater = _ref.Templater, (_ref2 = _ref.varying, Varying = _ref2.Varying);
+
+  Person = require('../models/person').Person;
+
+  markup = require('./person.html');
+
+  PersonTemplate = (function(_super) {
+    __extends(PersonTemplate, _super);
+
+    function PersonTemplate() {
+      _ref3 = PersonTemplate.__super__.constructor.apply(this, arguments);
+      return _ref3;
+    }
+
+    PersonTemplate.prototype._dom = function() {
+      return $(markup).find('.view');
+    };
+
+    PersonTemplate.prototype._binding = function() {
+      var binding;
+      binding = PersonTemplate.__super__._binding.call(this);
+      binding.find('.first').from('name.first');
+      binding.find('.last').from('name.last');
+      binding.find('.age').from('age');
+      return binding.find('.ageLabel').classed('hide').from('age').flatMap(function(age) {
+        return !util.isNumber(age);
+      });
+    };
+
+    return PersonTemplate;
+
+  })(Templater);
+
+  PersonView = (function(_super) {
+    __extends(PersonView, _super);
+
+    function PersonView() {
+      _ref4 = PersonView.__super__.constructor.apply(this, arguments);
+      return _ref4;
+    }
+
+    PersonView.prototype.templateClass = PersonTemplate;
+
+    return PersonView;
+
+  })(DomView);
+
+  PersonEditTemplate = (function(_super) {
+    __extends(PersonEditTemplate, _super);
+
+    function PersonEditTemplate() {
+      _ref5 = PersonEditTemplate.__super__.constructor.apply(this, arguments);
+      return _ref5;
+    }
+
+    PersonEditTemplate.prototype._dom = function() {
+      return $(markup).find('.edit');
+    };
+
+    PersonEditTemplate.prototype._binding = function() {
+      var binding;
+      binding = PersonEditTemplate.__super__._binding.call(this);
+      binding.find('.issues').render(this.options.app).fromVarying(function(person) {
+        return Varying.ly(person.issues());
+      });
+      binding.find('.first').render(this.options.app, {
+        context: 'edit'
+      }).fromAttribute('name.first').fallback('(person)');
+      binding.find('.last').render(this.options.app, {
+        context: 'edit'
+      }).fromAttribute('name.last').fallback('(name)');
+      return binding.find('.age').render(this.options.app, {
+        context: 'edit'
+      }).fromAttribute('age').fallback('some');
+    };
+
+    return PersonEditTemplate;
+
+  })(Templater);
+
+  PersonEditView = (function(_super) {
+    __extends(PersonEditView, _super);
+
+    function PersonEditView() {
+      _ref6 = PersonEditView.__super__.constructor.apply(this, arguments);
+      return _ref6;
+    }
+
+    PersonEditView.prototype.templateClass = PersonEditTemplate;
+
+    return PersonEditView;
+
+  })(DomView);
+
+  util.extend(module.exports, {
+    registerWith: function(library) {
+      library.register(Person, PersonView);
+      return library.register(Person, PersonEditView, {
+        context: 'edit'
+      });
+    }
+  });
+
+}).call(this);
+
+},{"../models/person":2,"./person.html":33,"janus":135}],35:[function(require,module,exports){
 (function() {
   var BooleanAttribute, BooleanCheckboxView, BooleanToggleButtonView, DomView, Templater, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -1303,9 +2170,9 @@
 
 }).call(this);
 
-},{"janus":119}],23:[function(require,module,exports){
+},{"janus":135}],36:[function(require,module,exports){
 (function(){module.exports = '<li><div class="editHandle"></div><a href="#remove" class="editRemove ss-delete">Remove</a><div class="editItem"></div></li>';})();
-},{}],24:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 (function() {
   var Base, CollectionEditItemImpl, CollectionEditItemTemplate, CollectionEditViewImpl, CollectionEditViewTemplate, ListEditItem, ListEditItemTemplate, ListEditView, OrderedCollection, Templater, itemMarkup, util, _ref, _ref1, _ref2, _ref3, _ref4,
     __hasProp = {}.hasOwnProperty,
@@ -1404,9 +2271,9 @@
 
 }).call(this);
 
-},{"./collection-edit-item.html":23,"janus":119}],25:[function(require,module,exports){
+},{"./collection-edit-item.html":36,"janus":135}],38:[function(require,module,exports){
 (function(){module.exports = '<li><div class="selectControls"><a href="#select" class="selectButton button">Select</a></div><div class="selectItem"></div></li>';})();
-},{}],26:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 (function() {
   var Base, CollectionSelectItemTemplate, CollectionSelectItemView, CollectionSelectView, CollectionView, DomView, OrderedCollection, Templater, itemMarkup, templater, util, _ref, _ref1, _ref2, _ref3, _ref4,
     __hasProp = {}.hasOwnProperty,
@@ -1546,7 +2413,7 @@
 
 }).call(this);
 
-},{"./collection":27,"./collection-select-item.html":25,"janus":119}],27:[function(require,module,exports){
+},{"./collection":40,"./collection-select-item.html":38,"janus":135}],40:[function(require,module,exports){
 (function() {
   var CollectionViewImpl, CollectionViewTemplater, ListView, OrderedCollection, Templater, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -1606,7 +2473,7 @@
 
 }).call(this);
 
-},{"janus":119}],28:[function(require,module,exports){
+},{"janus":135}],41:[function(require,module,exports){
 (function() {
   var Base, CollectionViewImpl, CollectionViewTemplater, DomView, EnumAttribute, EnumAttributeListTemplate, EnumAttributeListView, EnumAttributeView, List, OrderedCollection, Templater, Varying, templater, textItemMarkup, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -1884,9 +2751,71 @@
 
 }).call(this);
 
-},{"./collection":27,"./enum-text-item.html":29,"janus":119}],29:[function(require,module,exports){
+},{"./collection":40,"./enum-text-item.html":42,"janus":135}],42:[function(require,module,exports){
 (function(){module.exports = '<li class="textItem"><a class="button selectItem"></a><div class="selectItem"></div></li>';})();
-},{}],30:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
+(function(){module.exports = '<div class="issue"><span class="icon">&times;</span><span class="message"></span></div>';})();
+},{}],44:[function(require,module,exports){
+(function() {
+  var DomView, Issue, IssueTemplate, IssueView, Templater, markup, util, _ref, _ref1, _ref2,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _ref = require('janus'), util = _ref.util, Templater = _ref.Templater, DomView = _ref.DomView, Issue = _ref.Issue;
+
+  markup = require('./issue.html');
+
+  IssueTemplate = (function(_super) {
+    __extends(IssueTemplate, _super);
+
+    function IssueTemplate() {
+      _ref1 = IssueTemplate.__super__.constructor.apply(this, arguments);
+      return _ref1;
+    }
+
+    IssueTemplate.prototype._dom = function() {
+      return $(markup);
+    };
+
+    IssueTemplate.prototype._binding = function() {
+      var binding;
+      binding = IssueTemplate.__super__._binding.call(this);
+      binding.find('.issue').classed('valid').fromVarying(function(issue) {
+        return issue.active;
+      });
+      return binding.find('.message').text().fromVarying(function(issue) {
+        return issue.message;
+      });
+    };
+
+    return IssueTemplate;
+
+  })(Templater);
+
+  IssueView = (function(_super) {
+    __extends(IssueView, _super);
+
+    function IssueView() {
+      _ref2 = IssueView.__super__.constructor.apply(this, arguments);
+      return _ref2;
+    }
+
+    IssueView.prototype.templateClass = IssueTemplate;
+
+    return IssueView;
+
+  })(DomView);
+
+  util.extend(module.exports, {
+    IssueView: IssueView,
+    registerWith: function(library) {
+      return library.register(Issue, IssueView);
+    }
+  });
+
+}).call(this);
+
+},{"./issue.html":43,"janus":135}],45:[function(require,module,exports){
 (function() {
   var DomView, LiteralTemplate, LiteralView, Templater, Varying, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -1954,13 +2883,50 @@
 
 }).call(this);
 
-},{"janus":119}],31:[function(require,module,exports){
+},{"janus":135}],46:[function(require,module,exports){
 (function() {
-  module.exports = [require('./boolean-attribute'), require('./enum-attribute'), require('./collection-edit'), require('./collection-select'), require('./collection'), require('./literal'), require('./text-attribute'), require('./varying')];
+  var NumberAttributeView, TextAttributeView, attribute, util, _ref, _ref1,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  _ref = require('janus'), util = _ref.util, attribute = _ref.attribute;
+
+  TextAttributeView = require('./text-attribute').TextAttributeView;
+
+  NumberAttributeView = (function(_super) {
+    __extends(NumberAttributeView, _super);
+
+    function NumberAttributeView() {
+      _ref1 = NumberAttributeView.__super__.constructor.apply(this, arguments);
+      return _ref1;
+    }
+
+    NumberAttributeView.prototype._handle = function(x) {
+      return this.subject.setValue(parseFloat(x));
+    };
+
+    return NumberAttributeView;
+
+  })(TextAttributeView);
+
+  util.extend(module.exports, {
+    NumberAttributeView: NumberAttributeView,
+    registerWith: function(library) {
+      return library.register(attribute.NumberAttribute, NumberAttributeView, {
+        context: 'edit'
+      });
+    }
+  });
 
 }).call(this);
 
-},{"./boolean-attribute":22,"./collection":27,"./collection-edit":24,"./collection-select":26,"./enum-attribute":28,"./literal":30,"./text-attribute":32,"./varying":33}],32:[function(require,module,exports){
+},{"./text-attribute":48,"janus":135}],47:[function(require,module,exports){
+(function() {
+  module.exports = [require('./boolean-attribute'), require('./enum-attribute'), require('./collection-edit'), require('./collection-select'), require('./collection'), require('./literal'), require('./text-attribute'), require('./number-attribute'), require('./varying'), require('./issue')];
+
+}).call(this);
+
+},{"./boolean-attribute":35,"./collection":40,"./collection-edit":37,"./collection-select":39,"./enum-attribute":41,"./issue":44,"./literal":45,"./number-attribute":46,"./text-attribute":48,"./varying":49}],48:[function(require,module,exports){
 (function() {
   var DomView, MultilineTextAttributeView, TextAttribute, TextAttributeView, eventMap, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -2065,7 +3031,7 @@
 
 }).call(this);
 
-},{"janus":119}],33:[function(require,module,exports){
+},{"janus":135}],49:[function(require,module,exports){
 (function() {
   var Templater, Varying, VaryingView, VaryingViewImpl, VaryingViewTemplate, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -2120,7 +3086,7 @@
 
 }).call(this);
 
-},{"janus":119}],34:[function(require,module,exports){
+},{"janus":135}],50:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -2174,7 +3140,7 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],35:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 (function() {
   var CommandRequest, EvalAction, Varying, exec, store, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -2247,7 +3213,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../models/command":40,"../../util/eval":45,"janus":77}],36:[function(require,module,exports){
+},{"../../models/command":56,"../../util/eval":61,"janus":93}],52:[function(require,module,exports){
 (function() {
   var CommandRequest, InspectAction, ReadyState, Varying, store, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -2319,7 +3285,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../models/command":40,"../../models/ready-state":42,"janus":77}],37:[function(require,module,exports){
+},{"../../models/command":56,"../../models/ready-state":58,"janus":93}],53:[function(require,module,exports){
 (function() {
   var CommandRequest, ReadyState, RenderAction, Varying, exec, store, templater, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -2391,7 +3357,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../models/command":40,"../../models/ready-state":42,"../../util/eval":45,"janus":77}],38:[function(require,module,exports){
+},{"../../models/command":56,"../../models/ready-state":58,"../../util/eval":61,"janus":93}],54:[function(require,module,exports){
 (function() {
   var CommandRequest, List, Model, ReadyState, TraverseAction, Varying, exec, store, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -2500,7 +3466,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../models/command":40,"../../models/ready-state":42,"../../util/eval":45,"janus":77}],39:[function(require,module,exports){
+},{"../../models/command":56,"../../models/ready-state":58,"../../util/eval":61,"janus":93}],55:[function(require,module,exports){
 (function() {
   var util;
 
@@ -2570,7 +3536,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"./actions/local/eval":35,"./actions/local/inspect":36,"./actions/local/render":37,"./actions/local/traverse":38,"./models/command":40,"./models/node":41,"./models/ready-state":42,"./models/repl":43,"./util/hook":46,"./views/command/default":48,"./views/command/edit":50,"./views/generic/base-fallback":51,"./views/generic/function":52,"./views/generic/request-state":53,"./views/repl/repl":55,"./views/varying/live":57,"janus":77}],40:[function(require,module,exports){
+},{"./actions/local/eval":51,"./actions/local/inspect":52,"./actions/local/render":53,"./actions/local/traverse":54,"./models/command":56,"./models/node":57,"./models/ready-state":58,"./models/repl":59,"./util/hook":62,"./views/command/default":64,"./views/command/edit":66,"./views/generic/base-fallback":67,"./views/generic/function":68,"./views/generic/request-state":69,"./views/repl/repl":71,"./views/varying/live":73,"janus":93}],56:[function(require,module,exports){
 (function() {
   var Command, CommandRequest, Commands, Model, attribute, collection, reference, store, util, _ref, _ref1, _ref2, _ref3,
     __hasProp = {}.hasOwnProperty,
@@ -2665,7 +3631,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"janus":77}],41:[function(require,module,exports){
+},{"janus":93}],57:[function(require,module,exports){
 (function() {
   var Model, Node, Nodes, attribute, collection, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -2722,7 +3688,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"janus":77}],42:[function(require,module,exports){
+},{"janus":93}],58:[function(require,module,exports){
 (function() {
   var ReadyState, store, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -2747,7 +3713,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"janus":77}],43:[function(require,module,exports){
+},{"janus":93}],59:[function(require,module,exports){
 (function() {
   var Model, Repl, Repls, attribute, collection, command, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -2842,13 +3808,13 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"./command":40,"janus":77}],44:[function(require,module,exports){
+},{"./command":56,"janus":93}],60:[function(require,module,exports){
 (function() {
   module.exports = typeof window === 'undefined' ? require('zepto-node')(require('domino').createWindow()) : window.jQuery;
 
 }).call(this);
 
-},{"domino":false,"zepto-node":false}],45:[function(require,module,exports){
+},{"domino":false,"zepto-node":false}],61:[function(require,module,exports){
 (function() {
   var util;
 
@@ -2885,7 +3851,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"janus":77}],46:[function(require,module,exports){
+},{"janus":93}],62:[function(require,module,exports){
 (function() {
   var $, Repl, ReplView, util;
 
@@ -2929,9 +3895,9 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../models/repl":43,"../views/repl/repl":55,"./dollar":44,"janus":77}],47:[function(require,module,exports){
+},{"../models/repl":59,"../views/repl/repl":71,"./dollar":60,"janus":93}],63:[function(require,module,exports){
 (function(){module.exports = '<li class="commandOutput"><div class="commandNumber"></div><div class="commandText"></div><div class="resultNumber"></div><div class="resultBody"></div></li>';})();
-},{}],48:[function(require,module,exports){
+},{}],64:[function(require,module,exports){
 (function() {
   var $, Command, CommandTemplate, CommandView, DomView, Templater, collection, markup, util, varying, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -3000,9 +3966,9 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../models/command":40,"../../util/dollar":44,"./default.html":47,"janus":77}],49:[function(require,module,exports){
+},{"../../models/command":56,"../../util/dollar":60,"./default.html":63,"janus":93}],65:[function(require,module,exports){
 (function(){module.exports = '<div class="janusConsolePrompt"><div class="caret">&rsaquo;</div><div class="consolePrompt"></div></div>';})();
-},{}],50:[function(require,module,exports){
+},{}],66:[function(require,module,exports){
 (function() {
   var $, Command, CommandEditTemplate, CommandEditView, DomView, Templater, collection, markup, util, varying, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -3069,7 +4035,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../models/command":40,"../../util/dollar":44,"./edit.html":49,"janus":77}],51:[function(require,module,exports){
+},{"../../models/command":56,"../../util/dollar":60,"./edit.html":65,"janus":93}],67:[function(require,module,exports){
 (function() {
   var $, Base, BaseFallbackTemplate, BaseFallbackView, DomView, Model, Templater, domViewIdent, ident, modelIdent, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -3164,7 +4130,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../util/dollar":44,"janus":77}],52:[function(require,module,exports){
+},{"../../util/dollar":60,"janus":93}],68:[function(require,module,exports){
 (function() {
   var $, DomView, FunctionTemplate, FunctionView, Templater, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -3224,7 +4190,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../util/dollar":44,"janus":77}],53:[function(require,module,exports){
+},{"../../util/dollar":60,"janus":93}],69:[function(require,module,exports){
 (function() {
   var $, DomView, PendingTemplate, PendingView, ReadyState, ReadyTemplate, ReadyView, Request, SuccessTemplate, SuccessView, Templater, UserErrorTemplate, UserErrorView, reference, templater, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9,
     __hasProp = {}.hasOwnProperty,
@@ -3418,9 +4384,9 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../models/ready-state":42,"../../util/dollar":44,"janus":77}],54:[function(require,module,exports){
+},{"../../models/ready-state":58,"../../util/dollar":60,"janus":93}],70:[function(require,module,exports){
 (function(){module.exports = '<div class="janusConsole"><div class="scrollback"></div><div class="prompt"></div></div>';})();
-},{}],55:[function(require,module,exports){
+},{}],71:[function(require,module,exports){
 (function() {
   var $, DomView, Repl, ReplTemplate, ReplView, Templater, markup, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -3501,9 +4467,9 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../models/repl":43,"../../util/dollar":44,"./repl.html":54,"janus":77}],56:[function(require,module,exports){
+},{"../../models/repl":59,"../../util/dollar":60,"./repl.html":70,"janus":93}],72:[function(require,module,exports){
 (function(){module.exports = '<ul class="varyingLive"></ul>';})();
-},{}],57:[function(require,module,exports){
+},{}],73:[function(require,module,exports){
 (function() {
   var $, DomView, Templater, VaryingLiveTemplate, VaryingLiveView, collection, markup, util, varying, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -3577,7 +4543,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../../util/dollar":44,"./live.html":56,"janus":77}],58:[function(require,module,exports){
+},{"../../util/dollar":60,"./live.html":72,"janus":93}],74:[function(require,module,exports){
 (function() {
   var App, Model, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -3646,7 +4612,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../model/model":82,"../util/util":91}],59:[function(require,module,exports){
+},{"../model/model":98,"../util/util":107}],75:[function(require,module,exports){
 (function() {
   var App, Base, Endpoint, EndpointResponse, ForbiddenResponse, InternalErrorResponse, InvalidRequestResponse, NotFoundResponse, OkResponse, Request, StoreManifest, UnauthorizedResponse, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5,
     __hasProp = {}.hasOwnProperty,
@@ -3846,7 +4812,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/base":74,"../model/store":85,"../util/util":91,"./app":58,"./manifest":61}],60:[function(require,module,exports){
+},{"../core/base":90,"../model/store":101,"../util/util":107,"./app":74,"./manifest":77}],76:[function(require,module,exports){
 (function() {
   var Base, Endpoint, Handler, HttpHandler, util,
     __hasProp = {}.hasOwnProperty,
@@ -3928,7 +4894,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/base":74,"../util/util":91,"./endpoint":59}],61:[function(require,module,exports){
+},{"../core/base":90,"../util/util":107,"./endpoint":75}],77:[function(require,module,exports){
 (function() {
   var Base, Manifest, Request, StoreManifest, util,
     __hasProp = {}.hasOwnProperty,
@@ -4018,7 +4984,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/base":74,"../model/store":85,"../util/util":91}],62:[function(require,module,exports){
+},{"../core/base":90,"../model/store":101,"../util/util":107}],78:[function(require,module,exports){
 (function() {
   var CattedList, DerivedList, util,
     __hasProp = {}.hasOwnProperty,
@@ -4073,7 +5039,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../util/util":91,"./list":67}],63:[function(require,module,exports){
+},{"../util/util":107,"./list":83}],79:[function(require,module,exports){
 (function() {
   var util;
 
@@ -4098,7 +5064,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../util/util":91,"./catted-list":62,"./filtered-list":64,"./indefinite-list":65,"./lazy-list":66,"./list":67,"./mapped-list":68,"./partitioned-list":69,"./set":70,"./types":71,"./uniq-list":72,"./window":73}],64:[function(require,module,exports){
+},{"../util/util":107,"./catted-list":78,"./filtered-list":80,"./indefinite-list":81,"./lazy-list":82,"./list":83,"./mapped-list":84,"./partitioned-list":85,"./set":86,"./types":87,"./uniq-list":88,"./window":89}],80:[function(require,module,exports){
 (function() {
   var DerivedList, FilteredList, Varying, util,
     __hasProp = {}.hasOwnProperty,
@@ -4175,7 +5141,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/varying":76,"../util/util":91,"./list":67}],65:[function(require,module,exports){
+},{"../core/varying":92,"../util/util":107,"./list":83}],81:[function(require,module,exports){
 (function() {
   var Base, Indefinite, IndefiniteList, Many, One, OrderedCollection, StepResult, Termination, Varying, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -4344,7 +5310,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/base":74,"../core/varying":76,"../util/util":91,"./types":71}],66:[function(require,module,exports){
+},{"../core/base":90,"../core/varying":92,"../util/util":107,"./types":87}],82:[function(require,module,exports){
 (function() {
   var CachedLazyList, Coverage, LazyList, List, Model, Range, Varying, rangeUpdater, util, wrapAndSealFate, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -4547,7 +5513,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/varying":76,"../model/model":82,"../util/range":90,"../util/util":91,"./list":67}],67:[function(require,module,exports){
+},{"../core/varying":92,"../model/model":98,"../util/range":106,"../util/util":107,"./list":83}],83:[function(require,module,exports){
 (function() {
   var Base, DerivedList, List, Model, OrderedCollection, Reference, Varying, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -4990,7 +5956,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/base":74,"../core/varying":76,"../model/model":82,"../model/reference":84,"../util/util":91,"./types":71}],68:[function(require,module,exports){
+},{"../core/base":90,"../core/varying":92,"../model/model":98,"../model/reference":100,"../util/util":107,"./types":87}],84:[function(require,module,exports){
 (function() {
   var DerivedList, List, MappedList, Varying, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -5060,7 +6026,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/varying":76,"../util/util":91,"./list":67}],69:[function(require,module,exports){
+},{"../core/varying":92,"../util/util":107,"./list":83}],85:[function(require,module,exports){
 (function() {
   var DerivedList, List, PartitionedList, Varying, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -5109,7 +6075,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/varying":76,"../util/util":91,"./list":67}],70:[function(require,module,exports){
+},{"../core/varying":92,"../util/util":107,"./list":83}],86:[function(require,module,exports){
 (function() {
   var Base, List, Set, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -5174,7 +6140,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/base":74,"../util/util":91,"./list":67}],71:[function(require,module,exports){
+},{"../core/base":90,"../util/util":107,"./list":83}],87:[function(require,module,exports){
 (function() {
   var Collection, Model, OrderedCollection, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -5257,7 +6223,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../model/model":82,"../util/util":91,"./catted-list":62,"./filtered-list":64,"./mapped-list":68,"./partitioned-list":69,"./uniq-list":72}],72:[function(require,module,exports){
+},{"../model/model":98,"../util/util":107,"./catted-list":78,"./filtered-list":80,"./mapped-list":84,"./partitioned-list":85,"./uniq-list":88}],88:[function(require,module,exports){
 (function() {
   var DerivedList, UniqList, util,
     __hasProp = {}.hasOwnProperty,
@@ -5326,7 +6292,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../util/util":91,"./list":67}],73:[function(require,module,exports){
+},{"../util/util":107,"./list":83}],89:[function(require,module,exports){
 (function() {
   var List, Model, Varying, Window, attribute, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -5411,7 +6377,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/varying":76,"../model/attribute":79,"../model/model":82,"../util/util":91,"./list":67}],74:[function(require,module,exports){
+},{"../core/varying":92,"../model/attribute":95,"../model/model":98,"../util/util":107,"./list":83}],90:[function(require,module,exports){
 (function() {
   var Base, EventEmitter, util,
     __hasProp = {}.hasOwnProperty,
@@ -5496,7 +6462,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../util/util":91,"eventemitter2":99}],75:[function(require,module,exports){
+},{"../util/util":107,"eventemitter2":115}],91:[function(require,module,exports){
 (function() {
   var Chainer, util,
     __slice = [].slice,
@@ -5595,7 +6561,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../util/util":91}],76:[function(require,module,exports){
+},{"../util/util":107}],92:[function(require,module,exports){
 (function() {
   var Base, MultiVarying, Varying, util,
     __hasProp = {}.hasOwnProperty,
@@ -5782,7 +6748,7 @@ process.chdir = function (dir) {
 
 }).call(this);
 
-},{"../core/base":74,"../util/util":91}],77:[function(require,module,exports){
+},{"../core/base":90,"../util/util":107}],93:[function(require,module,exports){
 var global=self;(function() {
   var janus, util, _base, _ref;
 
@@ -5838,7 +6804,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"./application/app":58,"./application/endpoint":59,"./application/handler":60,"./application/manifest":61,"./collection/collection":63,"./core/base":74,"./core/chain":75,"./core/varying":76,"./library/library":78,"./model/attribute":79,"./model/issue":81,"./model/model":82,"./model/page-model":83,"./model/reference":84,"./model/store":85,"./templater/package":87,"./templater/templater":88,"./util/util":91,"./view/dom-view":92,"./view/impl/list":94,"./view/impl/list-edit":93,"./view/impl/varying":95,"./view/page-view":97,"./view/view":98}],78:[function(require,module,exports){
+},{"./application/app":74,"./application/endpoint":75,"./application/handler":76,"./application/manifest":77,"./collection/collection":79,"./core/base":90,"./core/chain":91,"./core/varying":92,"./library/library":94,"./model/attribute":95,"./model/issue":97,"./model/model":98,"./model/page-model":99,"./model/reference":100,"./model/store":101,"./templater/package":103,"./templater/templater":104,"./util/util":107,"./view/dom-view":108,"./view/impl/list":110,"./view/impl/list-edit":109,"./view/impl/varying":111,"./view/page-view":113,"./view/view":114}],94:[function(require,module,exports){
 (function() {
   var Base, Library, match, util,
     __hasProp = {}.hasOwnProperty,
@@ -5996,7 +6962,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":74,"../util/util":91}],79:[function(require,module,exports){
+},{"../core/base":90,"../util/util":107}],95:[function(require,module,exports){
 (function() {
   var Attribute, BooleanAttribute, CollectionAttribute, DateAttribute, EnumAttribute, List, Model, ModelAttribute, NumberAttribute, ObjectAttribute, ShellModel, TextAttribute, Varying, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7,
     __hasProp = {}.hasOwnProperty,
@@ -6247,7 +7213,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../collection/list":67,"../core/varying":76,"../util/util":91,"./model":82}],80:[function(require,module,exports){
+},{"../collection/list":83,"../core/varying":92,"../util/util":107,"./model":98}],96:[function(require,module,exports){
 (function() {
   var Base, Binder, MultiVarying, util,
     __hasProp = {}.hasOwnProperty,
@@ -6366,7 +7332,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":74,"../core/varying":76,"../util/util":91}],81:[function(require,module,exports){
+},{"../core/base":90,"../core/varying":92,"../util/util":107}],97:[function(require,module,exports){
 (function() {
   var Base, Issue, Varying, util,
     __hasProp = {}.hasOwnProperty,
@@ -6401,7 +7367,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":74,"../core/varying":76,"../util/util":91}],82:[function(require,module,exports){
+},{"../core/base":90,"../core/varying":92,"../util/util":107}],98:[function(require,module,exports){
 (function() {
   var Base, Binder, Model, Null, NullClass, Reference, Resolver, Varying, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -6987,7 +7953,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../collection/collection":63,"../collection/list":67,"../core/base":74,"../core/varying":76,"../util/util":91,"./binder":80,"./reference":84}],83:[function(require,module,exports){
+},{"../collection/collection":79,"../collection/list":83,"../core/base":90,"../core/varying":92,"../util/util":107,"./binder":96,"./reference":100}],99:[function(require,module,exports){
 (function() {
   var Model, PageModel, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -7021,7 +7987,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../util/util":91,"./model":82}],84:[function(require,module,exports){
+},{"../util/util":107,"./model":98}],100:[function(require,module,exports){
 (function() {
   var ModelReference, ModelResolver, Reference, RequestReference, RequestResolver, Resolver, Varying, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -7202,7 +8168,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/varying":76,"../util/util":91,"./model":82}],85:[function(require,module,exports){
+},{"../core/varying":92,"../util/util":107,"./model":98}],101:[function(require,module,exports){
 (function() {
   var Base, CompleteState, CreateRequest, DeleteRequest, ErrorState, FetchRequest, InitState, List, MemoryCacheStore, Model, OnPageCacheStore, OneOfStore, PendingState, ProgressState, Request, RequestState, ServiceErrorState, Store, SuccessState, UpdateRequest, UserErrorState, Varying, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7,
     __hasProp = {}.hasOwnProperty,
@@ -7660,7 +8626,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../collection/list":67,"../core/base":74,"../core/varying":76,"../model/model":82,"../util/util":91}],86:[function(require,module,exports){
+},{"../collection/list":83,"../core/base":90,"../core/varying":92,"../model/model":98,"../util/util":107}],102:[function(require,module,exports){
 (function() {
   var ApplyMutator, AttrMutator, Base, Binder, ClassGroupMutator, ClassMutator, CssMutator, HtmlMutator, MultiVarying, Mutator, RenderMutator, TextMutator, Varying, reference, types, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8,
     __hasProp = {}.hasOwnProperty,
@@ -8281,7 +9247,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":74,"../core/varying":76,"../model/reference":84,"../util/util":91,"./types":89}],87:[function(require,module,exports){
+},{"../core/base":90,"../core/varying":92,"../model/reference":100,"../util/util":107,"./types":105}],103:[function(require,module,exports){
 (function() {
   var util;
 
@@ -8296,7 +9262,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../util/util":91,"./templater":88,"./types":89}],88:[function(require,module,exports){
+},{"../util/util":107,"./templater":104,"./types":105}],104:[function(require,module,exports){
 (function() {
   var Binder, Templater, util;
 
@@ -8352,7 +9318,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../util/util":91,"./binder":86}],89:[function(require,module,exports){
+},{"../util/util":107,"./binder":102}],105:[function(require,module,exports){
 (function() {
   var WithAux, WithOptions, WithView, util;
 
@@ -8395,7 +9361,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../util/util":91}],90:[function(require,module,exports){
+},{"../util/util":107}],106:[function(require,module,exports){
 (function() {
   var Continuous, Coverage, Range, Varying, util,
     __hasProp = {}.hasOwnProperty,
@@ -8633,7 +9599,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/varying":76,"./util":91}],91:[function(require,module,exports){
+},{"../core/varying":92,"./util":107}],107:[function(require,module,exports){
 (function() {
   var toString, type, util, _fn, _i, _len, _ref, _ref1,
     __slice = [].slice;
@@ -8833,7 +9799,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{}],92:[function(require,module,exports){
+},{}],108:[function(require,module,exports){
 (function() {
   var DomView, List, View, util,
     __hasProp = {}.hasOwnProperty,
@@ -8986,7 +9952,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../collection/list":67,"../util/util":91,"./view":98}],93:[function(require,module,exports){
+},{"../collection/list":83,"../util/util":107,"./view":114}],109:[function(require,module,exports){
 (function() {
   var DomView, ListEditItem, ListEditItemTemplate, ListEditView, ListView, Templater, templater, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -9088,7 +10054,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../../templater/package":87,"../../templater/templater":88,"../../util/util":91,"../dom-view":92,"./list":94}],94:[function(require,module,exports){
+},{"../../templater/package":103,"../../templater/templater":104,"../../util/util":107,"../dom-view":108,"./list":110}],110:[function(require,module,exports){
 (function() {
   var ListView, Varying, ViewContainer, reference, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -9203,7 +10169,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../../core/varying":76,"../../model/reference":84,"../../util/util":91,"./view-container":96}],95:[function(require,module,exports){
+},{"../../core/varying":92,"../../model/reference":100,"../../util/util":107,"./view-container":112}],111:[function(require,module,exports){
 (function() {
   var VaryingView, ViewContainer, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -9267,7 +10233,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../../util/util":91,"./view-container":96}],96:[function(require,module,exports){
+},{"../../util/util":107,"./view-container":112}],112:[function(require,module,exports){
 (function() {
   var DomView, Varying, ViewContainer, reference, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -9341,13 +10307,13 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../../core/varying":76,"../../model/reference":84,"../../util/util":91,"../dom-view":92}],97:[function(require,module,exports){
+},{"../../core/varying":92,"../../model/reference":100,"../../util/util":107,"../dom-view":108}],113:[function(require,module,exports){
 (function() {
 
 
 }).call(this);
 
-},{}],98:[function(require,module,exports){
+},{}],114:[function(require,module,exports){
 (function() {
   var Base, View, util,
     __hasProp = {}.hasOwnProperty,
@@ -9405,7 +10371,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":74,"../util/util":91}],99:[function(require,module,exports){
+},{"../core/base":90,"../util/util":107}],115:[function(require,module,exports){
 var process=require("__browserify_process");;!function(exports, undefined) {
 
   var isArray = Array.isArray ? Array.isArray : function _isArray(obj) {
@@ -9968,7 +10934,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }(typeof process !== 'undefined' && typeof process.title !== 'undefined' && typeof exports !== 'undefined' ? exports : window);
 
-},{"__browserify_process":34}],100:[function(require,module,exports){
+},{"__browserify_process":50}],116:[function(require,module,exports){
 (function() {
   var App, Model, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -10037,7 +11003,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../model/model":124,"../util/util":133}],101:[function(require,module,exports){
+},{"../model/model":140,"../util/util":149}],117:[function(require,module,exports){
 (function() {
   var App, Base, Endpoint, EndpointResponse, ForbiddenResponse, InternalErrorResponse, InvalidRequestResponse, NotFoundResponse, OkResponse, Request, StoreManifest, UnauthorizedResponse, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5,
     __hasProp = {}.hasOwnProperty,
@@ -10237,7 +11203,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/base":116,"../model/store":127,"../util/util":133,"./app":100,"./manifest":103}],102:[function(require,module,exports){
+},{"../core/base":132,"../model/store":143,"../util/util":149,"./app":116,"./manifest":119}],118:[function(require,module,exports){
 (function() {
   var Base, Endpoint, Handler, HttpHandler, util,
     __hasProp = {}.hasOwnProperty,
@@ -10319,7 +11285,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/base":116,"../util/util":133,"./endpoint":101}],103:[function(require,module,exports){
+},{"../core/base":132,"../util/util":149,"./endpoint":117}],119:[function(require,module,exports){
 (function() {
   var Base, Manifest, Request, StoreManifest, util,
     __hasProp = {}.hasOwnProperty,
@@ -10409,7 +11375,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/base":116,"../model/store":127,"../util/util":133}],104:[function(require,module,exports){
+},{"../core/base":132,"../model/store":143,"../util/util":149}],120:[function(require,module,exports){
 (function() {
   var CattedList, DerivedList, util,
     __hasProp = {}.hasOwnProperty,
@@ -10464,7 +11430,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../util/util":133,"./list":109}],105:[function(require,module,exports){
+},{"../util/util":149,"./list":125}],121:[function(require,module,exports){
 (function() {
   var util;
 
@@ -10489,7 +11455,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../util/util":133,"./catted-list":104,"./filtered-list":106,"./indefinite-list":107,"./lazy-list":108,"./list":109,"./mapped-list":110,"./partitioned-list":111,"./set":112,"./types":113,"./uniq-list":114,"./window":115}],106:[function(require,module,exports){
+},{"../util/util":149,"./catted-list":120,"./filtered-list":122,"./indefinite-list":123,"./lazy-list":124,"./list":125,"./mapped-list":126,"./partitioned-list":127,"./set":128,"./types":129,"./uniq-list":130,"./window":131}],122:[function(require,module,exports){
 (function() {
   var DerivedList, FilteredList, Varying, util,
     __hasProp = {}.hasOwnProperty,
@@ -10566,7 +11532,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/varying":118,"../util/util":133,"./list":109}],107:[function(require,module,exports){
+},{"../core/varying":134,"../util/util":149,"./list":125}],123:[function(require,module,exports){
 (function() {
   var Base, Indefinite, IndefiniteList, Many, One, OrderedCollection, StepResult, Termination, Varying, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -10735,7 +11701,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/base":116,"../core/varying":118,"../util/util":133,"./types":113}],108:[function(require,module,exports){
+},{"../core/base":132,"../core/varying":134,"../util/util":149,"./types":129}],124:[function(require,module,exports){
 (function() {
   var CachedLazyList, Coverage, LazyList, List, Model, Range, Varying, rangeUpdater, util, wrapAndSealFate, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -10938,7 +11904,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/varying":118,"../model/model":124,"../util/range":132,"../util/util":133,"./list":109}],109:[function(require,module,exports){
+},{"../core/varying":134,"../model/model":140,"../util/range":148,"../util/util":149,"./list":125}],125:[function(require,module,exports){
 (function() {
   var Base, DerivedList, List, Model, OrderedCollection, Reference, Varying, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -11381,7 +12347,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/base":116,"../core/varying":118,"../model/model":124,"../model/reference":126,"../util/util":133,"./types":113}],110:[function(require,module,exports){
+},{"../core/base":132,"../core/varying":134,"../model/model":140,"../model/reference":142,"../util/util":149,"./types":129}],126:[function(require,module,exports){
 (function() {
   var DerivedList, List, MappedList, Varying, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -11451,7 +12417,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/varying":118,"../util/util":133,"./list":109}],111:[function(require,module,exports){
+},{"../core/varying":134,"../util/util":149,"./list":125}],127:[function(require,module,exports){
 (function() {
   var DerivedList, List, PartitionedList, Varying, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -11500,7 +12466,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/varying":118,"../util/util":133,"./list":109}],112:[function(require,module,exports){
+},{"../core/varying":134,"../util/util":149,"./list":125}],128:[function(require,module,exports){
 (function() {
   var Base, List, Set, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -11565,7 +12531,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/base":116,"../util/util":133,"./list":109}],113:[function(require,module,exports){
+},{"../core/base":132,"../util/util":149,"./list":125}],129:[function(require,module,exports){
 (function() {
   var Collection, Model, OrderedCollection, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -11648,7 +12614,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../model/model":124,"../util/util":133,"./catted-list":104,"./filtered-list":106,"./mapped-list":110,"./partitioned-list":111,"./uniq-list":114}],114:[function(require,module,exports){
+},{"../model/model":140,"../util/util":149,"./catted-list":120,"./filtered-list":122,"./mapped-list":126,"./partitioned-list":127,"./uniq-list":130}],130:[function(require,module,exports){
 (function() {
   var DerivedList, UniqList, util,
     __hasProp = {}.hasOwnProperty,
@@ -11717,7 +12683,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../util/util":133,"./list":109}],115:[function(require,module,exports){
+},{"../util/util":149,"./list":125}],131:[function(require,module,exports){
 (function() {
   var List, Model, Varying, Window, attribute, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -11802,7 +12768,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/varying":118,"../model/attribute":121,"../model/model":124,"../util/util":133,"./list":109}],116:[function(require,module,exports){
+},{"../core/varying":134,"../model/attribute":137,"../model/model":140,"../util/util":149,"./list":125}],132:[function(require,module,exports){
 (function() {
   var Base, EventEmitter, util,
     __hasProp = {}.hasOwnProperty,
@@ -11887,7 +12853,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../util/util":133,"eventemitter2":141}],117:[function(require,module,exports){
+},{"../util/util":149,"eventemitter2":157}],133:[function(require,module,exports){
 (function() {
   var Chainer, util,
     __slice = [].slice,
@@ -11986,7 +12952,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../util/util":133}],118:[function(require,module,exports){
+},{"../util/util":149}],134:[function(require,module,exports){
 (function() {
   var Base, MultiVarying, Varying, util,
     __hasProp = {}.hasOwnProperty,
@@ -12173,7 +13139,7 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }).call(this);
 
-},{"../core/base":116,"../util/util":133}],119:[function(require,module,exports){
+},{"../core/base":132,"../util/util":149}],135:[function(require,module,exports){
 var global=self;(function() {
   var janus, util, _base, _ref;
 
@@ -12229,7 +13195,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"./application/app":100,"./application/endpoint":101,"./application/handler":102,"./application/manifest":103,"./collection/collection":105,"./core/base":116,"./core/chain":117,"./core/varying":118,"./library/library":120,"./model/attribute":121,"./model/issue":123,"./model/model":124,"./model/page-model":125,"./model/reference":126,"./model/store":127,"./templater/package":129,"./templater/templater":130,"./util/util":133,"./view/dom-view":134,"./view/impl/list":136,"./view/impl/list-edit":135,"./view/impl/varying":137,"./view/page-view":139,"./view/view":140}],120:[function(require,module,exports){
+},{"./application/app":116,"./application/endpoint":117,"./application/handler":118,"./application/manifest":119,"./collection/collection":121,"./core/base":132,"./core/chain":133,"./core/varying":134,"./library/library":136,"./model/attribute":137,"./model/issue":139,"./model/model":140,"./model/page-model":141,"./model/reference":142,"./model/store":143,"./templater/package":145,"./templater/templater":146,"./util/util":149,"./view/dom-view":150,"./view/impl/list":152,"./view/impl/list-edit":151,"./view/impl/varying":153,"./view/page-view":155,"./view/view":156}],136:[function(require,module,exports){
 (function() {
   var Base, Library, match, util,
     __hasProp = {}.hasOwnProperty,
@@ -12387,7 +13353,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":116,"../util/util":133}],121:[function(require,module,exports){
+},{"../core/base":132,"../util/util":149}],137:[function(require,module,exports){
 (function() {
   var Attribute, BooleanAttribute, CollectionAttribute, DateAttribute, EnumAttribute, List, Model, ModelAttribute, NumberAttribute, ObjectAttribute, ShellModel, TextAttribute, Varying, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7,
     __hasProp = {}.hasOwnProperty,
@@ -12638,7 +13604,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../collection/list":109,"../core/varying":118,"../util/util":133,"./model":124}],122:[function(require,module,exports){
+},{"../collection/list":125,"../core/varying":134,"../util/util":149,"./model":140}],138:[function(require,module,exports){
 (function() {
   var Base, Binder, MultiVarying, util,
     __hasProp = {}.hasOwnProperty,
@@ -12757,7 +13723,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":116,"../core/varying":118,"../util/util":133}],123:[function(require,module,exports){
+},{"../core/base":132,"../core/varying":134,"../util/util":149}],139:[function(require,module,exports){
 (function() {
   var Base, Issue, Varying, util,
     __hasProp = {}.hasOwnProperty,
@@ -12792,7 +13758,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":116,"../core/varying":118,"../util/util":133}],124:[function(require,module,exports){
+},{"../core/base":132,"../core/varying":134,"../util/util":149}],140:[function(require,module,exports){
 (function() {
   var Base, Binder, Model, Null, NullClass, Reference, Resolver, Varying, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -13378,7 +14344,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../collection/collection":105,"../collection/list":109,"../core/base":116,"../core/varying":118,"../util/util":133,"./binder":122,"./reference":126}],125:[function(require,module,exports){
+},{"../collection/collection":121,"../collection/list":125,"../core/base":132,"../core/varying":134,"../util/util":149,"./binder":138,"./reference":142}],141:[function(require,module,exports){
 (function() {
   var Model, PageModel, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -13412,7 +14378,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../util/util":133,"./model":124}],126:[function(require,module,exports){
+},{"../util/util":149,"./model":140}],142:[function(require,module,exports){
 (function() {
   var ModelReference, ModelResolver, Reference, RequestReference, RequestResolver, Resolver, Varying, util, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
@@ -13593,7 +14559,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/varying":118,"../util/util":133,"./model":124}],127:[function(require,module,exports){
+},{"../core/varying":134,"../util/util":149,"./model":140}],143:[function(require,module,exports){
 (function() {
   var Base, CompleteState, CreateRequest, DeleteRequest, ErrorState, FetchRequest, InitState, List, MemoryCacheStore, Model, OnPageCacheStore, OneOfStore, PendingState, ProgressState, Request, RequestState, ServiceErrorState, Store, SuccessState, UpdateRequest, UserErrorState, Varying, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7,
     __hasProp = {}.hasOwnProperty,
@@ -14051,7 +15017,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../collection/list":109,"../core/base":116,"../core/varying":118,"../model/model":124,"../util/util":133}],128:[function(require,module,exports){
+},{"../collection/list":125,"../core/base":132,"../core/varying":134,"../model/model":140,"../util/util":149}],144:[function(require,module,exports){
 (function() {
   var ApplyMutator, AttrMutator, Base, Binder, ClassGroupMutator, ClassMutator, CssMutator, HtmlMutator, MultiVarying, Mutator, RenderMutator, TextMutator, Varying, reference, types, util, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8,
     __hasProp = {}.hasOwnProperty,
@@ -14672,7 +15638,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":116,"../core/varying":118,"../model/reference":126,"../util/util":133,"./types":131}],129:[function(require,module,exports){
+},{"../core/base":132,"../core/varying":134,"../model/reference":142,"../util/util":149,"./types":147}],145:[function(require,module,exports){
 (function() {
   var util;
 
@@ -14687,7 +15653,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../util/util":133,"./templater":130,"./types":131}],130:[function(require,module,exports){
+},{"../util/util":149,"./templater":146,"./types":147}],146:[function(require,module,exports){
 (function() {
   var Binder, Templater, util;
 
@@ -14743,7 +15709,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../util/util":133,"./binder":128}],131:[function(require,module,exports){
+},{"../util/util":149,"./binder":144}],147:[function(require,module,exports){
 (function() {
   var WithAux, WithOptions, WithView, util;
 
@@ -14786,7 +15752,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../util/util":133}],132:[function(require,module,exports){
+},{"../util/util":149}],148:[function(require,module,exports){
 (function() {
   var Continuous, Coverage, Range, Varying, util,
     __hasProp = {}.hasOwnProperty,
@@ -15024,7 +15990,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/varying":118,"./util":133}],133:[function(require,module,exports){
+},{"../core/varying":134,"./util":149}],149:[function(require,module,exports){
 (function() {
   var toString, type, util, _fn, _i, _len, _ref, _ref1,
     __slice = [].slice;
@@ -15224,7 +16190,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{}],134:[function(require,module,exports){
+},{}],150:[function(require,module,exports){
 (function() {
   var DomView, List, View, util,
     __hasProp = {}.hasOwnProperty,
@@ -15377,7 +16343,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../collection/list":109,"../util/util":133,"./view":140}],135:[function(require,module,exports){
+},{"../collection/list":125,"../util/util":149,"./view":156}],151:[function(require,module,exports){
 (function() {
   var DomView, ListEditItem, ListEditItemTemplate, ListEditView, ListView, Templater, templater, util, _ref, _ref1, _ref2,
     __hasProp = {}.hasOwnProperty,
@@ -15479,7 +16445,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../../templater/package":129,"../../templater/templater":130,"../../util/util":133,"../dom-view":134,"./list":136}],136:[function(require,module,exports){
+},{"../../templater/package":145,"../../templater/templater":146,"../../util/util":149,"../dom-view":150,"./list":152}],152:[function(require,module,exports){
 (function() {
   var ListView, Varying, ViewContainer, reference, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -15594,7 +16560,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../../core/varying":118,"../../model/reference":126,"../../util/util":133,"./view-container":138}],137:[function(require,module,exports){
+},{"../../core/varying":134,"../../model/reference":142,"../../util/util":149,"./view-container":154}],153:[function(require,module,exports){
 (function() {
   var VaryingView, ViewContainer, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -15658,7 +16624,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../../util/util":133,"./view-container":138}],138:[function(require,module,exports){
+},{"../../util/util":149,"./view-container":154}],154:[function(require,module,exports){
 (function() {
   var DomView, Varying, ViewContainer, reference, util, _ref,
     __hasProp = {}.hasOwnProperty,
@@ -15732,13 +16698,13 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../../core/varying":118,"../../model/reference":126,"../../util/util":133,"../dom-view":134}],139:[function(require,module,exports){
+},{"../../core/varying":134,"../../model/reference":142,"../../util/util":149,"../dom-view":150}],155:[function(require,module,exports){
 (function() {
 
 
 }).call(this);
 
-},{}],140:[function(require,module,exports){
+},{}],156:[function(require,module,exports){
 (function() {
   var Base, View, util,
     __hasProp = {}.hasOwnProperty,
@@ -15796,7 +16762,7 @@ var global=self;(function() {
 
 }).call(this);
 
-},{"../core/base":116,"../util/util":133}],141:[function(require,module,exports){
+},{"../core/base":132,"../util/util":149}],157:[function(require,module,exports){
 var process=require("__browserify_process");;!function(exports, undefined) {
 
   var isArray = Array.isArray ? Array.isArray : function _isArray(obj) {
@@ -16359,5 +17325,5 @@ var process=require("__browserify_process");;!function(exports, undefined) {
 
 }(typeof process !== 'undefined' && typeof process.title !== 'undefined' && typeof exports !== 'undefined' ? exports : window);
 
-},{"__browserify_process":34}]},{},[3])
+},{"__browserify_process":50}]},{},[4])
 ;

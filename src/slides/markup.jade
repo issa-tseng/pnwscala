@@ -299,3 +299,98 @@
       .personEdit
       .personView
 
+  .slide.slide13
+    .content
+      h1 NPM
+      svg( width="287px" height="400px" viewBox="0 0 386 537" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" )
+        g( stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" )
+          path( d="M65.5,229.749802 L65.5,67.4999994" id="Line" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square" )
+          path( d="M317.5,428.749795 L317.5,266.499999" id="Line" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square" )
+          path( d="M316.5,470.5 L65.5,266.499999" id="Line" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square" )
+          g( transform="translate(1.000000, 1.000000)" )
+            path( d="M66,132 C102.450795,132 132,102.450795 132,66 C132,29.5492047 102.450795,0 66,0 C29.5492047,0 0,29.5492047 0,66 C0,102.450795 29.5492047,132 66,132 Z M66,132" stroke="#979797" fill="#FBA617" )
+            text( fill="#000000" font-size="36" font-weight="260" x="21" y="81" )
+              tspan Janus
+          g( transform="translate(1.000000, 200.000000)" )
+            path( d="M66,132 C102.450795,132 132,102.450795 132,66 C132,29.5492047 102.450795,0 66,0 C29.5492047,0 0,29.5492047 0,66 C0,102.450795 29.5492047,132 66,132 Z M66,132" stroke="#979797" fill="#79CF19" )
+            text( fill="#000000" font-size="36" font-weight="260" x="13" y="81" )
+              tspan Project
+          g( transform="translate(253.000000, 404.000000)" )
+            path( d="M66,132 C102.450795,132 132,102.450795 132,66 C132,29.5492047 102.450795,0 66,0 C29.5492047,0 0,29.5492047 0,66 C0,102.450795 29.5492047,132 66,132 Z M66,132" stroke="#979797" fill="#34E0C2" )
+            text( fill="#000000" font-size="36" font-weight="260" x="35" y="81" )
+              tspan App
+          g( transform="translate(253.000000, 200.000000)" )
+            path( d="M66,132 C102.450795,132 132,102.450795 132,66 C132,29.5492047 102.450795,0 66,0 C29.5492047,0 0,29.5492047 0,66 C0,102.450795 29.5492047,132 66,132 Z M66,132" stroke="#979797" fill="#FBA617" )
+            text( fill="#000000" font-size="36" font-weight="260" x="21" y="81" )
+              tspan Janus
+
+      .code x instanceof y
+
+  .slide.slide14
+    .content
+      h1 Lying to the user
+      .code.bad.
+        timer = null
+        view = null
+        link = dom.find('.personLink')
+        link.hover(
+         (=>
+           clearTimeout(timer)
+           timer = setTimeout((=>
+             view = &hellip;show popup
+           ), 400)
+         ),
+         (-&gt;
+           clearTimeout(timer)
+           view?.destroy()
+         )
+        )
+      .code.good.
+        hovered = new Varying(false)
+        active = Varying.lie.sticky(hovered, true: 800, false: 400)
+        personLink.hover((-&gt; hovered.setValue(true)), (-&gt; hovered.setValue(false)))
+
+        view = null
+        active.react((isActive) -&gt; view = &hellip;show popup if isActive is true)
+
+  .slide.slide15
+    .content
+      h1 The language hates you
+      .code dataSeries.map((series) -&gt; series.reverse())
+
+  .slide.slide16
+    .content
+      h1 No compiler. No types.
+      h1 (the language hates you)
+
+  .slide.slide17
+    .content
+      h1 Tough to debug
+      ul
+        li.code my functional code!
+        li.code &hellip;imperative framework code&hellip;
+        li.code &hellip;imperative framework code&hellip;
+        li.code &hellip;imperative framework code&hellip;
+        li.code &hellip;imperative framework code&hellip;
+        li.code &hellip;imperative framework code&hellip;
+        li.code &hellip;imperative framework code&hellip;
+        li.code &hellip;imperative framework code&hellip;
+
+  .slide.slide18
+  .slide.slide19
+
+  .slide.slide20
+    .content
+      h1 Never be satisfied
+      ul
+        li With your knowledge
+          .sub Learn every day.
+        li With your own community
+          .sub Spread out. Cross-pollinate.
+        li With accepted practices
+          .sub Challenge everything.
+
+  .slide.slide21
+    .content
+      h1 Thank you.
+

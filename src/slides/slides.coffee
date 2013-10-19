@@ -11,5 +11,15 @@ module.exports = [
   require('./slide9')
   require('./slide10')
   require('./slide11')
+  require('./slide12')
+  require('./slide13')
+  require('./slide14')
+  require('./slide15')
+  require('./slide16')
+  require('./slide17')
+  require('./slide18')
+  require('./slide19')
+  require('./slide20')
+  require('./slide21')
 ]
 

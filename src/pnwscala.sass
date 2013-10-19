@@ -245,13 +245,30 @@ ul
   height: 100%
 
 .deck
-  @for $idx from 0 through 20
+  @for $idx from 0 through 18
     &.slide-#{$idx} .slides
       @include prefixer(transform, translateY(-($idx * 100%)))
       &.mini
         @include prefixer(transform, translateY(-($idx * 100%) scale(0.3)))
     .slide#{$idx}
       opacity: 1
+
+  &.slide-19 .slides
+    @include prefixer(transform, translateY(-100%))
+    @include prefixer(transition-duration, 4s)
+
+  &.slide-20 .slides
+    @include prefixer(transform, translateY(-100%) translateX(-100%))
+    @include prefixer(transition-duration, 1s)
+    .slide20
+      opacity: 1
+  &.slide-21 .slides
+    @include prefixer(transform, translateY(-100%) translateX(-200%))
+    @include prefixer(transition-duration, 1s)
+    .slide21
+      opacity: 1
+  &.slide-22 .slides
+    @include prefixer(transition-duration, 2s)
 
 .deck
   .slides
@@ -630,4 +647,162 @@ ul
   &.stage-31 .library
     stroke: #fff
     stroke-width: 10px
+
+.person.view
+  background: #eee
+  @include prefixer(border-radius, 0.3em)
+  @include prefixer(box-shadow, '0 0 1em #000, 0 0 1px rgba(0, 0, 0, 0.03) inset')
+  color: #000
+  overflow: hidden
+  padding: 2em
+  width: 50em
+
+  .name
+    float: left
+
+    .first
+      font-size: 6em
+      letter-spacing: -1px
+    .last
+      font-size: 2.5em
+
+  .age
+    float: right
+    font-size: 5em
+  .ageLabel
+    clear: right
+    float: right
+    font-size: 2.5em
+    padding: 0.2em 0
+
+.person.edit
+  .label
+    font-size: 1.8em
+    margin: 0.5em 0.1em 1em
+
+.issues
+  padding: 1.5em 0
+
+  .issue
+    color: #e02
+    font-size: 3em
+
+    .icon
+      padding-right: 0.5em
+
+input[type='text']
+  background: #383838
+  border: none
+  border-bottom: 4px solid #181818
+  color: #fff
+  font-family: 'Myriad Pro'
+  font-size: 3em
+  outline: none
+  padding: 0.3em 0.6em 0.2em
+
+.slide.slide12
+  .content
+    padding: 8em
+
+  .issues
+    width: 55em
+
+    .issue
+      line-height: 1.2em
+      padding-bottom: 0.5em
+
+  .person.edit
+    float: left
+
+  .person.view
+    float: right
+
+.slide.slide13
+  .content
+    @include centered(60em)
+    text-align: center
+
+  svg text
+    @include trade-light
+    letter-spacing: -1px
+
+  .code
+    padding-top: 1em
+
+.slide.slide14
+  .content
+    @include centered(60em)
+    padding: 0 8em
+
+    h1
+      color: $accent_aqua
+
+    .code
+      font-size: 2.5em
+      opacity: 0
+      position: absolute
+      top: 3em
+      @include transition(0.3s, opacity)
+
+  &.stage-0 .bad
+    opacity: 1
+
+  &.stage-1 .good
+    opacity: 1
+
+.slide.slide15
+  .content
+    @include centered(35em)
+    text-align: center
+
+    h1
+      color: $accent_tan
+
+.slide.slide16
+  .content
+    @include centered(35em)
+    text-align: center
+
+    h1
+      color: $accent_tan
+      ~ h1
+        color: $accent_aqua
+        font-size: 4em
+
+.slide.slide17
+  .content
+    @include centered(60em, 50em)
+
+    h1
+      color: $accent_tan
+
+    .code
+      font-size: 2.5em
+
+      &:first-child
+        color: $accent_aqua
+
+.slide20
+  left: 100%
+  position: absolute
+  top: 100%
+
+  .content
+    @include centered(50em)
+    text-align: center
+
+    h1
+      color: $accent_tan
+
+.slide21
+  left: 200%
+  position: absolute
+  top: 100%
+
+  .content
+    @include centered(8em)
+    text-align: center
+
+    h1
+      color: $accent_aqua
 

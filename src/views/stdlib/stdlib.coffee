@@ -6,6 +6,8 @@ module.exports = [
   require('./collection')
   require('./literal')
   require('./text-attribute')
+  require('./number-attribute')
   require('./varying')
+  require('./issue')
 ]
 

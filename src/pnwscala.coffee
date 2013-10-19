@@ -27,6 +27,8 @@ require('./views/deck').registerWith(viewLibrary)
 # register pnwscala slides.
 slides = require('./slides/slides')
 slide.registerWith(viewLibrary) for slide in slides
+person = require('./views/person')
+person.registerWith(viewLibrary) for slide in slides
 
 # init application.
 deck = require('./slides/deck')
